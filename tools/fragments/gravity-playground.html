@@ -1,0 +1,75 @@
+<!-- DESC: A canvas physics sandbox: spawn balls, fling them with your finger, and dial gravity, bounce and size to build your own tiny universe. Touch friendly. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Gravity Playground</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-violet" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="24" cy="26" r="12" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="24" cy="27" rx="21" ry="6.5" fill="none" stroke="currentColor" stroke-width="2.4" transform="rotate(-14 24 27)"/><circle cx="38" cy="11" r="3.4" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Gravity Playground</h1>
+      <p class="lede">A pocket universe of bouncy balls. Spawn them, throw them, flip gravity to zero and watch beautiful chaos happen.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Gravity Playground sandbox" id="gp-app">
+    <div class="canvas-frame" id="gp-frame">
+      <canvas id="gp-canvas" aria-label="Physics sandbox canvas. Tap to spawn a ball, drag balls to throw them."></canvas>
+      <p class="canvas-hint" id="gp-hint">Tap anywhere to drop a ball &middot; drag a ball to throw it</p>
+    </div>
+
+    <div class="control-bar">
+      <label class="control">
+        <span class="control-name">Gravity</span>
+        <input type="range" id="gp-gravity" min="0" max="200" value="100" step="1" aria-label="Gravity strength">
+        <output id="gp-gravity-out" for="gp-gravity">1.0g</output>
+      </label>
+      <label class="control">
+        <span class="control-name">Bounce</span>
+        <input type="range" id="gp-bounce" min="0" max="98" value="80" step="1" aria-label="Bounciness">
+        <output id="gp-bounce-out" for="gp-bounce">80%</output>
+      </label>
+      <label class="control">
+        <span class="control-name">Size</span>
+        <input type="range" id="gp-size" min="7" max="46" value="18" step="1" aria-label="New ball size">
+        <output id="gp-size-out" for="gp-size">18</output>
+      </label>
+      <div class="control-buttons">
+        <button class="btn btn-soft btn-sm" type="button" id="gp-add">+ Ball</button>
+        <button class="btn btn-soft btn-sm" type="button" id="gp-add10">+10</button>
+        <button class="icon-btn" type="button" id="gp-pause" aria-label="Pause simulation" aria-pressed="false">
+          <span class="ic-pause" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.5v13M16 5.5v13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
+          <span class="ic-play" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.4v13.2L18.6 12 8 5.4Z" fill="currentColor"/></svg></span>
+        </button>
+        <button class="icon-btn" type="button" id="gp-clear" aria-label="Remove all balls">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M5 7h14M10 7V5.4A1.4 1.4 0 0 1 11.4 4h1.2A1.4 1.4 0 0 1 14 5.4V7m3 0-.8 12a2 2 0 0 1-2 1.9H9.8a2 2 0 0 1-2-1.9L7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="icon-btn" type="button" data-fullscreen="#gp-frame" aria-label="Toggle fullscreen">
+          <span class="ic-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="ic-collapse" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="game-stats-row">
+      <span class="score-chip" id="gp-count">0 balls in orbit</span>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Tap empty space to drop a ball where your finger is.</li>
+      <li>Drag any ball to pick it up — release while moving to throw it.</li>
+      <li>Sliders tune the universe: gravity from zero to double-Earth, wall bounciness, and the size (mass) of freshly spawned balls.</li>
+      <li>Balls bounce off each other and the walls, heavier ones push lighter ones around.</li>
+      <li>The pause button freezes time; the trash button starts a new universe. Fullscreen mode is great on phones.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="random-planets,tiny-drawing,click-rush"></div>
+  </section>
+</div>

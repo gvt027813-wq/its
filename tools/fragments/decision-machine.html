@@ -1,0 +1,69 @@
+<!-- DESC: Can't decide? Feed your options into the Decision Machine, pull the lever and let a dramatic spinning drum pick for you — with confetti, naturally. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Decision Machine</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-pink" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="24" cy="26" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 17.5l4.3 8.9a4.8 4.8 0 1 1-8.6 0l4.3-8.9Z" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Decision Machine</h1>
+      <p class="lede">Pizza or pasta? Nap or run? Load your options, pull the lever and let the machine shoulder the responsibility.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Decision Machine">
+    <div class="dm-setup">
+      <form class="dm-form" id="dm-form">
+        <input id="dm-input" type="text" maxlength="60" placeholder="Add an option… (e.g. Order pizza)" autocomplete="off" aria-label="New option">
+        <button class="btn" type="submit">Add</button>
+      </form>
+      <p class="dm-hint" id="dm-hint">Add at least two options to arm the machine.</p>
+      <div class="dm-chips" id="dm-chips" aria-label="Your options"></div>
+      <div class="row">
+        <button class="btn btn-soft btn-sm" type="button" id="dm-sample">Surprise options</button>
+        <button class="btn btn-ghost btn-sm" type="button" id="dm-clear">Clear all</button>
+      </div>
+    </div>
+
+    <div class="dm-machine">
+      <div class="dm-drum" id="dm-drum" aria-hidden="true">
+        <div class="dm-slot" id="dm-slot">Ready?</div>
+      </div>
+      <button class="btn btn-big" type="button" id="dm-spin" disabled>Pull the lever</button>
+    </div>
+
+    <div class="dm-result" id="dm-result" hidden>
+      <p class="dm-label">The machine has decided:</p>
+      <p class="dm-verdict" id="dm-verdict"></p>
+      <div class="row row-center row-wrap">
+        <button class="btn" type="button" id="dm-again">Spin again</button>
+        <button class="btn btn-soft" type="button" id="dm-remove">Remove winner &amp; re-spin</button>
+        <button class="btn btn-ghost" type="button" id="dm-copy">Copy result</button>
+      </div>
+    </div>
+
+    <div class="dm-history" id="dm-history-wrap" hidden>
+      <span class="history-label">Recent verdicts</span>
+      <div class="chip-row" id="dm-history"></div>
+    </div>
+    <canvas id="dm-confetti" class="confetti-canvas" aria-hidden="true"></canvas>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Type an option and press Add — repeat until every choice is on the table (up to 12).</li>
+      <li>No ideas? <strong>Surprise options</strong> loads a silly starter set.</li>
+      <li>Pull the lever and watch the drum hammer through your options with increasing drama.</li>
+      <li>The winner is picked with cryptographically fair randomness and celebrated with confetti.</li>
+      <li>Recent verdicts are remembered on this device so you can admire the machine's wisdom.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="random-planets,word-mixer,number-guess"></div>
+  </section>
+</div>

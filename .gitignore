@@ -1,0 +1,9 @@
+# FunLab dev artifacts
+node_modules/
+tests/node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+
+# legacy upload present in the repo history, not part of the site
+multi-api-game-app-development*.zip

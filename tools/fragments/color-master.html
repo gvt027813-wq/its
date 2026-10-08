@@ -1,0 +1,75 @@
+<!-- DESC: Can your eyes spot an exact colour match? Color Master shows a target colour and hides one perfect match among near-miss decoys, across three difficulties. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Color Master</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-amber" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="18" cy="17" r="9" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="21" r="9" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="31" r="9" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Color Master</h1>
+      <p class="lede">One target colour, a crowd of impostors. Find the only true match before your streak — and your pride — evaporate.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Color Master game">
+    <div class="game-stats-row">
+      <span class="score-chip" id="cm-round">Round 0/10</span>
+      <span class="score-chip" id="cm-score">Score 0</span>
+      <span class="score-chip" id="cm-streak">Streak 0</span>
+      <span class="score-chip" id="cm-best">Best: —</span>
+    </div>
+
+    <!-- Start screen -->
+    <div class="cm-start" id="cm-start">
+      <h2 class="cm-title">Pick your difficulty</h2>
+      <p class="cm-sub">Ten rounds each. The closer the decoys, the trickier the hunt.</p>
+      <div class="cm-diff-row">
+        <button class="btn cm-diff" type="button" data-diff="easy"><strong>Easy</strong><small>6 swatches &middot; bold differences</small></button>
+        <button class="btn cm-diff" type="button" data-diff="medium"><strong>Medium</strong><small>9 swatches &middot; subtle shifts</small></button>
+        <button class="btn cm-diff" type="button" data-diff="hard"><strong>Hard</strong><small>12 swatches &middot; evil twins</small></button>
+      </div>
+    </div>
+
+    <!-- Game screen -->
+    <div class="cm-game" id="cm-game" hidden>
+      <div class="cm-target-wrap">
+        <div class="cm-target" id="cm-target" role="img" aria-label="Target colour"></div>
+        <p class="cm-question">Which swatch is the <strong>exact</strong> match?</p>
+      </div>
+      <div class="cm-options" id="cm-options" role="group" aria-label="Colour choices"></div>
+      <div class="cm-feedback" id="cm-feedback" role="status"></div>
+    </div>
+
+    <!-- End screen -->
+    <div class="cm-end" id="cm-end" hidden>
+      <h2 class="cm-title">Lab report</h2>
+      <div class="result-stats">
+        <div class="big-stat"><strong id="cm-final">0</strong><small>final score</small></div>
+        <div class="big-stat accent"><strong id="cm-accuracy">0%</strong><small>perfect picks</small></div>
+      </div>
+      <p class="verdict" id="cm-verdict"></p>
+      <div class="row row-center">
+        <button class="btn" type="button" id="cm-again">Same difficulty again</button>
+        <button class="btn btn-soft" type="button" id="cm-menu">Change difficulty</button>
+      </div>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Study the big target swatch, then tap the one option that matches it exactly.</li>
+      <li>Easy gives bold decoys, Hard gives near-identical evil twins.</li>
+      <li>Correct picks score 10 (Easy), 15 (Medium) or 25 (Hard) points, multiplied by your current streak.</li>
+      <li>A wrong pick resets the streak and reveals the true match — then the next round begins.</li>
+      <li>After ten rounds you get a lab report; the best score per difficulty is saved on this device.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="reaction-lab,number-guess,random-planets"></div>
+  </section>
+</div>

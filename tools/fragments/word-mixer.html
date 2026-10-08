@@ -1,0 +1,65 @@
+<!-- DESC: An original discovery game: combine any two things you own to brew a new one. Start with four humble elements and unlock hundreds of concepts — all saved on your device. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Word Mixer</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-coral" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="19" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="27" r="11" fill="none" stroke="currentColor" stroke-width="3"/><path d="M38 7.5l1.6 3.9 3.9 1.6-3.9 1.6L38 18.5l-1.6-3.9-3.9-1.6 3.9-1.6L38 7.5Z" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Word Mixer</h1>
+      <p class="lede">You own four humble things. Mix any two to brew a new one, then mix again — a whole dictionary of discoveries is hiding in your drawer.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel mixer-panel" aria-label="Word Mixer game">
+    <div class="mixer-board">
+      <div class="mix-slots">
+        <button class="mix-slot" type="button" id="mix-slot-a" aria-label="First ingredient — tap to choose">
+          <span class="mix-slot-label">Pick one</span>
+        </button>
+        <span class="mix-plus" aria-hidden="true">+</span>
+        <button class="mix-slot" type="button" id="mix-slot-b" aria-label="Second ingredient — tap to choose">
+          <span class="mix-slot-label">Pick one</span>
+        </button>
+      </div>
+      <button class="btn btn-big" type="button" id="mix-btn" disabled>Mix it</button>
+      <div class="mix-result" id="mix-result" hidden>
+        <p class="mix-result-label" id="mix-result-label">You brewed</p>
+        <p class="mix-result-word" id="mix-result-word"></p>
+        <div class="row row-center">
+          <button class="btn btn-soft btn-sm" type="button" id="mix-use">Use it</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="mix-same">Mix again</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="mixer-collection" aria-label="Your discoveries">
+      <div class="mixer-collection-head">
+        <h3>Drawer</h3>
+        <span class="count-pill" id="mix-count">4</span>
+        <input id="mix-search" type="search" placeholder="Filter…" autocomplete="off" aria-label="Filter your discoveries">
+      </div>
+      <div class="mix-grid" id="mix-grid"></div>
+      <p class="fine-print" id="mix-stats"></p>
+      <button class="btn btn-ghost btn-sm" type="button" id="mix-reset">Reset all discoveries</button>
+    </aside>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Tap two things in your drawer (or tap the slots to pick your latest finds).</li>
+      <li>Press <strong>Mix it</strong>. Some pairs brew something brand new; many don't.</li>
+      <li>First discoveries are marked with a spark and a small note about the pair that got you there.</li>
+      <li>Everything you brew is saved on this device, forever (or until you hit reset).</li>
+      <li>There is no final word — recipes run deep and the kettle never quite runs dry.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="tiny-drawing,random-planets,color-master"></div>
+  </section>
+</div>

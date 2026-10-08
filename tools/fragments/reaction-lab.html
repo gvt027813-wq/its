@@ -1,0 +1,57 @@
+<!-- DESC: Wait for green, then tap instantly. Reaction Lab measures your reflexes across five rounds, averages them and keeps your personal best on this device. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Reaction Lab</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-sky" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><path d="M26 4L10 27h10l-2 17 18-25H26l2-15Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Reaction Lab</h1>
+      <p class="lede">The panel turns green at a random moment. Tap the instant it does. Five rounds, one average — how fast are your wires?</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Reaction Lab game">
+    <div class="game-stats-row">
+      <span class="score-chip" id="rl-best">Best reaction: —</span>
+      <span class="score-chip" id="rl-best-avg">Best average: —</span>
+      <span class="score-chip" id="rl-last">Last: —</span>
+    </div>
+
+    <button class="reaction-stage state-idle" id="reaction-stage" type="button">
+      <span class="reaction-big" id="reaction-big">Tap to start</span>
+      <span class="reaction-sub" id="reaction-sub">Round 1 of 5 — wait for green, then tap fast</span>
+    </button>
+
+    <ol class="round-dots" id="reaction-rounds" aria-label="Round times"></ol>
+
+    <div class="reaction-summary" id="reaction-summary" hidden>
+      <div class="result-stats">
+        <div class="big-stat"><strong id="rl-avg">0</strong><small>ms average</small></div>
+        <div class="big-stat accent"><strong id="rl-fastest">0</strong><small>ms fastest</small></div>
+      </div>
+      <p class="verdict" id="rl-verdict"></p>
+      <div class="row row-center">
+        <button class="btn" type="button" id="rl-again">Run the lab again</button>
+      </div>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Tap the panel (or press <kbd>Space</kbd>) to arm a round.</li>
+      <li>It stays amber for a random moment — <strong>don't tap yet</strong>.</li>
+      <li>The moment it turns green, tap as fast as you can. Your time is measured in milliseconds.</li>
+      <li>Tap too early and the round restarts. Five clean rounds give your average.</li>
+      <li>Best single reaction and best average are saved on this device only.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="click-rush,color-master,number-guess"></div>
+  </section>
+</div>

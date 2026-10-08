@@ -1,0 +1,65 @@
+<!-- DESC: A pocket-sized canvas: draw with a smooth brush, fix mistakes with the eraser and undo, then save your masterpiece as a PNG. Autosaves locally. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Tiny Drawing</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-violet" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><path d="M31 7.5l9.5 9.5L18 39.5 6.5 41.5 8.5 30 31 7.5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M26 12.5L35.5 22" stroke="currentColor" stroke-width="3"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Tiny Drawing</h1>
+      <p class="lede">A calm little canvas with a silky brush, a forgiving eraser and one-tap PNG export. Doodle something unwise.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Tiny Drawing canvas">
+    <div class="draw-toolbar" role="toolbar" aria-label="Drawing tools">
+      <div class="tool-group" role="group" aria-label="Tool">
+        <button class="icon-btn tool-btn" type="button" id="draw-brush" aria-pressed="true" aria-label="Brush">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M19.4 3.6a2.3 2.3 0 0 1 0 3.2l-8.6 8.7-3.3-3.3 8.7-8.6a2.3 2.3 0 0 1 3.2 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 12.8c-1.9.5-3 2-3.2 4.4-.1 1.4-1 2.3-2.3 2.6 1.3 1.4 4.5 2 6.4.6a4.4 4.4 0 0 0 1.8-3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="icon-btn tool-btn" type="button" id="draw-eraser" aria-pressed="false" aria-label="Eraser">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M4 15.5 13.5 6a2.3 2.3 0 0 1 3.2 0l3.3 3.3a2.3 2.3 0 0 1 0 3.2l-6.7 6.7H8.3L4 15.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 21.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+      </div>
+      <div class="swatches" id="draw-swatches" role="group" aria-label="Colour"></div>
+      <label class="control draw-size">
+        <span class="control-name">Size</span>
+        <input type="range" id="draw-size" min="2" max="48" value="8" step="1" aria-label="Brush size">
+        <output id="draw-size-out" for="draw-size">8</output>
+      </label>
+      <div class="tool-group">
+        <button class="icon-btn" type="button" id="draw-undo" aria-label="Undo last stroke">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8.5 5.5 4 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10h9.5a6.5 6.5 0 0 1 6.5 6.5V19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="icon-btn" type="button" id="draw-clear" aria-label="Clear canvas">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M5 7h14M10 7V5.4A1.4 1.4 0 0 1 11.4 4h1.2A1.4 1.4 0 0 1 14 5.4V7m3 0-.8 12a2 2 0 0 1-2 1.9H9.8a2 2 0 0 1-2-1.9L7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="btn btn-soft btn-sm" type="button" id="draw-save">
+          <span aria-hidden="true">&#11015;&#65039;</span> PNG
+        </button>
+      </div>
+    </div>
+    <div class="canvas-frame draw-frame" id="draw-frame">
+      <canvas id="draw-canvas" width="800" height="600" aria-label="Drawing canvas"></canvas>
+    </div>
+    <p class="fine-print">Strokes autosave to this browser — come back later and your doodle will wait patiently. Saving a PNG downloads it to your device.</p>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Pick a colour swatch (or the custom colour well), then paint with your finger, stylus or mouse.</li>
+      <li>The size slider changes the brush; the eraser paints in canvas colour for clean corrections.</li>
+      <li>Undo steps back through your recent strokes; Clear wipes the canvas after a confirmation.</li>
+      <li><strong>PNG</strong> downloads your artwork. A copy also autosaves quietly in this browser.</li>
+      <li>Drawing works in portrait and landscape — rotate freely, the canvas keeps its 4:3 shape.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="gravity-playground,word-mixer,random-planets"></div>
+  </section>
+</div>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Replace the host below with your real domain when deploying.
+Sitemap: https://funlab.example.com/sitemap.xml

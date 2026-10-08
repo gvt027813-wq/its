@@ -1,0 +1,13 @@
+{
+  "name": "funlab-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "jsdom smoke tests for the FunLab static site",
+  "type": "module",
+  "scripts": {
+    "test": "node smoke.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^27.0.0"
+  }
+}

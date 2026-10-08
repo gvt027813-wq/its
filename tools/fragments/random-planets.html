@@ -1,0 +1,68 @@
+<!-- DESC: Roll an entire fictional planet: procedural name, painted surface, climate, terrain, population and civilisation. Save favourites or regenerate the galaxy. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Random Planets</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-teal" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="24" cy="24" r="13" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="24" cy="25" rx="22" ry="7" fill="none" stroke="currentColor" stroke-width="2.4" transform="rotate(-16 24 25)"/><circle cx="12" cy="8" r="1.6" fill="currentColor"/><circle cx="38" cy="6" r="1.2" fill="currentColor"/><circle cx="42" cy="16" r="1" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Random Planets</h1>
+      <p class="lede">An infinite galaxy, one planet at a time. Every world gets a painted portrait, a name and an improbable biography.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel planet-panel" aria-label="Random Planet generator">
+    <div class="planet-layout">
+      <div class="planet-stage">
+        <canvas id="planet-canvas" width="480" height="480" aria-label="Artist's impression of the current planet"></canvas>
+      </div>
+      <div class="planet-info">
+        <p class="planet-kicker" id="planet-kicker">Cataloguing…</p>
+        <h2 class="planet-name" id="planet-name">?</h2>
+        <p class="planet-desc" id="planet-desc">Press the button. Claim a world.</p>
+        <dl class="planet-stats" id="planet-stats"></dl>
+        <div class="row planet-actions">
+          <button class="btn" type="button" id="planet-new">
+            <span aria-hidden="true">&#127922;</span> New planet
+          </button>
+          <button class="icon-btn" type="button" id="planet-save" aria-label="Save planet to collection" aria-pressed="false">
+            <span class="ic-star" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M12 3.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L12 3.6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <span class="ic-star-filled" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M12 3.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L12 3.6Z" fill="currentColor"/></svg></span>
+          </button>
+          <button class="icon-btn" type="button" id="planet-copy" aria-label="Copy planet description">
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 14.5A1.5 1.5 0 0 1 4 13V5.5A1.5 1.5 0 0 1 5.5 4H13a1.5 1.5 0 0 1 1.5 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          </button>
+          <button class="icon-btn" type="button" id="planet-share" aria-label="Share planet">
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M12 3.5v11M8 7l4-3.5L16 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 11.5H5A1.5 1.5 0 0 0 3.5 13v6A1.5 1.5 0 0 0 5 20.5h14a1.5 1.5 0 0 0 1.5-1.5v-6a1.5 1.5 0 0 0-1.5-1.5h-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="planet-collection">
+      <div class="planet-collection-head">
+        <h3>Saved planets</h3>
+        <span class="count-pill" id="planet-saved-count">0</span>
+      </div>
+      <div class="chip-row" id="planet-saved"></div>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>What am I looking at?</summary>
+    <ul>
+      <li>Every planet is generated on your device from a random seed: no two visits paint the same sky.</li>
+      <li>The portrait is drawn live on a canvas — colours, bands, craters, rings and moons all roll from the seed.</li>
+      <li>Name, climate, terrain, population and civilisation come from the same seed, so a saved planet can be repainted exactly.</li>
+      <li>Tap the star to save a world to your collection (stored only on this device); tap a saved chip to revisit it.</li>
+      <li>Copy writes a catalogue entry to your clipboard; Share uses your device's share sheet where available.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="gravity-playground,decision-machine,word-mixer"></div>
+  </section>
+</div>

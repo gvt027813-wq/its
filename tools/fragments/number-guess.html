@@ -1,0 +1,63 @@
+<!-- DESC: A hidden number, higher-or-lower clues and a shrinking range. Find it in as few guesses as possible — binary-search brains beat luck in Number Guess. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Number Guess</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-amber" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3"/><text x="24" y="31" text-anchor="middle" font-size="19" font-weight="800" font-family="system-ui, sans-serif" fill="currentColor">?</text></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Number Guess</h1>
+      <p class="lede">The lab picked a number. Clues are free: every guess tells you higher or lower. Find it in style — ideally in seven or fewer.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Number Guess game">
+    <div class="ng-ranges" role="group" aria-label="Difficulty range">
+      <button class="chip ng-range-chip" type="button" data-range="100" aria-pressed="true">1–100</button>
+      <button class="chip ng-range-chip" type="button" data-range="500" aria-pressed="false">1–500</button>
+      <button class="chip ng-range-chip" type="button" data-range="1000" aria-pressed="false">1–1000</button>
+    </div>
+
+    <div class="ng-status">
+      <span class="score-chip" id="ng-attempts">Guess 0</span>
+      <span class="score-chip" id="ng-par">Par: 7</span>
+      <span class="score-chip" id="ng-best">Best: —</span>
+    </div>
+
+    <div class="ng-range" aria-hidden="true">
+      <div class="ng-range-fill" id="ng-range-fill"></div>
+      <span class="ng-lo" id="ng-lo">1</span>
+      <span class="ng-hi" id="ng-hi">100</span>
+    </div>
+
+    <form class="ng-form" id="ng-form">
+      <input id="ng-input" type="number" inputmode="numeric" min="1" placeholder="Your guess…" autocomplete="off" aria-label="Your guess" aria-describedby="ng-feedback">
+      <button class="btn" type="submit">Guess</button>
+    </form>
+
+    <p class="ng-feedback" id="ng-feedback" role="status">I'm thinking of a number…</p>
+    <div class="chip-row ng-history" id="ng-history" aria-label="Guess history"></div>
+
+    <div class="row">
+      <button class="btn btn-soft" type="button" id="ng-new">New number, please</button>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Choose a range, then guess. The lab answers <strong>higher</strong> or <strong>lower</strong>.</li>
+      <li>The shaded bar shows the live range where the number can still hide.</li>
+      <li>Par is the perfect score: <code>ceil(log2(range))</code> guesses. Hit par or better for a perfect badge.</li>
+      <li>Duplicate guesses are gently mocked but not counted twice.</li>
+      <li>Your best (fewest guesses) per range is saved on this device.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="color-master,reaction-lab,decision-machine"></div>
+  </section>
+</div>

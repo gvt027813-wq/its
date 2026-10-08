@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tiny Drawing — FunLab Experiment</title>
+<meta name="description" content="A pocket-sized canvas: draw with a smooth brush, fix mistakes with the eraser and undo, then save your masterpiece as a PNG. Autosaves locally.">
+<meta name="theme-color" content="#f7f4ee">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="FunLab">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FunLab">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FunLab">
+<meta property="og:title" content="Tiny Drawing — FunLab Experiment">
+<meta property="og:description" content="A pocket-sized canvas: draw with a smooth brush, fix mistakes with the eraser and undo, then save your masterpiece as a PNG. Autosaves locally.">
+<meta property="og:url" content="https://funlab.example.com/experiments/tiny-drawing/">
+<meta property="og:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FunLab — tiny experiments, big smiles">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tiny Drawing — FunLab Experiment">
+<meta name="twitter:description" content="A pocket-sized canvas: draw with a smooth brush, fix mistakes with the eraser and undo, then save your masterpiece as a PNG. Autosaves locally.">
+<meta name="twitter:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<link rel="manifest" href="../../manifest.json">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="../../css/styles.css">
+<link rel="stylesheet" href="../../css/experiments.css">
+<script>(function(){try{var t=null;try{t=localStorage.getItem("funlab:theme")}catch(e){}if(!t){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+</head>
+<body data-root="../../" data-page="tiny-drawing">
+<a class="skip-link" href="#main">Skip to content</a>
+<noscript><div class="noscript-note">FunLab experiments need JavaScript. Please enable it to play.</div></noscript>
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="../../index.html" aria-label="FunLab — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" focusable="false">
+          <defs><linearGradient id="lg-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+          <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-a)"/>
+          <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+          <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+        </svg>
+      </span>
+      <span class="brand-name">FunLab</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../../index.html" data-nav="home" aria-current="page">Experiments</a>
+      <a href="../../about.html" data-nav="about">About</a>
+      <a href="../../contact.html" data-nav="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-pressed="true" aria-label="Mute sounds">
+        <span class="ic ic-on" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-off" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M16 9.5l5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="ic ic-sun" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="4.4" fill="currentColor"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-moon" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M20.4 14.2A8.6 8.6 0 0 1 9.8 3.6a8.6 8.6 0 1 0 10.6 10.6Z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="ic ic-burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-close" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main class="page" id="main">
+
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a><span aria-hidden="true">/</span><span>Tiny Drawing</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-violet" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><path d="M31 7.5l9.5 9.5L18 39.5 6.5 41.5 8.5 30 31 7.5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M26 12.5L35.5 22" stroke="currentColor" stroke-width="3"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Tiny Drawing</h1>
+      <p class="lede">A calm little canvas with a silky brush, a forgiving eraser and one-tap PNG export. Doodle something unwise.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Tiny Drawing canvas">
+    <div class="draw-toolbar" role="toolbar" aria-label="Drawing tools">
+      <div class="tool-group" role="group" aria-label="Tool">
+        <button class="icon-btn tool-btn" type="button" id="draw-brush" aria-pressed="true" aria-label="Brush">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M19.4 3.6a2.3 2.3 0 0 1 0 3.2l-8.6 8.7-3.3-3.3 8.7-8.6a2.3 2.3 0 0 1 3.2 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 12.8c-1.9.5-3 2-3.2 4.4-.1 1.4-1 2.3-2.3 2.6 1.3 1.4 4.5 2 6.4.6a4.4 4.4 0 0 0 1.8-3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="icon-btn tool-btn" type="button" id="draw-eraser" aria-pressed="false" aria-label="Eraser">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M4 15.5 13.5 6a2.3 2.3 0 0 1 3.2 0l3.3 3.3a2.3 2.3 0 0 1 0 3.2l-6.7 6.7H8.3L4 15.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 21.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+      </div>
+      <div class="swatches" id="draw-swatches" role="group" aria-label="Colour"></div>
+      <label class="control draw-size">
+        <span class="control-name">Size</span>
+        <input type="range" id="draw-size" min="2" max="48" value="8" step="1" aria-label="Brush size">
+        <output id="draw-size-out" for="draw-size">8</output>
+      </label>
+      <div class="tool-group">
+        <button class="icon-btn" type="button" id="draw-undo" aria-label="Undo last stroke">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8.5 5.5 4 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10h9.5a6.5 6.5 0 0 1 6.5 6.5V19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="icon-btn" type="button" id="draw-clear" aria-label="Clear canvas">
+          <span aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M5 7h14M10 7V5.4A1.4 1.4 0 0 1 11.4 4h1.2A1.4 1.4 0 0 1 14 5.4V7m3 0-.8 12a2 2 0 0 1-2 1.9H9.8a2 2 0 0 1-2-1.9L7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="btn btn-soft btn-sm" type="button" id="draw-save">
+          <span aria-hidden="true">&#11015;&#65039;</span> PNG
+        </button>
+      </div>
+    </div>
+    <div class="canvas-frame draw-frame" id="draw-frame">
+      <canvas id="draw-canvas" width="800" height="600" aria-label="Drawing canvas"></canvas>
+    </div>
+    <p class="fine-print">Strokes autosave to this browser — come back later and your doodle will wait patiently. Saving a PNG downloads it to your device.</p>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Pick a colour swatch (or the custom colour well), then paint with your finger, stylus or mouse.</li>
+      <li>The size slider changes the brush; the eraser paints in canvas colour for clean corrections.</li>
+      <li>Undo steps back through your recent strokes; Clear wipes the canvas after a confirmation.</li>
+      <li><strong>PNG</strong> downloads your artwork. A copy also autosaves quietly in this browser.</li>
+      <li>Drawing works in portrait and landscape — rotate freely, the canvas keeps its 4:3 shape.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="gravity-playground,word-mixer,random-planets"></div>
+  </section>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html" aria-label="FunLab — home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="26" height="26" focusable="false">
+            <defs><linearGradient id="lg-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+            <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-b)"/>
+            <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+            <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="brand-name">FunLab</span>
+      </a>
+      <p class="footer-blurb">A little lab of original web experiments. Built with plain HTML, CSS and JavaScript — no accounts, no ads, no tracking.</p>
+      <button class="btn btn-soft btn-sm" type="button" data-install hidden>
+        <span aria-hidden="true">&#11015;&#65039;</span> Install FunLab
+      </button>
+    </div>
+    <nav class="footer-col" aria-label="Popular experiments">
+      <h3>Popular</h3>
+      <a href="../../experiments/click-rush/">Click Rush</a>
+      <a href="../../experiments/gravity-playground/">Gravity Playground</a>
+      <a href="../../experiments/random-planets/">Random Planets</a>
+      <a href="../../experiments/word-mixer/">Word Mixer</a>
+    </nav>
+    <nav class="footer-col" aria-label="FunLab pages">
+      <h3>FunLab</h3>
+      <a href="../../about.html">About</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../contact.html">Contact</a>
+      <a href="../../index.html">All experiments</a>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <p>&copy; <span data-year>2026</span> FunLab &middot; Made for the open web &middot; Everything runs &amp; stays on your device.</p>
+  </div>
+</footer>
+<script src="../../js/core/funlab.js" defer></script>
+<script src="../../js/core/icons.js" defer></script>
+<script src="../../js/core/storage.js" defer></script>
+<script src="../../js/core/scores.js" defer></script>
+<script src="../../js/core/sound.js" defer></script>
+<script src="../../js/core/toast.js" defer></script>
+<script src="../../js/core/modal.js" defer></script>
+<script src="../../js/core/theme.js" defer></script>
+<script src="../../js/core/nav.js" defer></script>
+<script src="../../js/core/fullscreen.js" defer></script>
+<script src="../../js/core/registry.js" defer></script>
+<script src="../../js/core/cards.js" defer></script>
+<script src="../../js/core/pwa.js" defer></script>
+<script src="../../js/core/sw-register.js" defer></script>
+<script src="../../js/experiments/tiny-drawing.js" defer></script>
+</body>
+</html>

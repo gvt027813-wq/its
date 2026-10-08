@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Word Mixer — FunLab Experiment</title>
+<meta name="description" content="An original discovery game: combine any two things you own to brew a new one. Start with four humble elements and unlock hundreds of concepts — all saved on your device.">
+<meta name="theme-color" content="#f7f4ee">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="FunLab">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FunLab">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FunLab">
+<meta property="og:title" content="Word Mixer — FunLab Experiment">
+<meta property="og:description" content="An original discovery game: combine any two things you own to brew a new one. Start with four humble elements and unlock hundreds of concepts — all saved on your device.">
+<meta property="og:url" content="https://funlab.example.com/experiments/word-mixer/">
+<meta property="og:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FunLab — tiny experiments, big smiles">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Word Mixer — FunLab Experiment">
+<meta name="twitter:description" content="An original discovery game: combine any two things you own to brew a new one. Start with four humble elements and unlock hundreds of concepts — all saved on your device.">
+<meta name="twitter:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<link rel="manifest" href="../../manifest.json">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="../../css/styles.css">
+<link rel="stylesheet" href="../../css/experiments.css">
+<script>(function(){try{var t=null;try{t=localStorage.getItem("funlab:theme")}catch(e){}if(!t){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+</head>
+<body data-root="../../" data-page="word-mixer">
+<a class="skip-link" href="#main">Skip to content</a>
+<noscript><div class="noscript-note">FunLab experiments need JavaScript. Please enable it to play.</div></noscript>
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="../../index.html" aria-label="FunLab — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" focusable="false">
+          <defs><linearGradient id="lg-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+          <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-a)"/>
+          <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+          <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+        </svg>
+      </span>
+      <span class="brand-name">FunLab</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../../index.html" data-nav="home" aria-current="page">Experiments</a>
+      <a href="../../about.html" data-nav="about">About</a>
+      <a href="../../contact.html" data-nav="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-pressed="true" aria-label="Mute sounds">
+        <span class="ic ic-on" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-off" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M16 9.5l5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="ic ic-sun" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="4.4" fill="currentColor"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-moon" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M20.4 14.2A8.6 8.6 0 0 1 9.8 3.6a8.6 8.6 0 1 0 10.6 10.6Z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="ic ic-burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-close" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main class="page" id="main">
+
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a><span aria-hidden="true">/</span><span>Word Mixer</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-coral" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="19" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="27" r="11" fill="none" stroke="currentColor" stroke-width="3"/><path d="M38 7.5l1.6 3.9 3.9 1.6-3.9 1.6L38 18.5l-1.6-3.9-3.9-1.6 3.9-1.6L38 7.5Z" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Word Mixer</h1>
+      <p class="lede">You own four humble things. Mix any two to brew a new one, then mix again — a whole dictionary of discoveries is hiding in your drawer.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel mixer-panel" aria-label="Word Mixer game">
+    <div class="mixer-board">
+      <div class="mix-slots">
+        <button class="mix-slot" type="button" id="mix-slot-a" aria-label="First ingredient — tap to choose">
+          <span class="mix-slot-label">Pick one</span>
+        </button>
+        <span class="mix-plus" aria-hidden="true">+</span>
+        <button class="mix-slot" type="button" id="mix-slot-b" aria-label="Second ingredient — tap to choose">
+          <span class="mix-slot-label">Pick one</span>
+        </button>
+      </div>
+      <button class="btn btn-big" type="button" id="mix-btn" disabled>Mix it</button>
+      <div class="mix-result" id="mix-result" hidden>
+        <p class="mix-result-label" id="mix-result-label">You brewed</p>
+        <p class="mix-result-word" id="mix-result-word"></p>
+        <div class="row row-center">
+          <button class="btn btn-soft btn-sm" type="button" id="mix-use">Use it</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="mix-same">Mix again</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="mixer-collection" aria-label="Your discoveries">
+      <div class="mixer-collection-head">
+        <h3>Drawer</h3>
+        <span class="count-pill" id="mix-count">4</span>
+        <input id="mix-search" type="search" placeholder="Filter…" autocomplete="off" aria-label="Filter your discoveries">
+      </div>
+      <div class="mix-grid" id="mix-grid"></div>
+      <p class="fine-print" id="mix-stats"></p>
+      <button class="btn btn-ghost btn-sm" type="button" id="mix-reset">Reset all discoveries</button>
+    </aside>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Tap two things in your drawer (or tap the slots to pick your latest finds).</li>
+      <li>Press <strong>Mix it</strong>. Some pairs brew something brand new; many don't.</li>
+      <li>First discoveries are marked with a spark and a small note about the pair that got you there.</li>
+      <li>Everything you brew is saved on this device, forever (or until you hit reset).</li>
+      <li>There is no final word — recipes run deep and the kettle never quite runs dry.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="tiny-drawing,random-planets,color-master"></div>
+  </section>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html" aria-label="FunLab — home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="26" height="26" focusable="false">
+            <defs><linearGradient id="lg-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+            <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-b)"/>
+            <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+            <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="brand-name">FunLab</span>
+      </a>
+      <p class="footer-blurb">A little lab of original web experiments. Built with plain HTML, CSS and JavaScript — no accounts, no ads, no tracking.</p>
+      <button class="btn btn-soft btn-sm" type="button" data-install hidden>
+        <span aria-hidden="true">&#11015;&#65039;</span> Install FunLab
+      </button>
+    </div>
+    <nav class="footer-col" aria-label="Popular experiments">
+      <h3>Popular</h3>
+      <a href="../../experiments/click-rush/">Click Rush</a>
+      <a href="../../experiments/gravity-playground/">Gravity Playground</a>
+      <a href="../../experiments/random-planets/">Random Planets</a>
+      <a href="../../experiments/word-mixer/">Word Mixer</a>
+    </nav>
+    <nav class="footer-col" aria-label="FunLab pages">
+      <h3>FunLab</h3>
+      <a href="../../about.html">About</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../contact.html">Contact</a>
+      <a href="../../index.html">All experiments</a>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <p>&copy; <span data-year>2026</span> FunLab &middot; Made for the open web &middot; Everything runs &amp; stays on your device.</p>
+  </div>
+</footer>
+<script src="../../js/core/funlab.js" defer></script>
+<script src="../../js/core/icons.js" defer></script>
+<script src="../../js/core/storage.js" defer></script>
+<script src="../../js/core/scores.js" defer></script>
+<script src="../../js/core/sound.js" defer></script>
+<script src="../../js/core/toast.js" defer></script>
+<script src="../../js/core/modal.js" defer></script>
+<script src="../../js/core/theme.js" defer></script>
+<script src="../../js/core/nav.js" defer></script>
+<script src="../../js/core/fullscreen.js" defer></script>
+<script src="../../js/core/registry.js" defer></script>
+<script src="../../js/core/cards.js" defer></script>
+<script src="../../js/core/pwa.js" defer></script>
+<script src="../../js/core/sw-register.js" defer></script>
+<script src="../../js/experiments/word-mixer.js" defer></script>
+</body>
+</html>

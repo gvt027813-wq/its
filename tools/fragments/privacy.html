@@ -1,0 +1,38 @@
+<div class="shell narrow">
+  <header class="page-head">
+    <h1>Privacy</h1>
+    <p class="lede">Short version: FunLab has no server side, no accounts, no analytics and no cookies that follow you. What happens in your browser stays in your browser.</p>
+  </header>
+
+  <article class="prose panel">
+    <h2>What we collect</h2>
+    <p>Nothing. FunLab is a static website — there is no backend, no login and no telemetry. We do not use analytics services, advertising networks or third-party trackers of any kind.</p>
+
+    <h2>What stays on your device</h2>
+    <p>Some experiments remember things so they feel alive. They use your browser's <strong>local storage</strong>, which never leaves your device:</p>
+    <ul>
+      <li>Personal bests (fastest reaction, highest CPS, fewest guesses…)</li>
+      <li>Your theme (light/dark) and sound preference</li>
+      <li>Discovered words in Word Mixer and saved planets in Random Planets</li>
+      <li>An autosaved copy of your latest Tiny Drawing</li>
+      <li>Options you typed into the Decision Machine</li>
+    </ul>
+    <p>In <a href="{ROOT}experiments/password-lab/">Password Lab</a> the password you type is only used for on-the-spot strength math in memory. It is <strong>never stored, never logged and never sent anywhere</strong> — close the tab and it is gone.</p>
+
+    <h2>Erase everything</h2>
+    <p>You can wipe every FunLab preference, score and discovery from this browser with one tap. This cannot be undone.</p>
+    <div class="row">
+      <button class="btn btn-danger" type="button" id="wipe-data">Erase all FunLab data</button>
+    </div>
+    <p class="fine-print" id="wipe-result" role="status"></p>
+
+    <h2>The service worker</h2>
+    <p>To work offline, FunLab stores a copy of its own files (pages, styles, scripts, icons) in your browser's cache. That cache contains no personal data and is deleted automatically when you clear site data or when a new version of FunLab replaces it.</p>
+
+    <h2>Third parties</h2>
+    <p>FunLab loads no fonts, scripts, images or APIs from third parties. If you install it as a PWA, the icon and cached pages come from the same place the site itself does.</p>
+
+    <h2>Questions?</h2>
+    <p>Ask us anything via the <a href="{ROOT}contact.html">contact page</a>.</p>
+  </article>
+</div>

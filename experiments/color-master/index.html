@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Color Master — FunLab Experiment</title>
+<meta name="description" content="Can your eyes spot an exact colour match? Color Master shows a target colour and hides one perfect match among near-miss decoys, across three difficulties.">
+<meta name="theme-color" content="#f7f4ee">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="FunLab">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FunLab">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FunLab">
+<meta property="og:title" content="Color Master — FunLab Experiment">
+<meta property="og:description" content="Can your eyes spot an exact colour match? Color Master shows a target colour and hides one perfect match among near-miss decoys, across three difficulties.">
+<meta property="og:url" content="https://funlab.example.com/experiments/color-master/">
+<meta property="og:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FunLab — tiny experiments, big smiles">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Color Master — FunLab Experiment">
+<meta name="twitter:description" content="Can your eyes spot an exact colour match? Color Master shows a target colour and hides one perfect match among near-miss decoys, across three difficulties.">
+<meta name="twitter:image" content="https://funlab.example.com/assets/og/og-cover.png">
+<link rel="manifest" href="../../manifest.json">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="../../css/styles.css">
+<link rel="stylesheet" href="../../css/experiments.css">
+<script>(function(){try{var t=null;try{t=localStorage.getItem("funlab:theme")}catch(e){}if(!t){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+</head>
+<body data-root="../../" data-page="color-master">
+<a class="skip-link" href="#main">Skip to content</a>
+<noscript><div class="noscript-note">FunLab experiments need JavaScript. Please enable it to play.</div></noscript>
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="../../index.html" aria-label="FunLab — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" focusable="false">
+          <defs><linearGradient id="lg-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+          <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-a)"/>
+          <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+          <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+        </svg>
+      </span>
+      <span class="brand-name">FunLab</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="../../index.html" data-nav="home" aria-current="page">Experiments</a>
+      <a href="../../about.html" data-nav="about">About</a>
+      <a href="../../contact.html" data-nav="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-pressed="true" aria-label="Mute sounds">
+        <span class="ic ic-on" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-off" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4Z" fill="currentColor"/><path d="M16 9.5l5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="ic ic-sun" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="4.4" fill="currentColor"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-moon" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M20.4 14.2A8.6 8.6 0 0 1 9.8 3.6a8.6 8.6 0 1 0 10.6 10.6Z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="ic ic-burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="ic ic-close" aria-hidden="true" hidden><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main class="page" id="main">
+
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a><span aria-hidden="true">/</span><span>Color Master</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-amber" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><circle cx="18" cy="17" r="9" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="21" r="9" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="31" r="9" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Color Master</h1>
+      <p class="lede">One target colour, a crowd of impostors. Find the only true match before your streak — and your pride — evaporate.</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Color Master game">
+    <div class="game-stats-row">
+      <span class="score-chip" id="cm-round">Round 0/10</span>
+      <span class="score-chip" id="cm-score">Score 0</span>
+      <span class="score-chip" id="cm-streak">Streak 0</span>
+      <span class="score-chip" id="cm-best">Best: —</span>
+    </div>
+
+    <!-- Start screen -->
+    <div class="cm-start" id="cm-start">
+      <h2 class="cm-title">Pick your difficulty</h2>
+      <p class="cm-sub">Ten rounds each. The closer the decoys, the trickier the hunt.</p>
+      <div class="cm-diff-row">
+        <button class="btn cm-diff" type="button" data-diff="easy"><strong>Easy</strong><small>6 swatches &middot; bold differences</small></button>
+        <button class="btn cm-diff" type="button" data-diff="medium"><strong>Medium</strong><small>9 swatches &middot; subtle shifts</small></button>
+        <button class="btn cm-diff" type="button" data-diff="hard"><strong>Hard</strong><small>12 swatches &middot; evil twins</small></button>
+      </div>
+    </div>
+
+    <!-- Game screen -->
+    <div class="cm-game" id="cm-game" hidden>
+      <div class="cm-target-wrap">
+        <div class="cm-target" id="cm-target" role="img" aria-label="Target colour"></div>
+        <p class="cm-question">Which swatch is the <strong>exact</strong> match?</p>
+      </div>
+      <div class="cm-options" id="cm-options" role="group" aria-label="Colour choices"></div>
+      <div class="cm-feedback" id="cm-feedback" role="status"></div>
+    </div>
+
+    <!-- End screen -->
+    <div class="cm-end" id="cm-end" hidden>
+      <h2 class="cm-title">Lab report</h2>
+      <div class="result-stats">
+        <div class="big-stat"><strong id="cm-final">0</strong><small>final score</small></div>
+        <div class="big-stat accent"><strong id="cm-accuracy">0%</strong><small>perfect picks</small></div>
+      </div>
+      <p class="verdict" id="cm-verdict"></p>
+      <div class="row row-center">
+        <button class="btn" type="button" id="cm-again">Same difficulty again</button>
+        <button class="btn btn-soft" type="button" id="cm-menu">Change difficulty</button>
+      </div>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Study the big target swatch, then tap the one option that matches it exactly.</li>
+      <li>Easy gives bold decoys, Hard gives near-identical evil twins.</li>
+      <li>Correct picks score 10 (Easy), 15 (Medium) or 25 (Hard) points, multiplied by your current streak.</li>
+      <li>A wrong pick resets the streak and reveals the true match — then the next round begins.</li>
+      <li>After ten rounds you get a lab report; the best score per difficulty is saved on this device.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="reaction-lab,number-guess,random-planets"></div>
+  </section>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="../../index.html" aria-label="FunLab — home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="26" height="26" focusable="false">
+            <defs><linearGradient id="lg-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs>
+            <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg-b)"/>
+            <path d="M13.2 6.4h5.6M14.4 6.4v4.9c0 .6-.17 1.2-.5 1.7l-3.6 5.9c-1.3 2.2.24 5 2.8 5h5.8c2.56 0 4.1-2.8 2.8-5l-3.6-5.9a3.3 3.3 0 0 1-.5-1.7V6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14.6" cy="18.6" r="1.15" fill="#fff"/>
+            <circle cx="17.9" cy="15.9" r=".85" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="brand-name">FunLab</span>
+      </a>
+      <p class="footer-blurb">A little lab of original web experiments. Built with plain HTML, CSS and JavaScript — no accounts, no ads, no tracking.</p>
+      <button class="btn btn-soft btn-sm" type="button" data-install hidden>
+        <span aria-hidden="true">&#11015;&#65039;</span> Install FunLab
+      </button>
+    </div>
+    <nav class="footer-col" aria-label="Popular experiments">
+      <h3>Popular</h3>
+      <a href="../../experiments/click-rush/">Click Rush</a>
+      <a href="../../experiments/gravity-playground/">Gravity Playground</a>
+      <a href="../../experiments/random-planets/">Random Planets</a>
+      <a href="../../experiments/word-mixer/">Word Mixer</a>
+    </nav>
+    <nav class="footer-col" aria-label="FunLab pages">
+      <h3>FunLab</h3>
+      <a href="../../about.html">About</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../contact.html">Contact</a>
+      <a href="../../index.html">All experiments</a>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <p>&copy; <span data-year>2026</span> FunLab &middot; Made for the open web &middot; Everything runs &amp; stays on your device.</p>
+  </div>
+</footer>
+<script src="../../js/core/funlab.js" defer></script>
+<script src="../../js/core/icons.js" defer></script>
+<script src="../../js/core/storage.js" defer></script>
+<script src="../../js/core/scores.js" defer></script>
+<script src="../../js/core/sound.js" defer></script>
+<script src="../../js/core/toast.js" defer></script>
+<script src="../../js/core/modal.js" defer></script>
+<script src="../../js/core/theme.js" defer></script>
+<script src="../../js/core/nav.js" defer></script>
+<script src="../../js/core/fullscreen.js" defer></script>
+<script src="../../js/core/registry.js" defer></script>
+<script src="../../js/core/cards.js" defer></script>
+<script src="../../js/core/pwa.js" defer></script>
+<script src="../../js/core/sw-register.js" defer></script>
+<script src="../../js/experiments/color-master.js" defer></script>
+</body>
+</html>

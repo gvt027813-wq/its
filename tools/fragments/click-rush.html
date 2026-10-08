@@ -1,0 +1,65 @@
+<!-- DESC: Tap as fast as you can for 10 seconds. FunLab's Click Rush measures your clicks-per-second, saves your personal best and keeps a history of every run. -->
+<nav class="crumbs shell" aria-label="Breadcrumb">
+  <a href="{ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>Click Rush</span>
+</nav>
+<div class="shell experiment-shell">
+  <header class="experiment-head">
+    <span class="experiment-icon accent-coral" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="30" height="30" focusable="false"><path d="M14 8l7 30 5-12 12-5L14 8Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M36 10l1.8 4.2L42 16l-4.2 1.8L36 22l-1.8-4.2L30 16l4.2-1.8L36 10Z" fill="currentColor"/></svg>
+    </span>
+    <div class="experiment-head-text">
+      <h1>Click Rush</h1>
+      <p class="lede">Ten seconds. One button. All of your rage. How many taps can you land, and what's your clicks-per-second?</p>
+    </div>
+  </header>
+
+  <section class="panel game-panel" aria-label="Click Rush game">
+    <div class="game-stats-row">
+      <span class="score-chip" id="rush-best">Best CPS: —</span>
+      <span class="score-chip" id="rush-last">Last run: —</span>
+      <span class="score-chip" id="rush-total">Lifetime taps: 0</span>
+    </div>
+
+    <div class="rush-stage" id="rush-stage">
+      <button class="rush-btn" id="rush-btn" type="button" aria-label="Tap here as fast as you can">
+        <svg class="rush-ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="ring-track" cx="100" cy="100" r="88"/>
+          <circle class="ring-progress" id="rush-ring" cx="100" cy="100" r="88"/>
+        </svg>
+        <span class="rush-num" id="rush-num">10.0</span>
+        <span class="rush-sub" id="rush-sub">tap to start</span>
+      </button>
+    </div>
+
+    <div class="rush-result" id="rush-result" hidden>
+      <div class="result-stats">
+        <div class="big-stat"><strong id="rush-clicks">0</strong><small>clicks in 10s</small></div>
+        <div class="big-stat accent"><strong id="rush-cps">0.0</strong><small>clicks per second</small></div>
+      </div>
+      <p class="verdict" id="rush-verdict"></p>
+      <div class="row row-center">
+        <button class="btn" type="button" id="rush-again">Play again</button>
+      </div>
+    </div>
+
+    <div class="history" id="rush-history" aria-label="Your last runs" hidden>
+      <span class="history-label">Last runs</span>
+      <div class="history-bars" id="rush-bars"></div>
+    </div>
+  </section>
+
+  <details class="how-to">
+    <summary>How to play</summary>
+    <ul>
+      <li>Tap the big button once to start the 10-second timer.</li>
+      <li>Then tap, tap, tap as fast as humanly (or inhumanly) possible.</li>
+      <li>On a touchscreen you may use several fingers at once — the machine counts every one.</li>
+      <li>When the timer ends you get your CPS score. Your personal best is saved on this device only.</li>
+    </ul>
+  </details>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="section-title" id="related-title">Try next</h2>
+    <div class="card-grid" data-related="reaction-lab,number-guess,color-master"></div>
+  </section>
+</div>

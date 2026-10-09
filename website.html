@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="VaultX — complete simple tasks, play games, spin the wheel and earn coins you can withdraw to UPI." />
+<meta name="theme-color" content="#060a13" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>VaultX — Earn Coins</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<!-- Firebase (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+
+<style>
+:root{
+  --bg:#060a13; --bg2:#0a1120; --surface:#0f1a2e; --surface2:#152340;
+  --line:rgba(148,163,184,.14); --text:#e8eef8; --muted:#93a1ba; --faint:#5c6a84;
+  --accent:#14b8a6; --accent2:#38bdf8; --gold:#f5b731;
+  --ok:#22c55e; --warn:#f59e0b; --err:#f43f5e;
+  --radius:16px; --shadow:0 12px 32px -16px rgba(0,0,0,.7);
+  --sidebar:250px;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{
+  font-family:var(--font);color:var(--text);font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(1100px 600px at 0% -10%,rgba(20,184,166,.12),transparent 60%),
+    radial-gradient(900px 520px at 110% 0%,rgba(56,189,248,.10),transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--accent2)}
+img{max-width:100%}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.small{font-size:.82rem}
+.mt{margin-top:10px}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.01em}
+h1{font-size:1.3rem} h2{font-size:1.5rem} h3{font-size:1.02rem} h4{font-size:.95rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;font-weight:600;font-size:.92rem;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s,opacity .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#0d9488);color:#03221f;box-shadow:0 10px 24px -12px rgba(20,184,166,.8)}
+.btn-gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#2a1c00;box-shadow:0 10px 24px -12px rgba(245,183,49,.7)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-danger{background:rgba(244,63,94,.12);border-color:rgba(244,63,94,.35);color:#fda4af}
+.btn-sm{min-height:34px;padding:7px 12px;font-size:.82rem;border-radius:10px}
+.btn-block{width:100%}
+.link{background:none;border:0;padding:0;cursor:pointer;color:var(--accent2);font-weight:600}
+.icon-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;display:grid;place-items:center;flex-shrink:0}
+.icon-btn:hover{color:var(--text);background:rgba(255,255,255,.08)}
+
+/* ---------- Forms ---------- */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label,.label{font-size:.8rem;color:var(--muted);font-weight:600}
+input,select,textarea{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(20,184,166,.18)}
+textarea{resize:vertical;min-height:90px}
+.input-wrap{position:relative}
+.input-wrap .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;cursor:pointer;color:var(--muted);padding:8px;border-radius:8px}
+.input-wrap input{padding-right:48px}
+.form-err{color:#fda4af;font-size:.8rem;min-height:1em;margin:-6px 0 10px}
+.hint{font-size:.8rem;color:var(--faint);margin-top:4px}
+
+/* ---------- Surfaces ---------- */
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);min-width:0}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.card-head h3{display:flex;align-items:center;gap:8px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(148,163,184,.12);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.badge.ok{background:rgba(34,197,94,.12);color:#86efac;border-color:rgba(34,197,94,.3)}
+.badge.warn{background:rgba(245,158,11,.12);color:#fcd34d;border-color:rgba(245,158,11,.3)}
+.badge.err{background:rgba(244,63,94,.12);color:#fda4af;border-color:rgba(244,63,94,.3)}
+.badge.info{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
+.badge.gold{background:rgba(245,183,49,.12);color:#fde68a;border-color:rgba(245,183,49,.3)}
+.progress{height:8px;border-radius:999px;background:rgba(148,163,184,.14);overflow:hidden}
+.progress>div{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .6s ease}
+.progress.gold>div{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+.empty{text-align:center;padding:26px 12px;color:var(--muted)}
+.empty .e-ico{font-size:2rem;margin-bottom:6px}
+.skeleton{height:70px;border-radius:14px;background:linear-gradient(90deg,var(--surface2) 25%,rgba(255,255,255,.07) 37%,var(--surface2) 63%);background-size:400% 100%;animation:shimmer 1.4s ease infinite}
+.list{display:flex;flex-direction:column;gap:10px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:12px;background:var(--bg2);border:1px solid var(--line)}
+.seg button{border:0;background:none;padding:8px 14px;border-radius:9px;cursor:pointer;color:var(--muted);font-weight:600;font-size:.88rem}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:var(--surface2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip-btn{border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.84rem}
+.chip-btn.on{background:rgba(20,184,166,.14);color:var(--accent);border-color:rgba(20,184,166,.4)}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.toolbar input{max-width:280px}
+.divider{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:.8rem;margin:18px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.spinner{display:inline-block;width:22px;height:22px;border-radius:50%;border:2.5px solid rgba(255,255,255,.15);border-top-color:var(--accent);animation:spin .8s linear infinite;vertical-align:middle}
+.spinner.sm{width:16px;height:16px;border-width:2px}
+
+/* ---------- Auth ---------- */
+.auth{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr}
+.auth-hero{padding:56px;display:flex;flex-direction:column;justify-content:center;gap:22px;background:radial-gradient(700px 420px at 0% 0%,rgba(20,184,166,.25),transparent 70%),linear-gradient(160deg,#0a1628,#060a13)}
+.auth-hero h1{font-size:2.6rem;line-height:1.1;letter-spacing:-.03em}
+.auth-hero p{color:var(--muted);max-width:460px;margin:0}
+.feat{display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.feat b{display:block}
+.feat span{color:var(--muted);font-size:.86rem}
+.auth-card{display:flex;flex-direction:column;justify-content:center;width:100%;max-width:460px;margin:auto;padding:48px 40px}
+.auth-card h2{margin-bottom:4px}
+.seg.wide{display:flex}
+.seg.wide button{flex:1}
+.fine{font-size:.78rem;color:var(--faint);text-align:center;margin:18px 0 0}
+
+/* ---------- Shell / layout ---------- */
+.app{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;padding:20px 14px;border-right:1px solid var(--line);background:rgba(8,13,24,.75);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 18px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.logo-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#03221f;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 22px -10px rgba(20,184,166,.9);flex-shrink:0}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border:0;border-radius:12px;background:none;color:var(--muted);font-weight:600;cursor:pointer;text-align:left;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.nav-item.active{background:rgba(20,184,166,.12);color:var(--accent);box-shadow:inset 0 0 0 1px rgba(20,184,166,.25)}
+.nav-ico{width:24px;text-align:center;font-size:1.05rem}
+.sidebar-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.mini-bal{padding:14px;border-radius:14px;background:rgba(245,183,49,.08);border:1px solid rgba(245,183,49,.22)}
+.mini-bal b{font-size:1.2rem;color:#fde68a}
+.shell{min-width:0}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 26px;background:rgba(6,10,19,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar p{margin:2px 0 0;font-size:.82rem}
+.top-right{display:flex;align-items:center;gap:10px}
+.coin-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;cursor:pointer;font-weight:800;color:#fde68a;background:rgba(245,183,49,.12);border:1px solid rgba(245,183,49,.3)}
+.avatar{width:40px;height:40px;border-radius:50%;padding:0;cursor:pointer;display:grid;place-items:center;overflow:hidden;font-weight:800;color:#03221f;background:linear-gradient(135deg,var(--accent2),var(--accent));border:2px solid var(--line);flex-shrink:0}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.content{max-width:1180px;margin:0 auto;padding:22px 26px 48px}
+.page{display:none;flex-direction:column;gap:18px}
+.page.active{display:flex;animation:fadeUp .35s ease both}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.stat{padding:16px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line)}
+.stat b{display:block;font-size:1.45rem;letter-spacing:-.02em}
+.stat span{color:var(--muted);font-size:.8rem;font-weight:600}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:radial-gradient(640px 220px at 0% 0%,rgba(20,184,166,.22),transparent 70%),var(--surface)}
+.balance{font-size:2.8rem;font-weight:900;letter-spacing:-.03em;line-height:1.05}
+.balance small{font-size:.95rem;font-weight:600;color:var(--muted);margin-left:8px;letter-spacing:0}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.streak-dots{display:flex;gap:6px;margin:6px 0 10px}
+.streak-dots i{flex:1;height:10px;border-radius:999px;background:rgba(148,163,184,.16)}
+.streak-dots i.on{background:linear-gradient(90deg,#fbbf24,#fb923c)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ad-card{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(120deg,rgba(56,189,248,.12),transparent 60%),var(--surface)}
+.ad-card .progress{margin:8px 0 6px;width:min(320px,70vw)}
+.ad-slot{display:flex;justify-content:center;align-items:center;min-height:60px;border-radius:12px;overflow:hidden}
+.tag{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* ---------- Tasks / missions / lists ---------- */
+.task{display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.task.done{opacity:.6}
+.task-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;background:rgba(20,184,166,.1);flex-shrink:0}
+.task-body{flex:1;min-width:0}
+.task-body p{margin:2px 0 6px;font-size:.84rem;color:var(--muted)}
+.meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;color:var(--faint)}
+.task-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.reward{font-weight:800;color:#fde68a;white-space:nowrap}
+.mission{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.mission-body{flex:1;min-width:0}
+.mission-body .progress{margin:6px 0 4px}
+.mission-body .meta{justify-content:space-between}
+.lb-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--surface2)}
+.lb-row.me{outline:1px solid var(--accent)}
+.lb-rank{width:30px;text-align:center;font-weight:900;color:var(--muted)}
+.lb-row:nth-child(1) .lb-rank{color:#fbbf24}
+.lb-row:nth-child(2) .lb-rank{color:#cbd5e1}
+.lb-row:nth-child(3) .lb-rank{color:#fb923c}
+.lb-name{flex:1;min-width:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-coins{font-weight:800;color:#fde68a;white-space:nowrap}
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.game{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:var(--radius);background:var(--surface2);border:1px solid var(--line)}
+.game-thumb{width:100%;aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#17305a,#0b1a33);object-fit:cover;display:grid;place-items:center;font-size:2rem}
+.game p{margin:0;font-size:.84rem;color:var(--muted)}
+.game .row{margin-top:auto}
+.gig{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--radius);background:var(--surface2);border:1px solid var(--line)}
+.gig p{margin:0;color:var(--muted);font-size:.86rem}
+.gig .row{margin-top:auto}
+.price{font-weight:800;color:#fde68a}
+.ach{padding:14px 10px;border-radius:14px;background:var(--surface2);border:1px solid var(--line);text-align:center;font-size:.84rem}
+.ach .a-ico{font-size:1.6rem;margin-bottom:4px}
+.ach.locked{opacity:.4;filter:grayscale(1)}
+.kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.kv:last-child{border-bottom:0}
+.kv span:first-child{color:var(--muted)}
+.tx-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.tx-row:last-child{border-bottom:0}
+.tx-row .amt-pos{color:#86efac;font-weight:800;white-space:nowrap}
+.tx-row .amt-neg{color:#fda4af;font-weight:800;white-space:nowrap}
+.tx-title{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy-row{display:flex;gap:8px}
+.copy-row input{flex:1;min-width:0}
+.profile-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.avatar.xl{width:76px;height:76px;font-size:1.7rem}
+
+/* ---------- Chat ---------- */
+.chat-log{display:flex;flex-direction:column;gap:10px;min-height:260px;max-height:50vh;overflow:auto;padding:4px 2px}
+.bubble{max-width:82%;padding:10px 14px;border-radius:16px;white-space:pre-wrap;font-size:.92rem;line-height:1.55}
+.bubble.bot{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),#0d9488);color:#03221f;border-bottom-right-radius:4px;font-weight:500}
+.bubble.typing{color:var(--muted)}
+.chat-form{display:flex;gap:10px;margin-top:12px}
+.chat-form input{flex:1}
+
+/* ---------- Modals ---------- */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(2,6,14,.72);backdrop-filter:blur(6px)}
+.modal.open{display:flex;animation:fadeIn .2s ease}
+.modal-card{width:100%;max-width:440px;max-height:90vh;overflow:auto;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line);box-shadow:0 30px 80px -20px #000;animation:scaleIn .25s cubic-bezier(.34,1.4,.64,1)}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}
+.modal-head h3{font-size:1.15rem}
+.modal-sub{color:var(--muted);font-size:.9rem;margin:4px 0 0}
+.modal-foot{display:flex;gap:10px;margin-top:16px}
+.modal-foot .btn{flex:1}
+.timer-bar{height:6px;border-radius:999px;background:rgba(148,163,184,.16);overflow:hidden;margin:14px 0 6px}
+.timer-bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:inherit}
+.reward-big{font-size:1.6rem;font-weight:900;color:#fde68a;text-align:center;margin:8px 0}
+.wheel-wrap{position:relative;width:min(290px,78vw);aspect-ratio:1;margin:10px auto 14px}
+.wheel-wrap canvas{width:100%;height:100%;display:block}
+.wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:26px solid var(--gold);filter:drop-shadow(0 3px 4px #000);z-index:2}
+.result{min-height:48px;text-align:center;font-weight:800;font-size:1.1rem;margin-top:6px}
+
+/* ---------- Toasts ---------- */
+.toasts{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:400;display:flex;flex-direction:column;gap:8px;width:min(92vw,400px);pointer-events:none}
+.toast{padding:12px 14px;border-radius:12px;background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--accent);box-shadow:var(--shadow);font-size:.9rem;animation:fadeUp .3s ease both;transition:opacity .4s}
+.toast.success{border-left-color:var(--ok)}
+.toast.error{border-left-color:var(--err)}
+.toast.warn{border-left-color:var(--warn)}
+.toast.out{opacity:0}
+
+/* ---------- Splash & misc ---------- */
+.splash{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg);transition:opacity .5s ease}
+.splash.hide{opacity:0;pointer-events:none}
+.splash .logo-mark{width:58px;height:58px;font-size:1.6rem;border-radius:18px;animation:pulse 1.6s ease-in-out infinite}
+.splash .name{font-weight:900;font-size:1.4rem;letter-spacing:-.02em}
+.burst{position:fixed;z-index:600;width:10px;height:10px;border-radius:50%;pointer-events:none;background:var(--gold);box-shadow:0 0 10px rgba(245,183,49,.7);animation:burst .9s ease-out forwards}
+.bottomnav{display:none}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+@keyframes barFill{from{width:0}to{width:100%}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:899px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .sidebar{display:none}
+  .topbar{padding:12px 16px}
+  .content{padding:16px 14px 112px}
+  .grid-2,.grid-3{grid-template-columns:minmax(0,1fr)}
+  .auth{grid-template-columns:minmax(0,1fr)}
+  .auth-hero{display:none}
+  .auth-card{padding:32px 22px}
+  .toolbar input{max-width:none}
+  .bottomnav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:60;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:rgba(8,13,24,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  .bn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;border:0;background:none;color:var(--muted);font-size:.68rem;font-weight:600;cursor:pointer}
+  .bn .bn-ico{font-size:1.2rem}
+  .bn.active{color:var(--accent)}
+}
+@media (max-width:560px){
+  .balance{font-size:2.2rem}
+  .stat b{font-size:1.2rem}
+  .tx-title{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SPLASH ============ -->
+<div id="splash" class="splash" aria-live="polite">
+  <div class="logo-mark">V</div>
+  <div class="name">VaultX</div>
+  <span class="spinner" aria-hidden="true"></span>
+</div>
+
+<!-- ============ AUTH ============ -->
+<main id="auth" class="auth hidden">
+  <section class="auth-hero" aria-label="About VaultX">
+    <div class="brand"><div class="logo-mark">V</div>VaultX</div>
+    <h1>Small tasks.<br/>Real coins.</h1>
+    <p>Complete simple tasks, play games, spin the daily wheel and invite friends. Coins can be withdrawn to your UPI ID.</p>
+    <div class="feat"><div style="font-size:1.4rem">🎁</div><div><b>Daily rewards</b><span>Come back every day to grow your streak bonus.</span></div></div>
+    <div class="feat"><div style="font-size:1.4rem">🎮</div><div><b>Play &amp; earn</b><span>Games and partner offers with clear rewards and daily limits.</span></div></div>
+    <div class="feat"><div style="font-size:1.4rem">💸</div><div><b>UPI withdrawals</b><span>100 coins = ₹1. Minimum withdrawal 1,000 coins.</span></div></div>
+  </section>
+
+  <section class="auth-card card" style="border-radius:0;border:0;box-shadow:none;background:transparent">
+    <div class="seg wide" role="tablist" aria-label="Account">
+      <button type="button" id="tabLogin" role="tab" class="on" aria-selected="true">Login</button>
+      <button type="button" id="tabSignup" role="tab" aria-selected="false">Create account</button>
+    </div>
+    <div style="height:18px"></div>
+
+    <form id="loginForm" novalidate>
+      <h2>Welcome back</h2>
+      <p class="muted" style="margin:0 0 18px">Login karo aur apni coins balance dekho.</p>
+      <div class="field">
+        <label for="lEmail">Email</label>
+        <input id="lEmail" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for="lPass">Password</label>
+        <div class="input-wrap">
+          <input id="lPass" type="password" autocomplete="current-password" required />
+          <button type="button" class="eye" data-toggle="lPass" aria-label="Show password">👁</button>
+        </div>
+      </div>
+      <div class="form-err" id="lErr"></div>
+      <button class="btn btn-primary btn-block" type="submit" id="btnLogin">Login</button>
+      <div class="row" style="margin-top:12px"><button type="button" class="link small" id="forgotBtn">Forgot password?</button></div>
+    </form>
+
+    <form id="signupForm" class="hidden" novalidate>
+      <h2>Create your account</h2>
+      <p class="muted" style="margin:0 0 18px">Free account — 50 welcome coins milenge.</p>
+      <div class="field">
+        <label for="rName">Full name</label>
+        <input id="rName" type="text" maxlength="40" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="rEmail">Email</label>
+        <input id="rEmail" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for="rPass">Password</label>
+        <div class="input-wrap">
+          <input id="rPass" type="password" autocomplete="new-password" minlength="6" required />
+          <button type="button" class="eye" data-toggle="rPass" aria-label="Show password">👁</button>
+        </div>
+        <span class="hint">Kam se kam 6 characters.</span>
+      </div>
+      <div class="field">
+        <label for="rRef">Referral code (optional)</label>
+        <input id="rRef" type="text" maxlength="20" autocomplete="off" style="text-transform:uppercase" />
+      </div>
+      <div class="form-err" id="rErr"></div>
+      <button class="btn btn-primary btn-block" type="submit" id="btnSignup">Create account</button>
+    </form>
+
+    <div class="divider">or</div>
+    <button class="btn btn-ghost btn-block" type="button" id="googleBtn">
+      <span aria-hidden="true">G</span> Continue with Google
+    </button>
+    <p class="fine">By continuing you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+  </section>
+</main>
+
+<!-- ============ APP ============ -->
+<div id="app" class="app hidden">
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand"><div class="logo-mark">V</div>VaultX</div>
+    <button class="nav-item" data-nav="home"><span class="nav-ico">🏠</span>Home</button>
+    <button class="nav-item" data-nav="earn"><span class="nav-ico">💰</span>Earn</button>
+    <button class="nav-item" data-nav="games"><span class="nav-ico">🎮</span>Games &amp; Spin</button>
+    <button class="nav-item" data-nav="skill"><span class="nav-ico">💼</span>Skill Zone</button>
+    <button class="nav-item" data-nav="wallet"><span class="nav-ico">👛</span>Wallet</button>
+    <button class="nav-item" data-nav="profile"><span class="nav-ico">👤</span>Profile</button>
+    <div class="sidebar-foot">
+      <div class="mini-bal"><div class="small muted">Balance</div><b id="sbCoins">0 🪙</b><div class="small muted" id="sbInr">≈ ₹0.00</div></div>
+      <button class="btn btn-ghost btn-sm btn-block" id="logoutSide">Logout</button>
+    </div>
+  </aside>
+
+  <div class="shell">
+    <header class="topbar">
+      <div>
+        <h1 id="pageTitle">Home</h1>
+        <p class="muted" id="pageSub"></p>
+      </div>
+      <div class="top-right">
+        <button class="coin-chip" data-nav="wallet" aria-label="Wallet balance"><span aria-hidden="true">🪙</span><span id="chipCoins">0</span></button>
+        <button class="avatar" data-nav="profile" id="avatarBtn" aria-label="Open profile"></button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- HOME -->
+      <section class="page" id="page-home" aria-labelledby="pageTitle">
+        <div class="card hero">
+          <div>
+            <p class="muted" style="margin:0 0 4px">Welcome back,</p>
+            <h2 id="hName">Warrior</h2>
+            <div class="balance" style="margin-top:10px"><span id="hCoins">0</span><small>coins</small></div>
+            <p class="muted" id="hInr" style="margin:6px 0 0">≈ ₹0.00</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-gold" id="dailyBtn">🎁 Claim daily</button>
+            <button class="btn btn-ghost" data-nav="earn">Earn more</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span>Tasks done</span><b id="sTasks">0</b></div>
+          <div class="stat"><span>Day streak</span><b id="sStreak">0</b></div>
+          <div class="stat"><span>Referrals</span><b id="sRefs">0</b></div>
+          <div class="stat"><span>Level</span><b id="sLevel">1</b></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h3>Daily check-in</h3><span class="badge" id="streakBadge">Streak 0</span></div>
+            <div class="streak-dots" id="streakDots" aria-hidden="true"></div>
+            <p class="muted small" id="dailyText" style="margin:0"></p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Level progress</h3><span class="badge gold" id="xpBadge">Level 1</span></div>
+            <div class="progress gold"><div id="xpFill"></div></div>
+            <p class="muted small" id="xpText" style="margin:8px 0 0"></p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h3>Daily missions</h3><span class="badge" id="missionCount">0/0</span></div>
+            <div class="list" id="missionList"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>🏆 Leaderboard</h3><span class="badge">Top 10</span></div>
+            <div class="list" id="lbList"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Trending tasks</h3><button class="link small" data-nav="earn">See all →</button></div>
+          <div class="list" id="trendList"></div>
+        </div>
+
+        <div class="card row">
+          <div>
+            <h3>Invite friends, earn together</h3>
+            <p class="muted small" style="margin:4px 0 0">Har naye signup par aapko aur unhe bonus coins milte hain.</p>
+          </div>
+          <button class="btn btn-primary" id="homeShare">Share my link</button>
+        </div>
+
+        <div class="ad-slot" aria-label="Sponsored"><div id="container-home-native" style="width:100%"></div></div>
+      </section>
+
+      <!-- EARN -->
+      <section class="page" id="page-earn">
+        <div class="card ad-card">
+          <div>
+            <span class="tag">Sponsored</span>
+            <h3 style="margin-top:6px">📺 Watch &amp; earn</h3>
+            <p class="muted small" style="margin:4px 0 0">Ad dekho aur coins pao. Aaj <b id="adToday">0/10</b> ads.</p>
+            <div class="progress"><div id="adProgress"></div></div>
+            <p class="small muted" id="adCooldown" style="margin:0"></p>
+          </div>
+          <button class="btn btn-primary" id="watchAdBtn">Watch ad</button>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" id="taskFilters" role="group" aria-label="Filter tasks">
+            <button class="chip-btn on" data-f="all">All</button>
+            <button class="chip-btn" data-f="easy">Easy</button>
+            <button class="chip-btn" data-f="medium">Medium</button>
+            <button class="chip-btn" data-f="hard">Hard</button>
+          </div>
+          <input id="taskSearch" type="search" placeholder="Search tasks…" aria-label="Search tasks" />
+        </div>
+        <div class="list" id="taskList"></div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>🤝 Partner offers</h3>
+              <p class="muted small" style="margin:4px 0 0">Offer kholo, <b>60 seconds</b> wahan rehkar wapas aao, phir claim karo. Roz <b id="offerLimit">5</b> tak.</p>
+            </div>
+            <div class="row" style="gap:8px"><span class="badge" id="offerCount">—</span><button class="icon-btn" id="offersRefresh" aria-label="Refresh offers">↻</button></div>
+          </div>
+          <div class="list" id="offerList"></div>
+        </div>
+      </section>
+
+      <!-- GAMES -->
+      <section class="page" id="page-games">
+        <div class="card row">
+          <div>
+            <h3>🎡 Daily spin</h3>
+            <p class="muted small" style="margin:4px 0 0" id="spinSub">Roz ek free spin.</p>
+          </div>
+          <button class="btn btn-gold" id="spinOpen">Spin the wheel</button>
+        </div>
+
+        <div class="card-head" style="margin:0">
+          <div>
+            <h3>🎮 Play &amp; earn</h3>
+            <p class="muted small" style="margin:4px 0 0">Game ko 5 minute khelo, phir claim karo. Roz <b id="gameLimit">5</b> game rewards.</p>
+          </div>
+          <span class="badge" id="gameCount">0/5</span>
+        </div>
+        <div class="grid-cards" id="gameGrid"></div>
+      </section>
+
+      <!-- SKILL ZONE -->
+      <section class="page" id="page-skill">
+        <div class="seg" id="skillTabs" role="tablist" aria-label="Skill zone">
+          <button class="on" data-tab="browse" role="tab" aria-selected="true">Browse gigs</button>
+          <button data-tab="mine" role="tab" aria-selected="false">My gigs</button>
+          <button data-tab="post" role="tab" aria-selected="false">Post a gig</button>
+          <button data-tab="ai" role="tab" aria-selected="false">Idea assistant</button>
+        </div>
+
+        <div id="tab-browse" class="col" style="display:flex;flex-direction:column;gap:16px">
+          <div class="toolbar">
+            <input id="gigSearch" type="search" placeholder="Search gigs…" aria-label="Search gigs" style="max-width:340px" />
+            <button class="btn btn-ghost btn-sm" id="gigsRefresh">Refresh</button>
+          </div>
+          <div class="grid-cards" id="gigGrid"></div>
+        </div>
+
+        <div id="tab-mine" class="hidden" style="display:flex;flex-direction:column;gap:12px">
+          <div class="list" id="myGigList"></div>
+        </div>
+
+        <div id="tab-post" class="hidden">
+          <form class="card" id="gigForm" novalidate style="max-width:620px">
+            <h3 style="margin-bottom:14px">Post a gig</h3>
+            <div class="field"><label for="gTitle">Title</label><input id="gTitle" maxlength="80" required /></div>
+            <div class="field"><label for="gDesc">Description</label><textarea id="gDesc" maxlength="600" required></textarea></div>
+            <div class="grid-2" style="gap:14px">
+              <div class="field"><label for="gCat">Category</label>
+                <select id="gCat">
+                  <option value="design">🎨 Design</option>
+                  <option value="writing">✍️ Writing</option>
+                  <option value="social">📱 Social media</option>
+                  <option value="video">🎬 Video</option>
+                  <option value="tech">💻 Tech</option>
+                </select>
+              </div>
+              <div class="field"><label for="gPrice">Price (coins)</label><input id="gPrice" type="number" min="10" step="10" inputmode="numeric" required /></div>
+            </div>
+            <div class="form-err" id="gErr"></div>
+            <button class="btn btn-primary" type="submit" id="gSubmit">Publish gig</button>
+          </form>
+        </div>
+
+        <div id="tab-ai" class="hidden">
+          <div class="card" style="max-width:760px">
+            <div class="card-head">
+              <div>
+                <h3>💡 Idea assistant</h3>
+                <p class="muted small" style="margin:4px 0 0">Offline tips — captions, freelancing, earning ideas. Live AI abhi is site par enabled nahi hai.</p>
+              </div>
+            </div>
+            <div class="chat-log" id="chatLog" aria-live="polite"></div>
+            <div class="chips mt" id="aiChips" style="margin-top:12px"></div>
+            <form class="chat-form" id="chatForm">
+              <input id="chatInput" placeholder="Kuch poochho… (e.g. captions, fiverr, youtube)" maxlength="300" aria-label="Message" />
+              <button class="btn btn-primary" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- WALLET -->
+      <section class="page" id="page-wallet">
+        <div class="grid-2">
+          <div class="card hero" style="flex-direction:column;align-items:flex-start">
+            <p class="muted" style="margin:0">Available balance</p>
+            <div class="balance"><span id="wCoins">0</span><small>coins</small></div>
+            <p class="muted" id="wInr" style="margin:0">≈ ₹0.00</p>
+            <div class="grid-2" style="width:100%;gap:12px;margin-top:8px">
+              <div class="stat"><span>Total earned</span><b id="wEarned" style="font-size:1.1rem">₹0.00</b></div>
+              <div class="stat"><span>Total withdrawn</span><b id="wWithdrawn" style="font-size:1.1rem">₹0.00</b></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:4px">Withdraw to UPI</h3>
+            <p class="muted small" style="margin:0 0 14px">100 coins = ₹1 · Minimum 1,000 coins (₹10)</p>
+            <form id="wForm" novalidate>
+              <div class="field">
+                <label for="wUpi">UPI ID</label>
+                <input id="wUpi" placeholder="name@upi" autocomplete="off" maxlength="60" />
+              </div>
+              <div class="field">
+                <label for="wAmt">Amount (coins)</label>
+                <input id="wAmt" type="number" min="1000" step="100" inputmode="numeric" placeholder="1000" />
+                <div class="chips" style="margin-top:6px">
+                  <button type="button" class="chip-btn" data-preset="1000">1,000</button>
+                  <button type="button" class="chip-btn" data-preset="2000">2,000</button>
+                  <button type="button" class="chip-btn" data-preset="5000">5,000</button>
+                  <button type="button" class="chip-btn" data-preset="max">Max</button>
+                </div>
+                <span class="hint" id="wPreview">Enter an amount</span>
+              </div>
+              <div class="form-err" id="wErr"></div>
+              <button class="btn btn-primary btn-block" type="submit" id="wSubmit">Request withdrawal</button>
+              <p class="hint" style="margin-top:10px">Requests 24–48 hours mein process hoti hain. Ek time par sirf ek pending request.</p>
+            </form>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h3>Withdrawal requests</h3><button class="link small" id="wdRefresh">Refresh</button></div>
+            <div class="list" id="wdList"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Recent transactions</h3></div>
+            <div id="txList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="page" id="page-profile">
+        <div class="card profile-head">
+          <div class="avatar xl" id="pAvatar" aria-hidden="true"></div>
+          <div style="flex:1;min-width:0">
+            <h2 id="pName" style="font-size:1.3rem">Warrior</h2>
+            <p class="muted small" id="pEmail" style="margin:2px 0 6px"></p>
+            <span class="badge gold" id="pLevel">Level 1</span>
+          </div>
+          <button class="btn btn-ghost" id="editNameBtn">Edit name</button>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-bottom:6px">Account</h3>
+            <div class="kv"><span>UID</span><span id="pUid">—</span></div>
+            <div class="kv"><span>Member since</span><span id="pJoined">—</span></div>
+            <div class="kv"><span>Streak</span><span id="pStreak">0 days</span></div>
+            <div class="kv"><span>XP</span><span id="pXp">0</span></div>
+            <div class="row" style="margin-top:12px">
+              <button class="btn btn-ghost btn-sm" id="copyUid">Copy UID</button>
+              <button class="btn btn-ghost btn-sm" id="resetPwd">Change password</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:6px">Referral</h3>
+            <p class="muted small" style="margin:0 0 12px">Har signup par aapko <b>100 coins</b> aur naye user ko <b>50 coins</b>.</p>
+            <div class="copy-row">
+              <input id="refLink" readonly aria-label="Referral link" />
+              <button class="btn btn-ghost btn-sm" id="copyRef">Copy</button>
+            </div>
+            <div class="kv" style="margin-top:10px"><span>Referrals</span><span id="pRefs">0</span></div>
+            <div class="kv"><span>Referral earnings</span><span id="pRefEarn">0 🪙</span></div>
+            <button class="btn btn-primary btn-block" style="margin-top:12px" id="shareRef">Share link</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Achievements</h3><span class="badge" id="achCount">0/0</span></div>
+          <div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))" id="achList"></div>
+        </div>
+
+        <button class="btn btn-danger" id="logoutBtn" style="align-self:flex-start">Logout</button>
+      </section>
+
+    </main>
+  </div>
+
+  <nav class="bottomnav" aria-label="Bottom navigation">
+    <button class="bn" data-nav="home"><span class="bn-ico">🏠</span>Home</button>
+    <button class="bn" data-nav="earn"><span class="bn-ico">💰</span>Earn</button>
+    <button class="bn" data-nav="games"><span class="bn-ico">🎮</span>Games</button>
+    <button class="bn" data-nav="skill"><span class="bn-ico">💼</span>Skill</button>
+    <button class="bn" data-nav="wallet"><span class="bn-ico">👛</span>Wallet</button>
+    <button class="bn" data-nav="profile"><span class="bn-ico">👤</span>Profile</button>
+  </nav>
+</div>
+
+<!-- ============ MODALS ============ -->
+<div class="modal" id="adModal" role="dialog" aria-modal="true" aria-labelledby="adTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <span class="tag">Sponsored</span>
+        <h3 id="adTitle" style="margin-top:4px">Ad dekho</h3>
+        <p class="modal-sub">Ad <b>5 second</b> tak dekho, phir reward claim karo.</p>
+      </div>
+      <button class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="ad-slot" id="adBannerSlot" style="min-height:60px;background:var(--bg2);border-radius:12px"></div>
+    <div class="ad-slot" id="adNativeSlot" style="margin-top:10px;min-height:90px"><div id="container-adsterra-native" style="width:100%"></div></div>
+    <div class="timer-bar"><div id="adBar"></div></div>
+    <div class="reward-big" id="adReward">+0 coins</div>
+    <div class="modal-foot"><button class="btn btn-primary" id="adClaim" disabled>Ad dekho…</button></div>
+  </div>
+</div>
+
+<div class="modal" id="timedModal" role="dialog" aria-modal="true" aria-labelledby="timedTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h3 id="timedTitle">Task</h3>
+        <p class="modal-sub" id="timedSub"></p>
+      </div>
+      <button class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="timer-bar"><div id="timedBar"></div></div>
+    <p class="muted small" style="margin:0;text-align:center">Tab band mat karo — timer complete hone do.</p>
+    <div class="reward-big" id="timedReward">+0 coins</div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close>Baad mein</button>
+      <button class="btn btn-primary" id="timedClaim" disabled>⏳</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="spinModal" role="dialog" aria-modal="true" aria-labelledby="spinTitle">
+  <div class="modal-card" style="text-align:center">
+    <div class="modal-head" style="text-align:left">
+      <div><h3 id="spinTitle">🎡 Daily spin</h3><p class="modal-sub">Ek spin roz — jeeto coins!</p></div>
+      <button class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer" aria-hidden="true"></div>
+      <canvas id="wheel" width="600" height="600" aria-label="Prize wheel"></canvas>
+    </div>
+    <div class="result" id="spinResult" aria-live="polite"></div>
+    <div class="modal-foot"><button class="btn btn-gold" id="spinBtn">Spin</button></div>
+  </div>
+</div>
+
+<div class="modal" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
+  <div class="modal-card">
+    <div class="modal-head"><div><h3 id="nameTitle">Edit name</h3><p class="modal-sub">Leaderboard par yahi naam dikhega.</p></div><button class="icon-btn" data-close aria-label="Close">✕</button></div>
+    <form id="nameForm" novalidate>
+      <div class="field"><label for="nameInput">Display name</label><input id="nameInput" maxlength="40" required /></div>
+      <div class="form-err" id="nameErr"></div>
+      <div class="modal-foot"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary" id="nameSave">Save</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="modal-card">
+    <div class="modal-head"><div><h3 id="confirmTitle">Are you sure?</h3><p class="modal-sub" id="confirmText"></p></div></div>
+    <div class="modal-foot"><button class="btn btn-ghost" data-close>Cancel</button><button class="btn btn-primary" id="confirmOk">Confirm</button></div>
+  </div>
+</div>
+
+<div class="modal" id="lvlModal" role="dialog" aria-modal="true" aria-labelledby="lvlTitle">
+  <div class="modal-card" style="text-align:center">
+    <div style="font-size:3rem">🚀</div>
+    <h3 id="lvlTitle" style="font-size:1.4rem;margin-top:6px">Level up!</h3>
+    <p class="muted" id="lvlText" style="margin:6px 0 0"></p>
+    <div class="modal-foot"><button class="btn btn-primary" data-close>Awesome!</button></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<noscript><p style="padding:24px;text-align:center">VaultX needs JavaScript to run. Please enable it.</p></noscript>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   CONFIG
+   ===================================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyD2FBlJ29w3orPwEm-GL_l0W-6dxvQ4QAI",
+  authDomain: "best-app-a2ed3.firebaseapp.com",
+  databaseURL: "https://best-app-a2ed3-default-rtdb.firebaseio.com",
+  projectId: "best-app-a2ed3",
+  storageBucket: "best-app-a2ed3.firebasestorage.app",
+  messagingSenderId: "960505865061",
+  appId: "1:960505865061:web:d98c6bcdc2078595c4b78c",
+  measurementId: "G-BT2RN4PFN7"
+};
+
+const CFG = {
+  RATE: 100,                 // 100 coins = ₹1
+  MIN_WITHDRAW: 1000,        // coins
+  XP_PER_LEVEL: 500,
+  WELCOME_COINS: 50,
+  REF_REFERRER_BONUS: 100,
+  REF_NEW_USER_BONUS: 50,
+  DAILY_BASE: 50,
+  DAILY_STEP: 10,
+  DAILY_STEP_MAX: 10,        // streak bonus caps after 10 days
+  AD_DAILY_MAX: 10,
+  AD_COOLDOWN_MS: 30000,
+  AD_WATCH_SEC: 5,
+  OFFER_DAILY_MAX: 5,
+  OFFER_WAIT_SEC: 60,
+  OFFER_COINS: 80,
+  GAME_DAILY_MAX: 5,
+  GAME_PLAY_SEC: 300,
+  TASK_WAIT_SEC: 60,
+  TX_KEEP: 60,
+  SITE_URL: location.origin + location.pathname,
+  CPA_API: 'https://www.cpagrip.com/common/offer_feed_json.php?user_id=2518850&pubkey=b744d3bfb14ac5c7bb74e9823f6a9060&tracking_id=',
+  CPA_PROXY: 'https://api.allorigins.win/get?url=',
+  GAME_PLAY_BASE: 'https://zv1y2i8p.play.gamezop.com/g/'
+};
+
+const DEFAULT_TASKS = [
+  { id:'ad-watch', title:'Sponsored video dekho', description:'5 second ka ad dekho aur coins pao', reward:15, icon:'📺', difficulty:'easy', timeEst:'~10 sec', link:'AD', noLimit:true },
+  { id:'ig-follow', title:'Instagram follow karo', description:'@vaultxapp ko follow karo', reward:30, icon:'📸', difficulty:'easy', timeEst:'~1 min', link:'https://instagram.com/vaultxapp', timer:60 },
+  { id:'yt-sub', title:'YouTube subscribe karo', description:'VaultX channel subscribe karo', reward:40, icon:'▶️', difficulty:'easy', timeEst:'~1 min', link:'https://youtube.com/@vaultxapp', timer:60 },
+  { id:'tg-join', title:'Telegram join karo', description:'VaultX community group join karo', reward:35, icon:'✈️', difficulty:'easy', timeEst:'~1 min', link:'https://t.me/vaultxapp', timer:60 }
+];
+
+const GAMES = [
+  { code:'FpCvdT5b', name:'Fruit Slice', desc:'Fruit kato aur score banao!', reward:80 },
+  { code:'m8K4XjY2', name:'Stack Bounce', desc:'Ball ko bounce karo!', reward:70 },
+  { code:'Wq9LpN3r', name:'Knife Hit', desc:'Knife throw karo!', reward:90 },
+  { code:'Rv2TkH8s', name:'2048', desc:'Numbers merge karo!', reward:100 },
+  { code:'Jx7MnB4t', name:'Snake Game', desc:'Classic snake khelo!', reward:75 },
+  { code:'Pc5WgA6u', name:'Bubble Shooter', desc:'Bubbles blast karo!', reward:85 },
+  { code:'Ek3VhC9v', name:'Car Racing', desc:'Race jeeto!', reward:120 },
+  { code:'Ld1UfD2w', name:'Ludo', desc:'Ludo khelo aur jeeto!', reward:110 }
+];
+
+const SPIN_PRIZES = [
+  { label:'10',  coins:10,  color:'#0ea5a4', weight:25 },
+  { label:'25',  coins:25,  color:'#2563eb', weight:20 },
+  { label:'50',  coins:50,  color:'#7c3aed', weight:18 },
+  { label:'100', coins:100, color:'#d97706', weight:15 },
+  { label:'0',   coins:0,   color:'#334155', weight:10 },
+  { label:'200', coins:200, color:'#e11d48', weight:7 },
+  { label:'75',  coins:75,  color:'#16a34a', weight:3 },
+  { label:'500', coins:500, color:'#ea580c', weight:2 }
+];
+
+const MISSIONS = [
+  { id:'m-ads',   name:'Ad watcher',   desc:'Aaj 3 ads dekho',         icon:'📺', target:3,   key:'ads',    reward:30 },
+  { id:'m-tasks', name:'Task master',  desc:'Aaj 2 tasks complete karo', icon:'✅', target:2,   key:'tasks',  reward:50 },
+  { id:'m-games', name:'Game player',  desc:'Aaj 1 game khelo',         icon:'🎮', target:1,   key:'games',  reward:60 },
+  { id:'m-spin',  name:'Spin warrior', desc:'Aaj spin karo',            icon:'🎡', target:1,   key:'spins',  reward:25 },
+  { id:'m-earn',  name:'Big earner',   desc:'Aaj 500 coins kamao',      icon:'💰', target:500, key:'earned', reward:100 }
+];
+
+const ACHIEVEMENTS = [
+  { name:'First step',  icon:'👶', ok:p => (p.tasksCompleted||0) >= 1 },
+  { name:'Task pro',    icon:'🔟', ok:p => (p.tasksCompleted||0) >= 10 },
+  { name:'Streak 7',    icon:'🔥', ok:p => (p.streak||0) >= 7 },
+  { name:'Level 5',     icon:'⚡', ok:p => levelFor(p.xp) >= 5 },
+  { name:'Referrer',    icon:'🤝', ok:p => (p.referrals||0) >= 5 },
+  { name:'1K earner',   icon:'💎', ok:p => (p.totalEarned||0) >= 1000 }
+];
+
+const PAGES = { home:'Home', earn:'Earn', games:'Games & Spin', skill:'Skill Zone', wallet:'Wallet', profile:'Profile' };
+const PAGE_SUBS = {
+  home:'Aaj ka overview', earn:'Tasks, ads aur partner offers', games:'Daily spin aur games',
+  skill:'Gigs aur ideas', wallet:'Balance, withdrawals aur history', profile:'Account aur referral'
+};
+
+/* =====================================================================
+   FIREBASE
+   ===================================================================== */
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const FV = firebase.firestore.FieldValue;
+let analytics = null;
+try { analytics = firebase.analytics(); } catch (e) { /* analytics optional */ }
+const logEvent = (name, params) => { try { analytics && analytics.logEvent(name, params); } catch (e) {} };
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+let fbUser = null;          // firebase auth user
+let profile = null;         // users/{uid} document data
+let unsubProfile = null;
+let appShown = false;
+let currentPage = 'home';
+let tasks = [];
+let offers = [];
+let offersState = 'idle';   // idle | loading | ok | error
+let gigs = [];
+let leaderboard = null;     // null = not loaded, [] = empty
+let signupCtx = null;       // { name, ref } set by signup form before account creation
+let adCtx = null, adTimerId = null, adEndAt = 0;
+let timedCtx = null, timedTimerId = null, timedEndAt = 0;
+let spinning = false, spinRot = 0, lastFocus = null, homeNativeLoaded = false;
+let coinsShown = null;
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const fmt = n => Number(n || 0).toLocaleString('en-IN');
+const inr = coins => '₹' + (Number(coins || 0) / CFG.RATE).toFixed(2);
+const clean = (s, max) => String(s == null ? '' : s).trim().slice(0, max);
+const dayKey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const yesterdayKey = () => { const d = new Date(); d.setDate(d.getDate() - 1); return dayKey(d); };
+const nowStr = () => new Date().toLocaleDateString('en-IN');
+const levelFor = xp => Math.floor((xp || 0) / CFG.XP_PER_LEVEL) + 1;
+const firstName = n => (clean(n, 40).split(' ')[0] || 'Warrior');
+const initials = n => (clean(n, 40)[0] || '?').toUpperCase();
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+class AppError extends Error {}
+
+function errMsg(e) {
+  if (e instanceof AppError) return e.message;
+  const code = e && e.code;
+  const map = {
+    'auth/invalid-email': 'Email sahi nahi hai.',
+    'auth/user-not-found': 'Email ya password galat hai.',
+    'auth/wrong-password': 'Email ya password galat hai.',
+    'auth/invalid-credential': 'Email ya password galat hai.',
+    'auth/email-already-in-use': 'Ye email already registered hai — login karo.',
+    'auth/weak-password': 'Password kam se kam 6 characters ka rakho.',
+    'auth/too-many-requests': 'Bahut zyada attempts. Thodi der baad try karo.',
+    'auth/network-request-failed': 'Internet connection check karo.',
+    'auth/operation-not-allowed': 'Ye sign-in method enabled nahi hai.',
+    'auth/unauthorized-domain': 'Ye domain Firebase mein authorized nahi hai.',
+    'permission-denied': 'Database permission denied. Firestore rules check karo.',
+    'unavailable': 'Network available nahi hai. Dobara try karo.'
+  };
+  if (code && map[code]) return map[code];
+  if (code) console.warn('Error:', code, e);
+  return 'Kuch gadbad hui. Dobara try karo.';
+}
+
+function toast(msg, type = 'info') {
+  const wrap = $('#toasts');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.setAttribute('role', type === 'error' ? 'alert' : 'status');
+  el.textContent = msg;
+  wrap.appendChild(el);
+  while (wrap.children.length > 4) wrap.firstElementChild.remove();
+  setTimeout(() => el.classList.add('out'), 3000);
+  setTimeout(() => el.remove(), 3500);
+}
+
+function setBusy(btn, busy, label) {
+  if (!btn) return;
+  if (busy) {
+    if (!btn.dataset.label) btn.dataset.label = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner sm" aria-hidden="true"></span>';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = label != null ? label : (btn.dataset.label || btn.innerHTML);
+    delete btn.dataset.label;
+  }
+}
+
+function burst(el) {
+  const r = el && el.getBoundingClientRect ? el.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0, height: 0 };
+  const x = r.left + r.width / 2, y = r.top + r.height / 2;
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement('span');
+    s.className = 'burst';
+    s.style.left = x + 'px';
+    s.style.top = y + 'px';
+    s.style.setProperty('--dx', (Math.random() * 180 - 90) + 'px');
+    s.style.setProperty('--dy', (-Math.random() * 150 - 30) + 'px');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 950);
+  }
+}
+
+function setAvatar(el, p) {
+  if (!el) return;
+  el.textContent = '';
+  const url = p && p.photoURL;
+  if (url && /^https:\/\//.test(url)) {
+    const img = document.createElement('img');
+    img.alt = '';
+    img.referrerPolicy = 'no-referrer';
+    img.src = url;
+    img.onerror = () => { el.textContent = initials(p.name); };
+    el.appendChild(img);
+  } else {
+    el.textContent = initials(p && p.name);
+  }
+}
+
+function emptyState(icon, title, text) {
+  return `<div class="empty"><div class="e-ico">${icon}</div><b style="color:var(--text)">${esc(title)}</b>${text ? `<p class="small" style="margin:4px 0 0">${esc(text)}</p>` : ''}</div>`;
+}
+const skeletons = (n = 3) => Array.from({ length: n }, () => '<div class="skeleton"></div>').join('');
+
+/* Modal management */
+function openModal(id) {
+  lastFocus = document.activeElement;
+  const m = $('#' + id);
+  m.classList.add('open');
+  m.setAttribute('aria-hidden', 'false');
+  setTimeout(() => {
+    const f = m.querySelector('input:not([disabled]), button.btn-primary:not([disabled]), button:not([disabled])');
+    if (f) f.focus();
+  }, 60);
+}
+function closeModal(id) {
+  const m = $('#' + id);
+  if (!m || !m.classList.contains('open')) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden', 'true');
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+const CLOSERS = {
+  adModal: () => closeAd(),
+  timedModal: () => closeTimed(),
+  spinModal: () => { if (!spinning) closeModal('spinModal'); }
+};
+function closeAnyModal(id) { (CLOSERS[id] || (() => closeModal(id)))(); }
+
+function confirmDialog(title, text, okLabel, onOk) {
+  $('#confirmTitle').textContent = title;
+  $('#confirmText').textContent = text;
+  const ok = $('#confirmOk');
+  ok.textContent = okLabel || 'Confirm';
+  ok.onclick = async () => {
+    closeModal('confirmModal');
+    try { await onOk(); } catch (e) { toast(errMsg(e), 'error'); }
+  };
+  openModal('confirmModal');
+}
+
+/* =====================================================================
+   DATA MODEL
+   ===================================================================== */
+function dailyOf(d) {
+  const today = dayKey();
+  const base = { date: today, ads: 0, tasks: 0, earned: 0, games: 0, offers: 0, spins: 0 };
+  const x = d && d.daily;
+  return x && x.date === today ? { ...base, ...x } : base;
+}
+function logTx(d, entry) {
+  const list = Array.isArray(d.transactions) ? d.transactions : [];
+  return [...list, entry].slice(-CFG.TX_KEEP);
+}
+function pruneDone(d) {
+  const today = dayKey();
+  return (d.doneTasks || []).filter(k => !k.includes('@') || k.endsWith('@' + today));
+}
+/* Builds a patch that credits `amount` coins (atomic inside a transaction). */
+function earnPatch(d, amount, title, opts = {}) {
+  const dl = dailyOf(d);
+  const daily = { ...dl, earned: dl.earned + amount };
+  for (const [k, v] of Object.entries(opts.bump || {})) daily[k] = (dl[k] || 0) + v;
+  const xp = (d.xp || 0) + (opts.xp != null ? opts.xp : Math.floor(amount / 5));
+  return {
+    coins: (d.coins || 0) + amount,
+    totalEarned: (d.totalEarned || 0) + amount,
+    xp,
+    level: levelFor(xp),
+    daily,
+    transactions: amount > 0 ? logTx(d, { type: 'earn', title, amount, date: nowStr() }) : (d.transactions || []),
+    ...(opts.extra || {})
+  };
+}
+function nextDailyReward(d) {
+  const streak = d.lastDaily === yesterdayKey() ? (d.streak || 0) + 1 : 1;
+  return { streak, reward: CFG.DAILY_BASE + Math.min(streak - 1, CFG.DAILY_STEP_MAX) * CFG.DAILY_STEP };
+}
+
+/* Transaction helpers — every coin change goes through here (no lost updates). */
+function txOn(ref, mutator) {
+  return db.runTransaction(async tx => {
+    const snap = await tx.get(ref);
+    if (!snap.exists) throw new AppError('Profile load nahi hua. Page refresh karo.');
+    const d = snap.data();
+    const patch = mutator(d);
+    tx.update(ref, patch);
+    return patch;
+  });
+}
+function txUser(mutator) {
+  if (!fbUser) throw new AppError('Pehle login karo.');
+  return txOn(db.collection('users').doc(fbUser.uid), mutator);
+}
+
+/* =====================================================================
+   AUTH
+   ===================================================================== */
+function showAuth() {
+  $('#app').classList.add('hidden');
+  $('#auth').classList.remove('hidden');
+}
+function hideSplash() {
+  const s = $('#splash');
+  if (!s || s.classList.contains('hide')) return;   // idempotent: auth can fire many times
+  s.classList.add('hide');
+  setTimeout(() => s.remove(), 600);
+}
+
+function switchAuthTab(which) {
+  const login = which === 'login';
+  $('#loginForm').classList.toggle('hidden', !login);
+  $('#signupForm').classList.toggle('hidden', login);
+  $('#tabLogin').classList.toggle('on', login);
+  $('#tabSignup').classList.toggle('on', !login);
+  $('#tabLogin').setAttribute('aria-selected', String(login));
+  $('#tabSignup').setAttribute('aria-selected', String(!login));
+  $$('.form-err').forEach(e => e.textContent = '');
+}
+
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+async function doLogin(e) {
+  e.preventDefault();
+  const email = clean($('#lEmail').value, 120).toLowerCase();
+  const pass = $('#lPass').value;
+  const err = $('#lErr');
+  if (!validEmail(email)) { err.textContent = 'Valid email daalo.'; return; }
+  if (!pass) { err.textContent = 'Password daalo.'; return; }
+  err.textContent = '';
+  const btn = $('#btnLogin');
+  setBusy(btn, true);
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+    logEvent('login', { method: 'email' });
+  } catch (e2) {
+    err.textContent = errMsg(e2);
+  } finally { setBusy(btn, false, 'Login'); }
+}
+
+async function doSignup(e) {
+  e.preventDefault();
+  const name = clean($('#rName').value, 40);
+  const email = clean($('#rEmail').value, 120).toLowerCase();
+  const pass = $('#rPass').value;
+  const ref = clean($('#rRef').value, 20).toUpperCase() || sessionStorage.getItem('vx_ref') || '';
+  const err = $('#rErr');
+  if (name.length < 2) { err.textContent = 'Naam daalo (kam se kam 2 characters).'; return; }
+  if (!validEmail(email)) { err.textContent = 'Valid email daalo.'; return; }
+  if (pass.length < 6) { err.textContent = 'Password kam se kam 6 characters ka ho.'; return; }
+  err.textContent = '';
+  const btn = $('#btnSignup');
+  setBusy(btn, true);
+  try {
+    signupCtx = { name, ref: ref.toUpperCase() };
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName: name });
+    await ensureUserDoc(cred.user);
+    logEvent('sign_up', { method: 'email' });
+  } catch (e2) {
+    signupCtx = null;
+    err.textContent = errMsg(e2);
+  } finally { setBusy(btn, false, 'Create account'); }
+}
+
+async function doGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  try {
+    await auth.signInWithPopup(provider);
+    logEvent('login', { method: 'google' });
+  } catch (err) {
+    if (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment') {
+      return auth.signInWithRedirect(provider);
+    }
+    if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') return;
+    toast(errMsg(err), 'error');
+  }
+}
+
+async function doForgot() {
+  const email = clean($('#lEmail').value, 120).toLowerCase();
+  if (!validEmail(email)) { $('#lErr').textContent = 'Pehle apna email daalo.'; return; }
+  try {
+    await auth.sendPasswordResetEmail(email);
+    toast('Reset link bhej diya. Inbox (aur spam) check karo.', 'success');
+  } catch (err) { toast(errMsg(err), 'error'); }
+}
+
+function logout() {
+  confirmDialog('Logout?', 'Aap apne account se sign out ho jaoge.', 'Logout', async () => {
+    if (unsubProfile) unsubProfile();
+    unsubProfile = null;
+    await auth.signOut();
+    fbUser = null; profile = null; appShown = false;
+    $('#app').classList.add('hidden');
+    showAuth();
+    toast('Logged out.', 'info');
+  });
+}
+
+/* =====================================================================
+   USER DOC
+   ===================================================================== */
+function genUID() { return 'VX' + Math.floor(100000 + Math.random() * 900000); }
+
+async function ensureUserDoc(u) {
+  const ctx = signupCtx || {};
+  const name = clean(ctx.name || u.displayName || 'Warrior', 40) || 'Warrior';
+  const refCode = clean((ctx.ref || sessionStorage.getItem('vx_ref') || '').toUpperCase(), 20);
+  const ref = db.collection('users').doc(u.uid);
+  let myUid = null;
+
+  const created = await db.runTransaction(async tx => {
+    const snap = await tx.get(ref);
+    if (snap.exists) return false;
+    myUid = genUID();
+    const today = dayKey();
+    tx.set(ref, {
+      uid: myUid, name, email: u.email || '', photoURL: u.photoURL || '', firebaseUID: u.uid,
+      coins: CFG.WELCOME_COINS, totalEarned: CFG.WELCOME_COINS, totalWithdrawn: 0,
+      xp: 0, level: 1, tasksCompleted: 0, referrals: 0, referralEarned: 0,
+      streak: 0, lastDaily: null, lastSpin: null, lastAdAt: 0,
+      doneTasks: [], missionsDone: [],
+      referralCode: myUid, referredBy: refCode || null,
+      daily: { date: today, ads: 0, tasks: 0, earned: 0, games: 0, offers: 0, spins: 0 },
+      transactions: [{ type: 'bonus', title: 'Welcome bonus 🎁', amount: CFG.WELCOME_COINS, date: nowStr() }],
+      createdAt: FV.serverTimestamp()
+    });
+    return true;
+  });
+
+  signupCtx = null;
+  if (created) {
+    sessionStorage.removeItem('vx_ref');
+    if (refCode) {
+      try { await processReferral(refCode, myUid, u.uid); }
+      catch (e) { console.warn('Referral skipped:', e); }
+    }
+  }
+}
+
+async function processReferral(code, newUid, fbUid) {
+  if (code.length < 3 || code === newUid) return;
+  const snap = await db.collection('users').where('referralCode', '==', code).limit(1).get();
+  if (snap.empty) return;
+  const refDoc = snap.docs[0];
+  if (refDoc.id === fbUid) return;
+  const referrerUid = refDoc.data().uid || refDoc.id;
+  await txOn(refDoc.ref, d => ({
+    ...earnPatch(d, CFG.REF_REFERRER_BONUS, 'Referral bonus 🎁 — dost ne join kiya', { xp: 20 }),
+    referrals: (d.referrals || 0) + 1,
+    referralEarned: (d.referralEarned || 0) + CFG.REF_REFERRER_BONUS
+  }));
+  await txOn(db.collection('users').doc(fbUid), d => ({
+    ...earnPatch(d, CFG.REF_NEW_USER_BONUS, 'Referral bonus 🎉 — referral se join kiya', { xp: 0 }),
+    referredBy: referrerUid
+  }));
+  toast(`🎉 Referral bonus mila! +${CFG.REF_NEW_USER_BONUS} coins`, 'success');
+}
+
+function startProfile() {
+  if (unsubProfile) unsubProfile();
+  unsubProfile = db.collection('users').doc(fbUser.uid).onSnapshot(async snap => {
+    if (!snap.exists) {
+      try { await ensureUserDoc(fbUser); }
+      catch (e) { toast(errMsg(e), 'error'); }
+      return;
+    }
+    const prev = profile;
+    profile = snap.data();
+    if (!appShown) showApp();
+    if (prev && levelFor(profile.xp) > levelFor(prev.xp)) showLevelUp(levelFor(profile.xp));
+    renderAll();
+  }, err => toast(errMsg(err), 'error'));
+}
+
+function showLevelUp(lvl) {
+  $('#lvlText').textContent = `Aap Level ${lvl} par pahunch gaye hain. Keep going!`;
+  openModal('lvlModal');
+}
+
+/* =====================================================================
+   APP SHELL / ROUTING
+   ===================================================================== */
+function showApp() {
+  appShown = true;
+  $('#auth').classList.add('hidden');
+  $('#app').classList.remove('hidden');
+  route();
+  loadTasks();
+  loadLeaderboard();
+  renderAll();
+}
+
+function route() {
+  const hash = (location.hash || '').replace('#', '');
+  const page = PAGES[hash] ? hash : 'home';
+  if (!appShown) return;
+  const changed = page !== currentPage;
+  currentPage = page;
+  $$('.page').forEach(sec => sec.classList.toggle('active', sec.id === 'page-' + page));
+  $$('[data-nav]').forEach(b => {
+    const on = b.dataset.nav === page;
+    b.classList.toggle('active', on);
+    if (b.classList.contains('nav-item')) b.setAttribute('aria-current', on ? 'page' : 'false');
+  });
+  $('#pageTitle').textContent = PAGES[page];
+  $('#pageSub').textContent = PAGE_SUBS[page];
+  document.title = PAGES[page] + ' · VaultX';
+  if (changed) window.scrollTo(0, 0);
+  onEnterPage(page);
+}
+
+function onEnterPage(page) {
+  if (page === 'earn') { if (offersState === 'idle') loadOffers(); }
+  if (page === 'skill') { if (!gigs.length) loadGigs(); }
+  if (page === 'home') loadLeaderboard(true);
+  if (page === 'wallet') loadWithdrawals();
+  if (page === 'skill' && !$('#chatLog').children.length) initChat();
+  renderAll();
+}
+
+function renderAll() {
+  if (!profile) return;
+  renderTopbar();
+  renderHome();
+  renderEarn();
+  renderGames();
+  renderWallet();
+  renderProfile();
+}
+
+function renderTopbar() {
+  const c = profile.coins || 0;
+  $('#chipCoins').textContent = fmt(c);
+  $('#sbCoins').textContent = fmt(c) + ' 🪙';
+  $('#sbInr').textContent = '≈ ' + inr(c);
+  setAvatar($('#avatarBtn'), profile);
+  setAvatar($('#pAvatar'), profile);
+  if (coinsShown !== null && coinsShown !== c) {
+    const chip = $('.coin-chip');
+    chip.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 380 });
+  }
+  coinsShown = c;
+}
+
+/* =====================================================================
+   HOME
+   ===================================================================== */
+function renderHome() {
+  if (!profile) return;
+  const p = profile, c = p.coins || 0;
+  $('#hName').textContent = firstName(p.name);
+  $('#hCoins').textContent = fmt(c);
+  $('#hInr').textContent = '≈ ' + inr(c);
+  $('#sTasks').textContent = fmt(p.tasksCompleted || 0);
+  $('#sStreak').textContent = fmt(p.streak || 0);
+  $('#sRefs').textContent = fmt(p.referrals || 0);
+  $('#sLevel').textContent = levelFor(p.xp);
+
+  // Daily
+  const claimed = p.lastDaily === dayKey();
+  const { reward } = nextDailyReward(p);
+  const btn = $('#dailyBtn');
+  btn.disabled = claimed;
+  btn.textContent = claimed ? '✅ Claimed today' : `🎁 Claim +${reward}`;
+  const activeStreak = (p.lastDaily === dayKey() || p.lastDaily === yesterdayKey()) ? (p.streak || 0) : 0;
+  const filled = activeStreak === 0 ? 0 : (activeStreak % 7 || 7);
+  $('#streakDots').innerHTML = Array.from({ length: 7 }, (_, i) => `<i class="${i < filled ? 'on' : ''}"></i>`).join('');
+  $('#streakBadge').textContent = `Streak ${activeStreak}`;
+  $('#dailyText').textContent = claimed
+    ? 'Aaj ka reward le liya. Kal wapas aao aur streak bachao!'
+    : `Aaj ka reward: +${reward} coins. Streak jitna lamba, bonus utna zyada (max +${CFG.DAILY_STEP * CFG.DAILY_STEP_MAX}).`;
+
+  // XP
+  const xp = p.xp || 0, lvl = levelFor(xp);
+  const inLvl = xp % CFG.XP_PER_LEVEL;
+  $('#xpFill').style.width = Math.round(inLvl / CFG.XP_PER_LEVEL * 100) + '%';
+  $('#xpText').textContent = `${fmt(inLvl)} / ${fmt(CFG.XP_PER_LEVEL)} XP — Level ${lvl + 1} ke liye`;
+  $('#xpBadge').textContent = 'Level ' + lvl;
+
+  // Missions
+  renderMissionList($('#missionList'));
+  const dl = dailyOf(p);
+  const doneCount = MISSIONS.filter(m => (dl[m.key] || 0) >= m.target && (p.missionsDone || []).includes(m.id + '@' + dayKey())).length;
+  $('#missionCount').textContent = `${doneCount}/${MISSIONS.length} claimed`;
+
+  // Trending
+  const pending = tasks.filter(t => !isTaskDone(t)).slice(0, 3);
+  $('#trendList').innerHTML = pending.length
+    ? pending.map(taskCard).join('')
+    : emptyState('🎉', 'Sab tasks complete!', 'Naye tasks jaldi aayenge.');
+
+  // Native ad (once)
+  if (!homeNativeLoaded) {
+    homeNativeLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.setAttribute('data-cfasync', 'false');
+    s.src = 'https://pl29208566.profitablecpmratenetwork.com/4c1cdea7daf70692b39daeb57a01a1ef/invoke.js';
+    $('#container-home-native').appendChild(s);
+  }
+}
+
+function renderLeaderboard() {
+  const el = $('#lbList');
+  if (leaderboard === null) { el.innerHTML = skeletons(3); return; }
+  if (!leaderboard.length) { el.innerHTML = emptyState('🏆', 'Abhi leaderboard khali hai', 'Earn karo aur top par aao.'); return; }
+  el.innerHTML = leaderboard.slice(0, 10).map((u, i) => {
+    const isMe = fbUser && u.firebaseUID === fbUser.uid;
+    return `<div class="lb-row ${isMe ? 'me' : ''}">
+      <div class="lb-rank">${i + 1}</div>
+      <div class="lb-name">${esc(firstName(u.name))}${isMe ? ' <span class="badge info">You</span>' : ''}</div>
+      <div class="lb-coins">${fmt(u.coins)} 🪙</div>
+    </div>`;
+  }).join('');
+}
+
+async function loadLeaderboard(silent) {
+  if (!fbUser) return;
+  if (silent && leaderboard) return;
+  try {
+    const snap = await db.collection('users').orderBy('coins', 'desc').limit(10).get();
+    // Only public display fields are kept in memory.
+    leaderboard = snap.docs.map(d => {
+      const x = d.data();
+      return { firebaseUID: d.id, name: clean(x.name, 40), coins: Number(x.coins) || 0 };
+    });
+  } catch (e) {
+    console.warn('Leaderboard:', e);
+    leaderboard = [];
+    if (!silent) toast('Leaderboard load nahi ho paya.', 'warn');
+  }
+  renderLeaderboard();
+}
+
+async function claimDaily(btn) {
+  let reward = 0;
+  setBusy(btn, true);
+  try {
+    await txUser(d => {
+      if (d.lastDaily === dayKey()) throw new AppError('Aaj ka reward already claim ho chuka hai.');
+      const n = nextDailyReward(d);
+      reward = n.reward;
+      return { ...earnPatch(d, n.reward, `Daily reward 🎁 (Day ${n.streak})`, { xp: 20 }), streak: n.streak, lastDaily: dayKey() };
+    });
+    burst(btn);
+    toast(`🎁 +${reward} coins claim ho gaye!`, 'success');
+    logEvent('daily_claim', { reward });
+  } catch (e) { toast(errMsg(e), 'error'); }
+  finally { setBusy(btn, false, '🎁 Claim daily'); renderHome(); }
+}
+
+/* =====================================================================
+   MISSIONS
+   ===================================================================== */
+function renderMissionList(el) {
+  const p = profile, dl = dailyOf(p), today = dayKey();
+  el.innerHTML = MISSIONS.map(m => {
+    const cur = Math.min(dl[m.key] || 0, m.target);
+    const pct = Math.round(cur / m.target * 100);
+    const done = cur >= m.target;
+    const claimed = (p.missionsDone || []).includes(m.id + '@' + today);
+    let action = '';
+    if (claimed) action = '<span class="badge ok">Claimed</span>';
+    else if (done) action = `<button class="btn btn-gold btn-sm" data-mission="${m.id}">Claim +${m.reward}</button>`;
+    else action = `<span class="badge">+${m.reward} 🪙</span>`;
+    return `<div class="mission">
+      <div style="font-size:1.4rem">${m.icon}</div>
+      <div class="mission-body">
+        <div class="row"><b>${esc(m.name)}</b><span class="small muted">${esc(m.desc)}</span></div>
+        <div class="progress"><div style="width:${pct}%"></div></div>
+        <div class="meta"><span>${cur}/${m.target}</span></div>
+      </div>
+      <div>${action}</div>
+    </div>`;
+  }).join('');
+}
+
+async function claimMission(id, btn) {
+  const m = MISSIONS.find(x => x.id === id);
+  if (!m) return;
+  setBusy(btn, true);
+  try {
+    await txUser(d => {
+      const key = m.id + '@' + dayKey();
+      if ((d.missionsDone || []).includes(key)) throw new AppError('Ye mission already claim ho chuka hai.');
+      const dl = dailyOf(d);
+      if ((dl[m.key] || 0) < m.target) throw new AppError('Mission abhi complete nahi hua.');
+      return { ...earnPatch(d, m.reward, 'Mission: ' + m.name, { xp: 10 }), missionsDone: [...(d.missionsDone || []).filter(k => k.endsWith('@' + dayKey())), key] };
+    });
+    burst(btn);
+    toast(`🎯 Mission complete! +${m.reward} coins`, 'success');
+  } catch (e) { toast(errMsg(e), 'error'); }
+  finally { setBusy(btn, false); }
+}
+
+/* =====================================================================
+   EARN: TASKS
+   ===================================================================== */
+let taskFilter = 'all';
+let taskQuery = '';
+
+async function loadTasks() {
+  try {
+    const snap = await db.collection('tasks').where('active', '==', true).get();
+    tasks = snap.docs.length ? snap.docs.map(d => ({ id: d.id, ...d.data() })) : DEFAULT_TASKS;
+  } catch (e) {
+    console.warn('Tasks:', e);
+    tasks = DEFAULT_TASKS;
+  }
+  renderEarn();
+  renderHome();
+}
+
+function taskKey(t) { return t.noLimit ? `${t.id}@${dayKey()}` : t.id; }
+function isTaskDone(t) {
+  if (t.noLimit) return false;
+  return (profile && profile.doneTasks || []).includes(t.id);
+}
+
+function taskCard(t) {
+  const done = isTaskDone(t);
+  const isAd = t.link === 'AD';
+  const diff = t.difficulty || 'easy';
+  const diffCls = diff === 'hard' ? 'err' : diff === 'medium' ? 'warn' : 'ok';
+  return `<article class="task ${done ? 'done' : ''}">
+    <div class="task-ico" aria-hidden="true">${esc(t.icon || '⭐')}</div>
+    <div class="task-body">
+      <h4>${esc(t.title)}</h4>
+      <p>${esc(t.description || '')}</p>
+      <div class="meta"><span class="badge ${diffCls}">${esc(diff)}</span><span>⏱ ${esc(t.timeEst || '~1 min')}</span>${isAd ? '<span class="badge info">Ad</span>' : ''}</div>
+    </div>
+    <div class="task-side">
+      <span class="reward">+${fmt(t.reward)} 🪙</span>
+      <button class="btn btn-primary btn-sm" data-task="${esc(t.id)}" ${done ? 'disabled' : ''}>${done ? 'Done ✓' : 'Start'}</button>
+    </div>
+  </article>`;
+}
+
+function renderAdTracker() {
+  if (!profile) return;
+  const dl = dailyOf(profile);
+  $('#adToday').textContent = `${dl.ads}/${CFG.AD_DAILY_MAX}`;
+  $('#adProgress').style.width = Math.min(100, dl.ads / CFG.AD_DAILY_MAX * 100) + '%';
+  const cd = adCooldownLeft();
+  $('#adCooldown').textContent = cd > 0 ? `Agla ad ${cd}s mein available hoga.` : (dl.ads >= CFG.AD_DAILY_MAX ? 'Aaj ki ad limit poori ho gayi. Kal aao!' : 'Ad dekhne ke liye ready ho.');
+  $('#watchAdBtn').disabled = dl.ads >= CFG.AD_DAILY_MAX || cd > 0;
+}
+
+function renderEarn() {
+  if (!profile) return;
+  renderAdTracker();
+
+  // Task list
+  const list = $('#taskList');
+  if (!tasks.length) { list.innerHTML = skeletons(3); }
+  else {
+    const q = taskQuery.toLowerCase();
+    const shown = tasks.filter(t =>
+      (taskFilter === 'all' || (t.difficulty || 'easy') === taskFilter) &&
+      (!q || (t.title + ' ' + (t.description || '')).toLowerCase().includes(q)));
+    list.innerHTML = shown.length ? shown.map(taskCard).join('') : emptyState('🔎', 'Koi task nahi mila', 'Filter ya search badal kar dekho.');
+  }
+
+  // Offers
+  renderOffers();
+}
+
+function adCooldownLeft() {
+  if (!profile) return 0;
+  return Math.max(0, Math.ceil((CFG.AD_COOLDOWN_MS - (Date.now() - (profile.lastAdAt || 0))) / 1000));
+}
+
+async function startTask(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  if (isTaskDone(t)) return toast('Ye task already complete ho chuka hai.', 'warn');
+  if (t.link === 'AD') return openAd(t);
+  if (!t.link || !/^https:\/\//.test(t.link)) return toast('Task link invalid hai.', 'error');
+  openTimed({
+    title: t.title,
+    sub: `Link khul gaya hai. ${t.timer || CFG.TASK_WAIT_SEC}s wahan rehkar wapas aao, phir claim karo.`,
+    url: t.link,
+    seconds: t.timer || CFG.TASK_WAIT_SEC,
+    reward: t.reward,
+    onClaim: () => completeTask(t)
+  });
+}
+
+async function completeTask(t) {
+  try {
+    await txUser(d => {
+      const key = taskKey(t);
+      if (!t.noLimit && (d.doneTasks || []).includes(key)) throw new AppError('Ye task already complete ho chuka hai.');
+      return {
+        ...earnPatch(d, t.reward, t.title, { xp: Math.floor(t.reward / 5) + 5, bump: { tasks: 1 } }),
+        tasksCompleted: (d.tasksCompleted || 0) + 1,
+        doneTasks: [...pruneDone(d).filter(k => k !== key), key]
+      };
+    });
+    toast(`✅ +${t.reward} coins earned!`, 'success');
+    logEvent('task_complete', { task: t.id });
+  } catch (e) { toast(errMsg(e), 'error'); }
+}
+
+/* =====================================================================
+   TIMED MODAL (used by tasks, offers, games)
+   ===================================================================== */
+function openTimed(o) {
+  if (o.url) window.open(o.url, '_blank', 'noopener,noreferrer');
+  timedCtx = o;
+  timedEndAt = Date.now() + o.seconds * 1000;
+  $('#timedTitle').textContent = o.title;
+  $('#timedSub').textContent = o.sub;
+  $('#timedReward').textContent = `+${fmt(o.reward)} coins`;
+  const bar = $('#timedBar');
+  bar.style.transition = 'none'; bar.style.width = '0%';
+  void bar.offsetWidth;
+  bar.style.transition = `width ${o.seconds}s linear`;
+  bar.style.width = '100%';
+  openModal('timedModal');
+  clearInterval(timedTimerId);
+  tickTimed();
+  timedTimerId = setInterval(tickTimed, 500);
+}
+function tickTimed() {
+  const btn = $('#timedClaim');
+  const left = Math.ceil((timedEndAt - Date.now()) / 1000);
+  if (left > 0) {
+    btn.disabled = true;
+    btn.textContent = `⏳ ${left}s`;
+  } else {
+    clearInterval(timedTimerId);
+    btn.disabled = false;
+    btn.textContent = `🎉 Claim +${fmt(timedCtx ? timedCtx.reward : 0)}`;
+  }
+}
+function closeTimed() {
+  clearInterval(timedTimerId);
+  timedCtx = null;
+  closeModal('timedModal');
+}
+async function claimTimed(btn) {
+  if (!timedCtx || Date.now() < timedEndAt) return;
+  const c = timedCtx;
+  closeTimed();
+  try { await c.onClaim(); } catch (e) { toast(errMsg(e), 'error'); }
+}
+
+/* =====================================================================
+   AD (rewarded, daily cap + cooldown enforced in transaction)
+   ===================================================================== */
+function openAd(task) {
+  const dl = dailyOf(profile || {});
+  if (dl.ads >= CFG.AD_DAILY_MAX) return toast('Aaj ke ads ki limit poori ho gayi. Kal aao!', 'warn');
+  const cd = adCooldownLeft();
+  if (cd > 0) return toast(`${cd}s baad dobara try karo.`, 'warn');
+
+  adCtx = task || { id: 'ad-watch', title: 'Sponsored ad', reward: 15 };
+  adEndAt = Date.now() + CFG.AD_WATCH_SEC * 1000;
+  $('#adReward').textContent = `+${adCtx.reward} coins`;
+  const bar = $('#adBar');
+  bar.style.animation = 'none'; void bar.offsetWidth;
+  bar.style.animation = `barFill ${CFG.AD_WATCH_SEC}s linear forwards`;
+  openModal('adModal');
+  injectAdSlots();
+  clearInterval(adTimerId);
+  tickAd();
+  adTimerId = setInterval(tickAd, 300);
+}
+function tickAd() {
+  const btn = $('#adClaim');
+  const left = Math.ceil((adEndAt - Date.now()) / 1000);
+  if (left > 0) { btn.disabled = true; btn.textContent = `Ad dekho… ${left}s`; }
+  else {
+    clearInterval(adTimerId);
+    btn.disabled = false;
+    btn.textContent = `Claim +${adCtx ? adCtx.reward : 0} coins`;
+  }
+}
+function closeAd() {
+  clearInterval(adTimerId);
+  adCtx = null;
+  closeModal('adModal');
+}
+function injectAdSlots() {
+  // Banner 320x50
+  const banner = $('#adBannerSlot');
+  banner.innerHTML = '';
+  const opt = document.createElement('script');
+  opt.text = "atOptions={'key':'f2ae6970083f2261ee3f82ee401a7335','format':'iframe','height':50,'width':320,'params':{}};";
+  const inv = document.createElement('script');
+  inv.src = 'https://www.highperformanceformat.com/f2ae6970083f2261ee3f82ee401a7335/invoke.js';
+  banner.append(opt, inv);
+  // Native
+  const nat = $('#adNativeSlot');
+  nat.innerHTML = '<div id="container-adsterra-native" style="width:100%"></div>';
+  const ns = document.createElement('script');
+  ns.async = true;
+  ns.setAttribute('data-cfasync', 'false');
+  ns.src = 'https://pl29208566.profitablecpmratenetwork.com/4c1cdea7daf70692b39daeb57a01a1ef/invoke.js';
+  nat.appendChild(ns);
+}
+async function claimAd() {
+  if (!adCtx || Date.now() < adEndAt) return;
+  const task = adCtx;
+  closeAd();
+  try {
+    await txUser(d => {
+      const dl = dailyOf(d);
+      if (dl.ads >= CFG.AD_DAILY_MAX) throw new AppError('Aaj ki ad limit poori ho gayi.');
+      if (Date.now() - (d.lastAdAt || 0) < CFG.AD_COOLDOWN_MS) throw new AppError('Thoda ruko, cooldown chal raha hai.');
+      return {
+        ...earnPatch(d, task.reward, task.title || 'Ad reward', { xp: 3, bump: { ads: 1 } }),
+        lastAdAt: Date.now()
+      };
+    });
+    toast(`📺 +${task.reward} coins earned!`, 'success');
+  } catch (e) { toast(errMsg(e), 'error'); }
+}
+
+/* =====================================================================
+   OFFERS (partner feed)
+   ===================================================================== */
+function normalizeOffer(o) {
+  if (!o || typeof o !== 'object') return null;
+  const id = String(o.id || o.offer_id || '').slice(0, 40);
+  const url = String(o.url || o.link || '');
+  if (!id || !/^https:\/\//.test(url)) return null;
+  return { id, name: clean(o.name || o.title || 'Partner offer', 80), url };
+}
+
+async function loadOffers() {
+  offersState = 'loading';
+  renderOffers();
+  try {
+    const target = CFG.CPA_API + (fbUser ? fbUser.uid : 'guest');
+    const res = await fetch(CFG.CPA_PROXY + encodeURIComponent(target), { signal: AbortSignal.timeout(9000) });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    const arr = JSON.parse(json.contents || '[]');
+    if (!Array.isArray(arr)) throw new Error('bad feed');
+    offers = arr.slice(0, 20).map(normalizeOffer).filter(Boolean);
+    offersState = 'ok';
+  } catch (e) {
+    console.warn('Offers:', e);
+    offers = [];
+    offersState = 'error';
+  }
+  renderOffers();
+}
+
+function renderOffers() {
+  const countEl = $('#offerCount');
+  const list = $('#offerList');
+  $('#offerLimit').textContent = CFG.OFFER_DAILY_MAX;
+  if (offersState === 'loading' || offersState === 'idle') {
+    countEl.textContent = '…';
+    list.innerHTML = skeletons(2);
+    return;
+  }
+  if (offersState === 'error') {
+    countEl.textContent = 'Unavailable';
+    list.innerHTML = emptyState('📡', 'Offers abhi load nahi ho paaye', 'Refresh karke dobara try karo.');
+    return;
+  }
+  countEl.textContent = `${offers.length} available`;
+  if (!offers.length) { list.innerHTML = emptyState('🤝', 'Abhi koi offer nahi hai', 'Thodi der baad wapas aao.'); return; }
+  const dl = profile ? dailyOf(profile) : { offers: 0 };
+  const limitHit = dl.offers >= CFG.OFFER_DAILY_MAX;
+  const today = dayKey();
+  list.innerHTML = offers.map(o => {
+    const done = profile && (profile.doneTasks || []).includes('offer:' + o.id + '@' + today);
+    const disabled = done || limitHit;
+    return `<article class="task ${done ? 'done' : ''}">
+      <div class="task-ico" aria-hidden="true">🤝</div>
+      <div class="task-body"><h4>${esc(o.name)}</h4><p>Offer complete karo — 60 second ka timer.</p>
+        <div class="meta"><span>⏱ ~1 min</span>${done ? '<span class="badge ok">Done today</span>' : ''}</div></div>
+      <div class="task-side"><span class="reward">+${CFG.OFFER_COINS} 🪙</span>
+        <button class="btn btn-primary btn-sm" data-offer="${esc(o.id)}" ${disabled ? 'disabled' : ''}>${done ? 'Done ✓' : limitHit ? 'Limit reached' : 'Start'}</button></div>
+    </article>`;
+  }).join('');
+}
+
+function startOffer(id) {
+  const o = offers.find(x => x.id === id);
+  if (!o) return;
+  const dl = dailyOf(profile || {});
+  if (dl.offers >= CFG.OFFER_DAILY_MAX) return toast('Aaj ka offer limit poora ho gaya.', 'warn');
+  if ((profile.doneTasks || []).includes('offer:' + o.id + '@' + dayKey())) return toast('Ye offer aaj complete ho chuka hai.', 'warn');
+  const sep = o.url.includes('?') ? '&' : '?';
+  openTimed({
+    title: o.name,
+    sub: `Offer khul gaya hai. ${CFG.OFFER_WAIT_SEC}s wahan rehkar wapas aao, phir claim karo.`,
+    url: o.url + sep + 'tracking_id=' + encodeURIComponent(fbUser ? fbUser.uid : 'guest'),
+    seconds: CFG.OFFER_WAIT_SEC,
+    reward: CFG.OFFER_COINS,
+    onClaim: () => claimOffer(o)
+  });
+}
+
+async function claimOffer(o) {
+  try {
+    await txUser(d => {
+      const key = 'offer:' + o.id + '@' + dayKey();
+      const dl = dailyOf(d);
+      if (dl.offers >= CFG.OFFER_DAILY_MAX) throw new AppError('Aaj ka offer limit poora ho gaya.');
+      if (pruneDone(d).includes(key)) throw new AppError('Ye offer aaj complete ho chuka hai.');
+      return {
+        ...earnPatch(d, CFG.OFFER_COINS, 'Offer: ' + o.name, { xp: 15, bump: { offers: 1, tasks: 1 } }),
+        tasksCompleted: (d.tasksCompleted || 0) + 1,
+        doneTasks: [...pruneDone(d), key]
+      };
+    });
+    toast(`🤝 +${CFG.OFFER_COINS} coins earned!`, 'success');
+  } catch (e) { toast(errMsg(e), 'error'); }
+}
+
+/* =====================================================================
+   GAMES
+   ===================================================================== */
+function renderGames() {
+  if (!profile) return;
+  const dl = dailyOf(profile), today = dayKey();
+  $('#gameCount').textContent = `${dl.games}/${CFG.GAME_DAILY_MAX}`;
+  $('#gameLimit').textContent = CFG.GAME_DAILY_MAX;
+  const limitHit = dl.games >= CFG.GAME_DAILY_MAX;
+  $('#gameGrid').innerHTML = GAMES.map(g => {
+    const done = (profile.doneTasks || []).includes('game:' + g.code + '@' + today);
+    const disabled = done || limitHit;
+    return `<article class="game">
+      <div class="game-thumb" aria-hidden="true">🎮</div>
+      <div class="row"><h4>${esc(g.name)}</h4><span class="reward">+${g.reward}</span></div>
+      <p>${esc(g.desc)}</p>
+      <div class="row">
+        <span class="badge">5 min</span>
+        <button class="btn btn-primary btn-sm" data-game="${esc(g.code)}" ${disabled ? 'disabled' : ''}>${done ? 'Done today' : limitHit ? 'Limit reached' : 'Play'}</button>
+      </div>
+    </article>`;
+  }).join('');
+
+  $('#spinSub').textContent = profile.lastSpin === today ? 'Aaj ka spin ho gaya. Kal wapas aao!' : 'Roz ek free spin — 0 se 500 coins tak.';
+  $('#spinOpen').disabled = profile.lastSpin === today;
+  $('#spinOpen').textContent = profile.lastSpin === today ? 'Spun today' : 'Spin the wheel';
+}
+
+function startGame(code) {
+  const g = GAMES.find(x => x.code === code);
+  if (!g) return;
+  const dl = dailyOf(profile || {});
+  if (dl.games >= CFG.GAME_DAILY_MAX) return toast('Aaj ki game reward limit poori ho gayi.', 'warn');
+  if ((profile.doneTasks || []).includes('game:' + g.code + '@' + dayKey())) return toast('Ye game aaj already complete ho chuka hai.', 'warn');
+  openTimed({
+    title: g.name,
+    sub: `Game khul gaya hai. ${CFG.GAME_PLAY_SEC / 60} minute khelo, phir claim karo.`,
+    url: CFG.GAME_PLAY_BASE + encodeURIComponent(g.code),
+    seconds: CFG.GAME_PLAY_SEC,
+    reward: g.reward,
+    onClaim: () => claimGame(g)
+  });
+}
+
+async function claimGame(g) {
+  try {
+    await txUser(d => {
+      const key = 'game:' + g.code + '@' + dayKey();
+      const dl = dailyOf(d);
+      if (dl.games >= CFG.GAME_DAILY_MAX) throw new AppError('Aaj ki game reward limit poori ho gayi.');
+      if (pruneDone(d).includes(key)) throw new AppError('Ye game aaj already complete ho chuka hai.');
+      return {
+        ...earnPatch(d, g.reward, 'Game: ' + g.name, { xp: 10, bump: { games: 1 } }),
+        doneTasks: [...pruneDone(d), key]
+      };
+    });
+    toast(`🎮 +${g.reward} coins earned!`, 'success');
+  } catch (e) { toast(errMsg(e), 'error'); }
+}
+
+/* ---------- Spin wheel ---------- */
+function openSpin() {
+  if (!profile) return;
+  if (profile.lastSpin === dayKey()) return toast('Aaj ka spin ho gaya. Kal wapas aao!', 'warn');
+  $('#spinResult').textContent = '';
+  $('#spinBtn').disabled = false;
+  drawWheel(spinRot);
+  openModal('spinModal');
+}
+function closeSpin() { if (!spinning) closeModal('spinModal'); }
+
+function drawWheel(rot) {
+  const cv = $('#wheel');
+  const ctx = cv.getContext('2d');
+  const W = cv.width, R = W / 2, n = SPIN_PRIZES.length, slice = 2 * Math.PI / n;
+  ctx.clearRect(0, 0, W, W);
+  ctx.save();
+  ctx.translate(R, R);
+  ctx.rotate(rot);
+  SPIN_PRIZES.forEach((p, i) => {
+    const a0 = i * slice, a1 = a0 + slice;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.arc(0, 0, R - 6, a0, a1);
+    ctx.closePath();
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.25)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.save();
+    ctx.rotate(a0 + slice / 2);
+    ctx.fillStyle = '#fff';
+    ctx.font = '900 42px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p.label === '0' ? '😢' : p.label, R - 34, 0);
+    ctx.restore();
+  });
+  ctx.beginPath();
+  ctx.arc(0, 0, 46, 0, 2 * Math.PI);
+  ctx.fillStyle = '#0a1120';
+  ctx.fill();
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = '#f5b731';
+  ctx.stroke();
+  ctx.restore();
+}
+
+function pickPrizeIndex() {
+  const total = SPIN_PRIZES.reduce((s, p) => s + p.weight, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < SPIN_PRIZES.length; i++) {
+    r -= SPIN_PRIZES[i].weight;
+    if (r < 0) return i;
+  }
+  return 0;
+}
+
+async function doSpin() {
+  if (spinning || !profile) return;
+  if (profile.lastSpin === dayKey()) return toast('Aaj ka spin ho gaya.', 'warn');
+  spinning = true;
+  const btn = $('#spinBtn');
+  btn.disabled = true;
+  $('#spinResult').textContent = '';
+  const idx = pickPrizeIndex();
+  const prize = SPIN_PRIZES[idx];
+  const n = SPIN_PRIZES.length, slice = 2 * Math.PI / n;
+  // Pointer is at top (-PI/2). Compute rotation so slice `idx` centre lands there.
+  const want = (-Math.PI / 2 - (idx + 0.5) * slice) - spinRot;
+  const delta = ((want % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const target = spinRot + delta + 2 * Math.PI * 6;
+  const start = spinRot, t0 = performance.now(), dur = 4200;
+  await new Promise(resolve => {
+    const step = now => {
+      const t = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - t, 4);
+      spinRot = start + (target - start) * e;
+      drawWheel(spinRot);
+      if (t < 1) requestAnimationFrame(step); else resolve();
+    };
+    requestAnimationFrame(step);
+  });
+
+  try {
+    await txUser(d => {
+      if (d.lastSpin === dayKey()) throw new AppError('Aaj ka spin already ho chuka hai.');
+      return {
+        ...earnPatch(d, prize.coins, 'Spin wheel 🎡', { xp: 5, bump: { spins: 1 } }),
+        lastSpin: dayKey()
+      };
+    });
+    $('#spinResult').textContent = prize.coins > 0 ? `🎉 +${prize.coins} coins!` : 'Is baar kuch nahi mila. Kal try karo!';
+    if (prize.coins > 0) burst($('#spinBtn'));
+    $('#spinSub').textContent = 'Aaj ka spin ho gaya. Kal wapas aao!';
+  } catch (e) {
+    $('#spinResult').textContent = errMsg(e);
+    btn.disabled = false;
+  } finally {
+    spinning = false;
+  }
+}
+
+/* =====================================================================
+   SKILL ZONE: GIGS + IDEA ASSISTANT
+   ===================================================================== */
+const CAT_ICON = { design:'🎨', writing:'✍️', social:'📱', tech:'💻', video:'🎬' };
+
+async function loadGigs() {
+  const grid = $('#gigGrid');
+  grid.innerHTML = skeletons(3);
+  try {
+    let snap;
+    try {
+      snap = await db.collection('gigs').where('active', '==', true).orderBy('createdAt', 'desc').limit(30).get();
+    } catch (e) {
+      snap = await db.collection('gigs').where('active', '==', true).limit(30).get();
+    }
+    gigs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (e) {
+    console.warn('Gigs:', e);
+    gigs = [];
+    grid.innerHTML = emptyState('⚠️', 'Gigs load nahi ho paaye', 'Refresh karke dobara try karo.');
+    return;
+  }
+  renderGigs();
+}
+
+function renderGigs() {
+  const q = clean($('#gigSearch').value, 60).toLowerCase();
+  const list = gigs.filter(g => !q || (String(g.title || '') + ' ' + String(g.description || '')).toLowerCase().includes(q));
+  $('#gigGrid').innerHTML = list.length ? list.map(g => `
+    <article class="gig">
+      <div style="font-size:1.6rem" aria-hidden="true">${esc(g.icon || CAT_ICON[g.category] || '💼')}</div>
+      <h4>${esc(g.title)}</h4>
+      <p>${esc(clip(g.description, 110))}</p>
+      <div class="small muted">by ${esc(firstName(g.seller))} · ${fmt(g.bids || 0)} interest</div>
+      <div class="row"><span class="price">🪙 ${fmt(g.price)}</span>
+        <button class="btn btn-ghost btn-sm" data-interest="${esc(g.id)}" ${fbUser && g.sellerId === fbUser.uid ? 'disabled' : ''}>Interest bhejo</button></div>
+    </article>`).join('')
+    : emptyState('💼', gigs.length ? 'Search se koi gig nahi mila' : 'Abhi koi gig nahi', gigs.length ? '' : 'Pehla gig post karke shuru karo.');
+}
+function clip(s, n) { s = String(s || ''); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+
+async function expressInterest(id, btn) {
+  setBusy(btn, true);
+  try {
+    await db.collection('gigs').doc(id).update({ bids: FV.increment(1) });
+    btn.textContent = 'Sent ✓';
+    toast('📩 Interest bheja gaya!', 'success');
+    const g = gigs.find(x => x.id === id);
+    if (g) g.bids = (g.bids || 0) + 1;
+  } catch (e) {
+    toast(errMsg(e), 'error');
+    setBusy(btn, false, 'Interest bhejo');
+  }
+}
+
+function switchSkillTab(tab) {
+  $$('#skillTabs button').forEach(b => {
+    const on = b.dataset.tab === tab;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', String(on));
+  });
+  ['browse', 'mine', 'post', 'ai'].forEach(t => $('#tab-' + t).classList.toggle('hidden', t !== tab));
+  if (tab === 'mine') loadMyGigs();
+  if (tab === 'ai' && !$('#chatLog').children.length) initChat();
+}
+
+async function publishGig(e) {
+  e.preventDefault();
+  if (!fbUser || !profile) return;
+  const title = clean($('#gTitle').value, 80);
+  const desc = clean($('#gDesc').value, 600);
+  const cat = $('#gCat').value;
+  const price = Math.floor(Number($('#gPrice').value) || 0);
+  const err = $('#gErr');
+  if (title.length < 4) { err.textContent = 'Title kam se kam 4 characters ka ho.'; return; }
+  if (desc.length < 10) { err.textContent = 'Description kam se kam 10 characters ki ho.'; return; }
+  if (price < 10) { err.textContent = 'Price kam se kam 10 coins ka ho.'; return; }
+  err.textContent = '';
+  const btn = $('#gSubmit');
+  setBusy(btn, true);
+  try {
+    await db.collection('gigs').add({
+      title, description: desc, category: cat, price, icon: CAT_ICON[cat] || '💼',
+      seller: profile.name || 'User', sellerId: fbUser.uid, sellerUID: profile.uid || '',
+      bids: 0, active: true, createdAt: FV.serverTimestamp()
+    });
+    e.target.reset();
+    toast('✅ Gig publish ho gaya!', 'success');
+    await loadGigs();
+    switchSkillTab('browse');
+  } catch (e2) { err.textContent = errMsg(e2); }
+  finally { setBusy(btn, false, 'Publish gig'); }
+}
+
+async function loadMyGigs() {
+  const el = $('#myGigList');
+  el.innerHTML = skeletons(2);
+  try {
+    const snap = await db.collection('gigs').where('sellerId', '==', fbUser.uid).get();
+    const mine = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (b.createdAt && b.createdAt.seconds || 0) - (a.createdAt && a.createdAt.seconds || 0));
+    el.innerHTML = mine.length ? mine.map(g => `
+      <div class="task">
+        <div class="task-ico" aria-hidden="true">${esc(g.icon || '💼')}</div>
+        <div class="task-body"><h4>${esc(g.title)}</h4><p>${esc(clip(g.description, 90))}</p>
+          <div class="meta"><span class="badge ${g.active ? 'ok' : ''}">${g.active ? 'Active' : 'Closed'}</span><span>${fmt(g.bids || 0)} interest</span><span class="price">🪙 ${fmt(g.price)}</span></div></div>
+        ${g.active ? `<button class="btn btn-ghost btn-sm" data-close-gig="${esc(g.id)}">Close</button>` : ''}
+      </div>`).join('')
+      : emptyState('📝', 'Abhi koi gig nahi', 'Post a gig tab se pehla gig publish karo.');
+  } catch (e) {
+    el.innerHTML = emptyState('⚠️', 'My gigs load nahi ho paaye', errMsg(e));
+  }
+}
+
+async function closeGig(id, btn) {
+  setBusy(btn, true);
+  try {
+    await db.collection('gigs').doc(id).update({ active: false });
+    toast('Gig close ho gaya.', 'info');
+    loadMyGigs();
+    loadGigs();
+  } catch (e) { toast(errMsg(e), 'error'); setBusy(btn, false, 'Close'); }
+}
+
+/* Idea assistant — local, rule-based (no external API call). */
+const AI_TOPICS = [
+  { keys:['caption','instagram','insta'], text:'📸 Caption ideas:\n• "Small steps, big dreams ✨"\n• "Consistency > motivation 💪"\n• "Behind the scenes, always real 🎥"\n\nTip: 5–8 niche hashtags use karo, aur caption ke pehle 2 line mein hook rakho.' },
+  { keys:['youtube','yt','video'], text:'🎬 YouTube video ideas:\n1. "₹0 se pehla ₹1000 kaise kamaya"\n2. "Earning apps ka honest review"\n3. "Freelancing ke beginner mistakes"\n4. "30 din ka daily routine challenge"\n5. "Phone se video edit karna — step by step"\n\nTip: Pehle 3 seconds mein hook do.' },
+  { keys:['fiverr','freelanc','upwork','gig'], text:'💼 Freelancing tips:\n• Shuru mein competitive price rakho\n• Profile mein clear photo aur 2–3 sample work\n• Fast delivery promise karo aur time par deliver karo\n• Pehle 5 reviews ke liye thoda extra quality do\n• Gig title mein client ke keywords use karo' },
+  { keys:['earn','money','income','paise','kamai'], text:'💰 Earning ideas (legit):\n• Freelancing (design, writing, editing)\n• YouTube / Shorts par content\n• Digital product bechna\n• Affiliate marketing — apne honest review ke saath\n• Online tutoring\n\nVaultX par daily tasks, games aur spin se bhi chhote-chhote coins milte hain.' },
+  { keys:['python','code','coding','program'], text:'💻 Python example:\n\ndef reverse(s):\n    return s[::-1]\n\nprint(reverse("VaultX"))  # XtluaV\n\nSlicing sabse Pythonic tarika hai! 🐍' },
+  { keys:['grow','follower','reach'], text:'📈 Growth tips:\n• Reels/Shorts roz ya hafte mein 4–5 baar post karo\n• Pehle 3 second mein hook do\n• Comments ka reply karo — engagement badhta hai\n• Post time: subah 7–9 ya raat 8–10 (IST) test karke dekho' }
+];
+const AI_FALLBACK = '🤔 Is topic par mere paas ready tip nahi hai.\n\nKoi aur sawaal try karo — jaise "captions", "youtube ideas", "freelancing", "earn money" ya "python".';
+const AI_CHIPS = ['Caption ideas', 'YouTube ideas', 'Freelancing tips', 'Earning ideas'];
+
+function aiReply(msg) {
+  const m = msg.toLowerCase();
+  const hit = AI_TOPICS.find(t => t.keys.some(k => m.includes(k)));
+  return hit ? hit.text : AI_FALLBACK;
+}
+
+function addChat(text, role) {
+  const log = $('#chatLog');
+  const b = document.createElement('div');
+  b.className = 'bubble ' + (role === 'me' ? 'me' : 'bot');
+  b.textContent = text;
+  log.appendChild(b);
+  log.scrollTop = log.scrollHeight;
+  return b;
+}
+
+function initChat() {
+  addChat('Hi! Main VaultX ka idea assistant hoon. Captions, YouTube ideas ya freelancing ke tips chahiye? Neeche se choose karo ya khud likho.', 'bot');
+  $('#aiChips').innerHTML = AI_CHIPS.map(c => `<button class="chip-btn" type="button" data-chip="${esc(c)}">${esc(c)}</button>`).join('');
+}
+
+function sendChat(text) {
+  const msg = clean(text, 300);
+  if (!msg) return;
+  addChat(msg, 'me');
+  $('#chatInput').value = '';
+  const typing = addChat('…', 'bot');
+  typing.classList.add('typing');
+  setTimeout(() => { typing.classList.remove('typing'); typing.textContent = aiReply(msg); }, 450);
+}
+
+/* =====================================================================
+   WALLET
+   ===================================================================== */
+function renderWallet() {
+  if (!profile) return;
+  const c = profile.coins || 0;
+  $('#wCoins').textContent = fmt(c);
+  $('#wInr').textContent = '≈ ' + inr(c);
+  $('#wEarned').textContent = inr(profile.totalEarned || 0);
+  $('#wWithdrawn').textContent = inr(profile.totalWithdrawn || 0);
+  renderWithdrawPreview();
+  renderTransactions();
+}
+
+function renderWithdrawPreview() {
+  const amt = Math.floor(Number($('#wAmt').value) || 0);
+  const bal = (profile && profile.coins) || 0;
+  const prev = $('#wPreview');
+  const btn = $('#wSubmit');
+  if (!$('#wAmt').value) { prev.textContent = `Minimum ${fmt(CFG.MIN_WITHDRAW)} coins · Aapke paas ${fmt(bal)} coins`; btn.disabled = false; return; }
+  if (amt < CFG.MIN_WITHDRAW) { prev.textContent = `Minimum ${fmt(CFG.MIN_WITHDRAW)} coins chahiye.`; btn.disabled = true; return; }
+  if (amt > bal) { prev.textContent = `Balance kam hai (${fmt(bal)} coins).`; btn.disabled = true; return; }
+  prev.textContent = `= ${inr(amt)} UPI par request hogi`;
+  btn.disabled = false;
+}
+
+function renderTransactions() {
+  const el = $('#txList');
+  const list = (profile.transactions || []).slice().reverse();
+  el.innerHTML = list.length ? list.slice(0, 25).map(t => {
+    const amt = Number(t.amount || 0);
+    return `<div class="tx-row">
+      <div style="min-width:0"><div class="tx-title">${esc(t.title || t.type)}</div><div class="small muted">${esc(t.date || '')}</div></div>
+      <div class="${amt >= 0 ? 'amt-pos' : 'amt-neg'}">${amt >= 0 ? '+' : ''}${fmt(amt)}</div>
+    </div>`;
+  }).join('') : emptyState('🧾', 'Abhi koi transaction nahi', 'Tasks, daily reward ya games se coins kamao.');
+}
+
+const UPI_RE = /^[a-zA-Z0-9._-]{2,256}@[a-zA-Z]{2,64}$/;
+const STATUS_BADGE = { pending:'warn', approved:'ok', paid:'ok', completed:'ok', rejected:'err', failed:'err' };
+
+async function loadWithdrawals() {
+  if (!fbUser) return;
+  const el = $('#wdList');
+  el.innerHTML = skeletons(2);
+  try {
+    const snap = await db.collection('withdrawals').where('userId', '==', fbUser.uid).limit(30).get();
+    const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => String(b.requestTime || '').localeCompare(String(a.requestTime || '')));
+    el.innerHTML = rows.length ? rows.map(w => {
+      const st = String(w.status || 'pending').toLowerCase();
+      return `<div class="tx-row">
+        <div style="min-width:0"><div class="tx-title">${fmt(w.coins)} coins → ₹${esc(w.amtINR)}</div>
+          <div class="small muted">${esc(w.upiId || '')} · ${esc(w.requestedAt || '')}</div></div>
+        <span class="badge ${STATUS_BADGE[st] || ''}">${esc(st)}</span>
+      </div>`;
+    }).join('') : emptyState('💸', 'Abhi koi withdrawal nahi', 'Minimum 1,000 coins hone par request kar sakte ho.');
+  } catch (e) {
+    el.innerHTML = emptyState('⚠️', 'History load nahi ho paayi', errMsg(e));
+  }
+}
+
+async function requestWithdraw(e) {
+  e.preventDefault();
+  const upi = clean($('#wUpi').value, 60);
+  const amt = Math.floor(Number($('#wAmt').value) || 0);
+  const err = $('#wErr');
+  err.textContent = '';
+  if (!UPI_RE.test(upi)) { err.textContent = 'Valid UPI ID daalo (e.g. name@upi).'; return; }
+  if (amt < CFG.MIN_WITHDRAW) { err.textContent = `Minimum ${fmt(CFG.MIN_WITHDRAW)} coins chahiye.`; return; }
+  if (amt > (profile.coins || 0)) { err.textContent = 'Balance kam hai.'; return; }
+
+  confirmDialog('Withdrawal confirm karo', `${fmt(amt)} coins (${inr(amt)}) ${upi} par request hogi. Coins abhi deduct ho jaayenge.`, 'Request karo', async () => {
+    const btn = $('#wSubmit');
+    setBusy(btn, true);
+    try {
+      // One pending request at a time.
+      const pending = await db.collection('withdrawals').where('userId', '==', fbUser.uid).where('status', '==', 'pending').limit(1).get();
+      if (!pending.empty) throw new AppError('Ek request pending hai. Usko process hone do.');
+
+      const userRef = db.collection('users').doc(fbUser.uid);
+      const wRef = db.collection('withdrawals').doc();
+      await db.runTransaction(async tx => {
+        const snap = await tx.get(userRef);
+        if (!snap.exists) throw new AppError('Profile load nahi hua.');
+        const d = snap.data();
+        if ((d.coins || 0) < amt) throw new AppError('Balance kam hai.');
+        tx.set(wRef, {
+          userId: fbUser.uid, userName: d.name || 'User', userEmail: d.email || '', userUID: d.uid || '',
+          upiId: upi, coins: amt, amtINR: (amt / CFG.RATE).toFixed(2), status: 'pending',
+          requestedAt: nowStr(), requestTime: new Date().toISOString(), createdAt: FV.serverTimestamp()
+        });
+        tx.update(userRef, {
+          coins: d.coins - amt,
+          totalWithdrawn: (d.totalWithdrawn || 0) + amt,
+          transactions: logTx(d, { type: 'withdrawal', title: `UPI withdrawal ${inr(amt)}`, amount: -amt, coins: amt, upiId: upi, wid: wRef.id, date: nowStr(), status: 'pending' })
+        });
+      });
+      $('#wUpi').value = '';
+      $('#wAmt').value = '';
+      renderWithdrawPreview();
+      toast('✅ Withdrawal request submit ho gaya.', 'success');
+      loadWithdrawals();
+      logEvent('withdraw_request', { coins: amt });
+    } catch (e2) {
+      err.textContent = errMsg(e2);
+    } finally { setBusy(btn, false, 'Request withdrawal'); renderWithdrawPreview(); }
+  });
+}
+
+/* =====================================================================
+   PROFILE
+   ===================================================================== */
+function renderProfile() {
+  if (!profile) return;
+  const p = profile;
+  $('#pName').textContent = clean(p.name, 40) || 'Warrior';
+  $('#pEmail').textContent = (fbUser && fbUser.email) || p.email || '';
+  $('#pLevel').textContent = 'Level ' + levelFor(p.xp);
+  $('#pUid').textContent = p.uid || '—';
+  $('#pStreak').textContent = `${fmt(p.streak || 0)} days`;
+  $('#pXp').textContent = fmt(p.xp || 0);
+  const ts = p.createdAt && p.createdAt.toDate ? p.createdAt.toDate() : null;
+  $('#pJoined').textContent = ts ? ts.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) : '—';
+  $('#refLink').value = referralLink();
+  $('#pRefs').textContent = fmt(p.referrals || 0);
+  $('#pRefEarn').textContent = fmt(p.referralEarned || 0) + ' 🪙';
+
+  const unlocked = ACHIEVEMENTS.filter(a => a.ok(p)).length;
+  $('#achCount').textContent = `${unlocked}/${ACHIEVEMENTS.length}`;
+  $('#achList').innerHTML = ACHIEVEMENTS.map(a => `
+    <div class="ach ${a.ok(p) ? '' : 'locked'}"><div class="a-ico" aria-hidden="true">${a.icon}</div>${esc(a.name)}</div>`).join('');
+}
+
+function referralLink() {
+  const code = (profile && (profile.referralCode || profile.uid)) || '';
+  return `${CFG.SITE_URL}?ref=${encodeURIComponent(code)}`;
+}
+
+async function copyText(text, okMsg) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+    else {
+      const t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+    }
+    toast(okMsg, 'success');
+  } catch (e) { toast('Copy nahi ho paaya. Manually copy karo.', 'warn'); }
+}
+
+async function shareReferral() {
+  const url = referralLink();
+  const data = { title: 'VaultX', text: 'VaultX par join karo aur coins kamao! Mera referral code use karo.', url };
+  if (navigator.share) {
+    try { await navigator.share(data); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  copyText(url, '🔗 Referral link copy ho gaya!');
+}
+
+function openNameModal() {
+  $('#nameInput').value = profile.name || '';
+  $('#nameErr').textContent = '';
+  openModal('nameModal');
+}
+async function saveName(e) {
+  e.preventDefault();
+  const name = clean($('#nameInput').value, 40);
+  if (name.length < 2) { $('#nameErr').textContent = 'Naam kam se kam 2 characters ka ho.'; return; }
+  const btn = $('#nameSave');
+  setBusy(btn, true);
+  try {
+    await txUser(() => ({ name }));
+    if (fbUser.displayName !== name) await fbUser.updateProfile({ displayName: name });
+    closeModal('nameModal');
+    toast('Naam update ho gaya.', 'success');
+  } catch (e2) { $('#nameErr').textContent = errMsg(e2); }
+  finally { setBusy(btn, false, 'Save'); }
+}
+
+/* =====================================================================
+   EVENTS
+   ===================================================================== */
+function bindEvents() {
+  // Auth
+  $('#tabLogin').addEventListener('click', () => switchAuthTab('login'));
+  $('#tabSignup').addEventListener('click', () => switchAuthTab('signup'));
+  $('#loginForm').addEventListener('submit', doLogin);
+  $('#signupForm').addEventListener('submit', doSignup);
+  $('#googleBtn').addEventListener('click', doGoogle);
+  $('#forgotBtn').addEventListener('click', doForgot);
+  $$('[data-toggle]').forEach(b => b.addEventListener('click', () => {
+    const input = document.getElementById(b.dataset.toggle);
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    b.textContent = show ? '🙈' : '👁';
+    b.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  }));
+  $('#rRef').value = (sessionStorage.getItem('vx_ref') || '');
+
+  // Navigation (delegated)
+  document.addEventListener('click', e => {
+    const nav = e.target.closest('[data-nav]');
+    if (nav) { location.hash = '#' + nav.dataset.nav; return; }
+
+    const closeBtn = e.target.closest('[data-close]');
+    if (closeBtn) {
+      const modal = closeBtn.closest('.modal');
+      if (modal) closeAnyModal(modal.id);
+      return;
+    }
+    if (e.target.classList && e.target.classList.contains('modal')) { closeAnyModal(e.target.id); return; }
+
+    const t = e.target.closest('[data-task]');
+    if (t && !t.disabled) return startTask(t.dataset.task);
+    const of = e.target.closest('[data-offer]');
+    if (of && !of.disabled) return startOffer(of.dataset.offer);
+    const gm = e.target.closest('[data-game]');
+    if (gm && !gm.disabled) return startGame(gm.dataset.game);
+    const ms = e.target.closest('[data-mission]');
+    if (ms && !ms.disabled) return claimMission(ms.dataset.mission, ms);
+    const ig = e.target.closest('[data-interest]');
+    if (ig && !ig.disabled) return expressInterest(ig.dataset.interest, ig);
+    const cg = e.target.closest('[data-close-gig]');
+    if (cg && !cg.disabled) return closeGig(cg.dataset.closeGig, cg);
+    const chip = e.target.closest('[data-chip]');
+    if (chip) return sendChat(chip.dataset.chip);
+    const preset = e.target.closest('[data-preset]');
+    if (preset) {
+      const v = preset.dataset.preset === 'max' ? Math.floor((profile.coins || 0) / 100) * 100 : Number(preset.dataset.preset);
+      $('#wAmt').value = v || '';
+      renderWithdrawPreview();
+      return;
+    }
+    const f = e.target.closest('#taskFilters [data-f]');
+    if (f) {
+      taskFilter = f.dataset.f;
+      $$('#taskFilters [data-f]').forEach(b => b.classList.toggle('on', b === f));
+      renderEarn();
+      return;
+    }
+    const tab = e.target.closest('#skillTabs [data-tab]');
+    if (tab) return switchSkillTab(tab.dataset.tab);
+  });
+
+  // Hash routing
+  window.addEventListener('hashchange', route);
+
+  // Home
+  $('#dailyBtn').addEventListener('click', e => claimDaily(e.currentTarget));
+  $('#homeShare').addEventListener('click', shareReferral);
+  $('#shareRef').addEventListener('click', shareReferral);
+  $('#copyRef').addEventListener('click', () => copyText(referralLink(), '🔗 Link copy ho gaya!'));
+  $('#copyUid').addEventListener('click', () => copyText(profile.uid || '', '🔑 UID copy ho gaya!'));
+  $('#offersRefresh').addEventListener('click', () => loadOffers());
+  $('#gigsRefresh').addEventListener('click', loadGigs);
+  $('#gigSearch').addEventListener('input', renderGigs);
+  $('#gigForm').addEventListener('submit', publishGig);
+  $('#chatForm').addEventListener('submit', e => { e.preventDefault(); sendChat($('#chatInput').value); });
+
+  // Earn
+  $('#watchAdBtn').addEventListener('click', () => openAd(null));
+  $('#adClaim').addEventListener('click', claimAd);
+  $('#taskSearch').addEventListener('input', e => { taskQuery = clean(e.target.value, 60); renderEarn(); });
+
+  // Timed modal claim
+  $('#timedClaim').addEventListener('click', e => claimTimed(e.currentTarget));
+
+  // Games & spin
+  $('#spinOpen').addEventListener('click', openSpin);
+  $('#spinBtn').addEventListener('click', doSpin);
+
+  // Wallet
+  $('#wForm').addEventListener('submit', requestWithdraw);
+  $('#wAmt').addEventListener('input', renderWithdrawPreview);
+  $('#wdRefresh').addEventListener('click', loadWithdrawals);
+
+  // Profile
+  $('#editNameBtn').addEventListener('click', openNameModal);
+  $('#nameForm').addEventListener('submit', saveName);
+  $('#resetPwd').addEventListener('click', async () => {
+    if (!fbUser || !fbUser.email) return toast('Email account nahi mila.', 'warn');
+    try { await auth.sendPasswordResetEmail(fbUser.email); toast('Password reset link bhej diya.', 'success'); }
+    catch (e) { toast(errMsg(e), 'error'); }
+  });
+  $('#logoutBtn').addEventListener('click', logout);
+  $('#logoutSide').addEventListener('click', logout);
+
+  // Keyboard: Esc closes top-most modal
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    const open = $$('.modal.open').pop();
+    if (open) closeAnyModal(open.id);
+  });
+
+  // Connectivity
+  window.addEventListener('offline', () => toast('Internet connection chala gaya.', 'warn'));
+  window.addEventListener('online', () => toast('Wapas online ho gaye.', 'success'));
+}
+
+/* =====================================================================
+   BOOT
+   ===================================================================== */
+function boot() {
+  // Capture referral code from URL (persists through login/signup).
+  const ref = new URLSearchParams(location.search).get('ref');
+  if (ref) sessionStorage.setItem('vx_ref', clean(ref, 20).toUpperCase());
+
+  bindEvents();
+  renderSkeletonsInitial();
+  setInterval(() => { if (appShown && currentPage === 'earn') renderAdTracker(); }, 1000);
+
+  auth.getRedirectResult().catch(err => toast(errMsg(err), 'error'));
+
+  auth.onAuthStateChanged(u => {
+    hideSplash();
+    if (u) {
+      fbUser = u;
+      startProfile();
+    } else {
+      fbUser = null; profile = null; appShown = false;
+      if (unsubProfile) unsubProfile();
+      unsubProfile = null;
+      showAuth();
+    }
+  });
+}
+
+function renderSkeletonsInitial() {
+  $('#taskList').innerHTML = skeletons(3);
+}
+
+boot();
+})();
+</script>
+</body>
+</html>

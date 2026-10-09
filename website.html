@@ -1,0 +1,3504 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=48be6742-19d7-49e0-ad60-96e6c1fcec11
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#07090f"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>VaultX – Earn Real Money</title>
+<link rel="manifest" href="manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<!-- ✅ Adsterra — Pop-under (auto fires) -->
+<script src="https://pl29208561.profitablecpmratenetwork.com/55/98/f7/5598f74d3cedfa33fe7a5d335ba20c3e.js"></script>
+
+<!-- ✅ Adsterra — Social Bar -->
+<script src="https://pl29208563.profitablecpmratenetwork.com/62/3c/8b/623c8b7b0e7316ee1520ff59138ab58f.js"></script>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+
+<style>
+:root{
+  --bg:#07090f;--bg2:#0b0e18;--bg3:#10141f;
+  --card:#121a28;--card2:#182035;
+  --bdr:rgba(0,228,195,.13);--bdr2:rgba(255,255,255,.07);
+  --teal:#00e4c3;--teal2:#00bfa5;--gold:#f5b731;
+  --blue:#5b8df0;--purple:#b06ef5;--red:#ff4f6e;--green:#22d35e;
+  --text:#dde6f5;--t2:#7888a5;--t3:#38465a;
+  --fh:'Orbitron',sans-serif;--fu:'Rajdhani',sans-serif;--fb:'Inter',sans-serif;
+  --r:18px;--rs:11px;
+  --gt:0 0 28px rgba(0,228,195,.3);--gg:0 0 28px rgba(245,183,49,.3);
+  --sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--fb);overflow:hidden}
+button,input,select,textarea{font-family:inherit;outline:none;border:none}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--teal2);border-radius:2px}
+.hidden{display:none!important}
+.sy{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes glowT{0%,100%{box-shadow:0 0 8px rgba(0,228,195,.2)}50%{box-shadow:0 0 22px rgba(0,228,195,.7)}}
+@keyframes glowG{0%,100%{box-shadow:0 0 8px rgba(245,183,49,.2)}50%{box-shadow:0 0 22px rgba(245,183,49,.7)}}
+@keyframes orb{0%,100%{transform:translate(0,0)}33%{transform:translate(20px,-14px)}66%{transform:translate(-14px,11px)}}
+@keyframes navPop{0%,100%{transform:scale(1)}40%{transform:scale(1.4) translateY(-3px)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes rowIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes coinfly{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}55%{opacity:1;transform:translate(calc(-50% + var(--cx)),calc(-50% + var(--cy))) scale(1.4)}100%{opacity:0;transform:translate(calc(-50% + var(--cx)),calc(-50% + var(--cy) - 35px)) scale(.1)}}
+@keyframes lvlanim{0%{transform:scale(1)}25%{transform:scale(1.5) rotate(-8deg)}50%{transform:scale(.88) rotate(8deg)}75%{transform:scale(1.22)}100%{transform:scale(1)}}
+@keyframes countup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+@keyframes timerBar{from{width:100%}to{width:0%}}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 40% 35%,rgba(0,228,195,.07),transparent 60%),var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease}
+#splash.out{opacity:0;pointer-events:none}
+.spl-rw{position:relative;width:96px;height:96px}
+.spl-r{position:absolute;inset:0;border-radius:50%;border:2.5px solid rgba(0,228,195,.15);border-top-color:var(--teal);animation:spin .9s linear infinite}
+.spl-r2{position:absolute;inset:10px;border-radius:50%;border:2px solid rgba(245,183,49,.1);border-bottom-color:var(--gold);animation:spin 1.4s linear infinite reverse}
+.spl-ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.2rem;animation:float 2s ease-in-out infinite}
+.spl-logo{font-family:var(--fh);font-size:2.2rem;font-weight:900;letter-spacing:5px;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.spl-tag{font-family:var(--fu);font-size:.8rem;color:var(--t2);letter-spacing:3px}
+.spl-bar{width:160px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.spl-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;transition:width .2s linear;border-radius:2px}
+
+/* AUTH SCREEN */
+#auth{position:fixed;inset:0;z-index:100;overflow-y:auto;
+background:radial-gradient(ellipse at 25% 20%,rgba(0,228,195,.08),transparent 55%),
+radial-gradient(ellipse at 80% 80%,rgba(245,183,49,.06),transparent 55%),var(--bg);
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+padding:calc(var(--st)+20px) 20px calc(var(--sb)+20px)}
+.aorb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,228,195,.07),transparent 70%);animation:orb 8s ease-in-out infinite}
+.alogo{font-family:var(--fh);font-size:2.3rem;font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.atag{font-family:var(--fu);font-size:.85rem;color:var(--t2);letter-spacing:2.5px;margin-bottom:30px}
+.acard{width:100%;max-width:390px;background:var(--card);border:1px solid var(--bdr);border-radius:24px;padding:28px 24px;
+box-shadow:0 24px 64px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);animation:scaleIn .45s cubic-bezier(.34,1.56,.64,1)}
+.acard h2{font-family:var(--fu);font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.asub{color:var(--t2);font-size:.8rem;margin-bottom:22px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:.68rem;color:var(--t2);margin-bottom:5px;font-family:var(--fu);letter-spacing:.7px;text-transform:uppercase}
+.finput{width:100%;padding:12px 15px;background:var(--bg3);border:1.5px solid rgba(255,255,255,.07);border-radius:var(--rs);color:var(--text);font-size:.88rem;transition:all .22s}
+.finput:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,228,195,.1);background:var(--bg2)}
+.finput.shake{animation:shake .4s ease}
+.finput::placeholder{color:var(--t3)}
+.pw-wrap{position:relative}
+.pw-wrap .finput{padding-right:42px}
+.pw-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--t2);font-size:.9rem;user-select:none;display:flex;align-items:center}
+
+/* GOOGLE BTN — Proper styled */
+.g-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px 18px;background:#fff;border:none;border-radius:var(--rs);font-family:var(--fb);font-size:.88rem;font-weight:600;color:#3c4043;cursor:pointer;transition:all .22s;box-shadow:0 2px 8px rgba(0,0,0,.3);margin-top:12px}
+.g-btn:hover{box-shadow:0 4px 16px rgba(0,0,0,.4);transform:translateY(-1px)}
+.g-btn:active{transform:translateY(0)}
+.g-logo{width:20px;height:20px;flex-shrink:0}
+
+/* BUTTONS */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border:none;border-radius:var(--rs);font-family:var(--fu);font-size:.95rem;font-weight:700;letter-spacing:.6px;cursor:pointer;transition:all .22s;width:100%;position:relative;overflow:hidden}
+.btn:disabled{opacity:.4;pointer-events:none}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .15s}
+.btn:not(:disabled):active::after{background:rgba(255,255,255,.1)}
+.bp{background:linear-gradient(135deg,var(--teal2),var(--blue));color:#fff;box-shadow:var(--gt)}
+.bp:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(0,228,195,.55)}
+.bgold{background:linear-gradient(135deg,var(--gold),#d97800);color:#000;font-weight:800;box-shadow:var(--gg)}
+.bgold:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(245,183,49,.6)}
+.bgh{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+.bgh:hover{background:rgba(0,228,195,.08)}
+.bred{background:rgba(255,79,110,.12);color:var(--red);border:1.5px solid rgba(255,79,110,.25)}
+.bsm{padding:7px 14px;font-size:.78rem;width:auto;border-radius:8px}
+.bxs{padding:5px 10px;font-size:.7rem;width:auto;border-radius:6px}
+.divider{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--t3);font-size:.68rem}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.05)}
+.asw{text-align:center;margin-top:12px;font-size:.78rem;color:var(--t2)}
+.asw span{color:var(--teal);cursor:pointer;font-weight:700}
+
+/* APP SHELL */
+#app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg);padding-top:var(--st)}
+.topbar{background:rgba(11,14,24,.96);border-bottom:1px solid var(--bdr);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;z-index:30;position:relative;backdrop-filter:blur(20px)}
+.topbar::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,228,195,.4),transparent)}
+.tblogo{font-family:var(--fh);font-size:1.1rem;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tbr{display:flex;align-items:center;gap:10px}
+.wchip{display:flex;align-items:center;gap:5px;background:var(--card2);border:1px solid rgba(245,183,49,.28);border-radius:20px;padding:6px 13px;font-family:var(--fu);font-size:.85rem;font-weight:700;color:var(--gold);cursor:pointer;transition:all .22s}
+.wchip:hover{border-color:rgba(245,183,49,.55);box-shadow:var(--gg)}
+.wchip.bump{animation:countup .35s ease}
+.av{width:36px;height:36px;border-radius:50%;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-family:var(--fu);font-weight:700;color:var(--teal);background:var(--card2);cursor:pointer;transition:all .22s;flex-shrink:0;overflow:hidden}
+.av:hover{box-shadow:var(--gt);transform:scale(1.08)}
+.banner-ad{flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--bdr2);min-height:52px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.page-area{flex:1;overflow:hidden;position:relative}
+.page{position:absolute;inset:0;overflow-y:auto;padding:14px 14px calc(80px + var(--sb));display:none;flex-direction:column;gap:13px;overscroll-behavior-y:contain}
+.page.active{display:flex;animation:fadeUp .3s ease}
+.ai-page{padding:0!important}
+.bnav{position:absolute;bottom:0;left:0;right:0;background:rgba(11,14,24,.96);border-top:1px solid var(--bdr);display:flex;z-index:30;padding-bottom:var(--sb);backdrop-filter:blur(20px)}
+.bnav::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,228,195,.3),transparent)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 2px 8px;gap:3px;border:none;background:transparent;color:var(--t3);font-family:var(--fu);font-size:.58rem;letter-spacing:.4px;cursor:pointer;transition:color .22s;position:relative}
+.nb.on{color:var(--teal)}
+.nb.on .ni{background:rgba(0,228,195,.13);box-shadow:0 0 15px rgba(0,228,195,.22)}
+.nb.on .nie{animation:navPop .4s cubic-bezier(.34,1.56,.64,1)}
+/* ✅ NAV SVG ICONS */
+.nb svg{stroke:currentColor;transition:stroke .22s}
+.nb.on svg{stroke:var(--teal)}
+.ni{font-size:1.2rem;width:42px;height:29px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all .22s}
+.nie{display:inline-block;line-height:0}
+.nb svg{width:22px;height:22px;stroke:var(--t2);transition:stroke .22s;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nb.on svg{stroke:var(--teal)}
+.nb.on .ni{background:rgba(0,228,195,.13)}
+
+/* ✅ TASK REAL LOGOS */
+.task-logo{width:50px;height:50px;border-radius:14px;object-fit:contain;flex-shrink:0;background:var(--bg3);padding:6px}
+.task-logo-wrap{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+
+/* ✅ GAME REAL THUMBNAILS */
+.gz-thumb-real{width:100%;height:100px;object-fit:cover;display:block;border-radius:8px 8px 0 0}
+.gz-thumb-fallback{width:100%;height:100px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:linear-gradient(135deg,rgba(176,110,245,.2),rgba(91,141,240,.15));border-radius:8px 8px 0 0}
+
+/* CARDS & SHARED */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:16px}
+.cglow{box-shadow:inset 0 1px 0 rgba(0,228,195,.06),0 6px 30px rgba(0,0,0,.4)}
+.sec{font-family:var(--fu);font-size:.68rem;font-weight:700;color:var(--t3);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.04)}
+.spin{width:24px;height:24px;border:2.5px solid rgba(0,228,195,.15);border-top-color:var(--teal);border-radius:50%;animation:spin .75s linear infinite;margin:16px auto}
+
+/* HOME */
+.hero{background:linear-gradient(135deg,rgba(0,228,195,.09),rgba(91,141,240,.06));border:1px solid rgba(0,228,195,.2);border-radius:22px;padding:20px 18px;position:relative;overflow:hidden;animation:cardIn .5s ease}
+.hbg1{position:absolute;top:-55px;right:-55px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(0,228,195,.13),transparent 70%);animation:orb 6s ease-in-out infinite}
+.hbg2{position:absolute;bottom:-35px;left:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(91,141,240,.1),transparent 70%);animation:orb 9s ease-in-out reverse infinite}
+.htag{font-family:var(--fu);font-size:.72rem;color:var(--t2);letter-spacing:1px;margin-bottom:2px;position:relative;z-index:1}
+.hname{font-family:var(--fh);font-size:1.2rem;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
+.hcoins{font-family:var(--fh);font-size:3rem;font-weight:900;color:var(--gold);line-height:1;position:relative;z-index:1;animation:countup .7s ease both}
+.hinr{font-family:var(--fu);font-size:.84rem;color:var(--t2);margin-top:4px;position:relative;z-index:1}
+.huid{font-size:.63rem;color:var(--t3);margin-top:8px;position:relative;z-index:1;display:flex;align-items:center;gap:8px}
+.uid-copy{font-size:.65rem;color:var(--teal);cursor:pointer;font-family:var(--fu);font-weight:600}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc{background:var(--card2);border:1px solid var(--bdr);border-radius:14px;padding:13px 8px;text-align:center;transition:all .22s;animation:cardIn .4s ease both;cursor:pointer}
+.sc:nth-child(1){animation-delay:.05s}.sc:nth-child(2){animation-delay:.1s}.sc:nth-child(3){animation-delay:.15s}
+.sc:hover{border-color:rgba(0,228,195,.3);transform:translateY(-3px)}
+.scv{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--teal)}
+.scl{font-size:.62rem;color:var(--t3);font-family:var(--fu);letter-spacing:.5px;margin-top:3px}
+.xpw{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:14px;animation:cardIn .4s .2s ease both}
+.xpt{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.xpl{font-family:var(--fu);font-size:.76rem;color:var(--t2)}
+.xpc{font-family:var(--fh);font-size:.78rem;font-weight:700;color:var(--teal)}
+.xptrack{height:9px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden}
+.xpfill{height:100%;border-radius:5px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--teal2),var(--blue),var(--purple));position:relative}
+.xpfill::after{content:'';position:absolute;top:0;right:0;width:10px;height:100%;background:rgba(255,255,255,.6);border-radius:5px;animation:pulse 1.5s ease-in-out infinite}
+.daily{background:linear-gradient(135deg,rgba(245,183,49,.1),rgba(245,183,49,.03));border:1px solid rgba(245,183,49,.22);border-radius:20px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;animation:cardIn .4s .28s ease both}
+.daily-l h3{font-family:var(--fu);font-size:1rem;font-weight:700;margin-bottom:3px}
+.daily-l p{font-size:.72rem;color:var(--t2)}
+.strbox{background:rgba(245,183,49,.14);border:1px solid rgba(245,183,49,.3);border-radius:12px;padding:8px 14px;text-align:center;flex-shrink:0;animation:glowG 2.5s ease-in-out infinite}
+.strn{font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1}
+.strl{font-size:.54rem;color:var(--gold);font-family:var(--fu);letter-spacing:.6px;margin-top:2px}
+.qagrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.qa{background:var(--card2);border:1px solid var(--bdr);border-radius:14px;padding:13px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .22s;animation:cardIn .4s ease both}
+.qa:nth-child(1){animation-delay:.1s}.qa:nth-child(2){animation-delay:.15s}.qa:nth-child(3){animation-delay:.2s}.qa:nth-child(4){animation-delay:.25s}
+.qa:hover,.qa:active{border-color:var(--teal);background:rgba(0,228,195,.08);transform:translateY(-4px)}
+.qa-ico{width:32px;height:32px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.qa:hover .qa-ico{transform:scale(1.25) rotate(-7deg)}
+.qa-lbl{font-family:var(--fu);font-size:.6rem;color:var(--t2);text-align:center;letter-spacing:.3px}
+.lbi{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:all .22s;animation:rowIn .3s ease both}
+.lbi:last-child{border:none}.lbi:hover{transform:translateX(5px)}
+.lbr{font-family:var(--fh);font-size:.85rem;font-weight:700;width:28px;text-align:center;color:var(--t3)}
+.lbr.r1{color:var(--gold)}.lbr.r2{color:#c0c0c0}.lbr.r3{color:#cd7f32}
+.lbav{width:38px;height:38px;border-radius:50%;background:var(--card2);border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;font-family:var(--fu);font-weight:700;color:var(--teal);overflow:hidden}
+.lbin{flex:1;min-width:0}
+.lbn{font-family:var(--fu);font-size:.86rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbs{font-size:.64rem;color:var(--t3)}
+.lbsc{font-family:var(--fh);font-size:.84rem;font-weight:700;color:var(--gold)}
+.lbi.me{background:rgba(0,228,195,.04);border-radius:10px;padding:11px 8px;margin:0 -8px}
+.lbi.me .lbn{color:var(--teal)}
+
+/* EARN */
+.earn-hd{background:linear-gradient(135deg,rgba(0,228,195,.09),rgba(91,141,240,.05));border:1px solid rgba(0,228,195,.18);border-radius:20px;padding:16px;display:flex;align-items:center;justify-content:space-between}
+.earn-tit{font-family:var(--fh);font-size:.9rem;font-weight:700;color:var(--teal);letter-spacing:1px}
+.earn-sub{font-size:.7rem;color:var(--t2);font-family:var(--fu);margin-top:2px}
+.etv{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--gold);text-align:right}
+.etl{font-size:.6rem;color:var(--t3);font-family:var(--fu);margin-top:2px}
+
+/* Ad Limit Bar */
+.ad-limit-bar{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:12px 14px}
+.ad-lim-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ad-lim-lbl{font-family:var(--fu);font-size:.75rem;color:var(--t2)}
+.ad-lim-cnt{font-family:var(--fh);font-size:.8rem;font-weight:700;color:var(--teal)}
+.ad-track{height:6px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.ad-track-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--teal));border-radius:4px;transition:width .5s ease}
+
+/* COOLDOWN overlay */
+.cd-wrap{display:flex;align-items:center;gap:8px;background:rgba(245,183,49,.08);border:1px solid rgba(245,183,49,.2);border-radius:10px;padding:8px 12px;font-family:var(--fu);font-size:.78rem;color:var(--gold)}
+
+.fchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.fchips::-webkit-scrollbar{display:none}
+.fchip{flex-shrink:0;padding:6px 14px;border-radius:20px;background:var(--card2);border:1px solid var(--bdr2);font-family:var(--fu);font-size:.75rem;cursor:pointer;color:var(--t2);transition:all .22s}
+.fchip.on{background:rgba(0,228,195,.12);border-color:var(--teal);color:var(--teal)}
+.tcard{background:var(--card);border:1px solid var(--bdr);border-radius:20px;padding:15px;display:flex;align-items:flex-start;gap:13px;transition:all .22s;animation:cardIn .4s ease both}
+.tcard:hover{border-color:rgba(0,228,195,.25);transform:translateX(4px)}
+.tico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;transition:transform .2s}
+.tcard:hover .tico{transform:scale(1.12) rotate(-6deg)}
+.tbody{flex:1;min-width:0}
+.ttit{font-family:var(--fu);font-size:.92rem;font-weight:600;margin-bottom:3px}
+.tdesc{font-size:.72rem;color:var(--t2);margin-bottom:9px;line-height:1.5}
+.tmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.trew{font-family:var(--fu);font-size:.82rem;font-weight:700;color:var(--gold)}
+.ttime{font-size:.66rem;color:var(--t3)}
+.tbadge{font-size:.6rem;padding:2px 8px;border-radius:20px;font-family:var(--fu);font-weight:700}
+.be{background:rgba(34,211,94,.12);color:var(--green);border:1px solid rgba(34,211,94,.2)}
+.bm{background:rgba(245,183,49,.12);color:var(--gold);border:1px solid rgba(245,183,49,.2)}
+.bh{background:rgba(176,110,245,.12);color:var(--purple);border:1px solid rgba(176,110,245,.2)}
+.tdone{opacity:.32;pointer-events:none!important}
+.tprog{height:4px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:10px;overflow:hidden;display:none}
+.tprog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:2px;width:0;transition:width linear}
+
+/* ✅ GAMEZOP GAME CARDS */
+.gz-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .22s;animation:cardIn .4s ease both;position:relative}
+.gz-card:hover{border-color:rgba(176,110,245,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(176,110,245,.15)}
+.gz-thumb{width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(135deg,rgba(176,110,245,.2),rgba(91,141,240,.15))}
+.gz-thumb-ph{width:100%;height:100px;background:linear-gradient(135deg,rgba(176,110,245,.2),rgba(91,141,240,.15));display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+.gz-body{padding:9px 11px}
+.gz-name{font-family:var(--fu);font-size:.8rem;font-weight:600;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gz-meta{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.gz-coins{font-family:var(--fh);font-size:.72rem;font-weight:700;color:var(--gold)}
+.gz-cat{font-size:.58rem;padding:2px 7px;border-radius:10px;background:rgba(176,110,245,.12);color:var(--purple);border:1px solid rgba(176,110,245,.2);font-family:var(--fu)}
+.gz-done-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-family:var(--fu);font-weight:700;color:var(--green);flex-direction:column;gap:4px;border-radius:16px}
+.gz-done-overlay span{font-size:.7rem;color:var(--t2)}
+#gameModal{position:fixed;inset:0;z-index:950;background:#000;display:none;flex-direction:column}
+#gameModal.show{display:flex;animation:fadeIn .2s ease}
+.game-modal-hd{background:var(--bg2);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr2);flex-shrink:0}
+.game-modal-title{font-family:var(--fu);font-size:.88rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.game-close-btn{background:rgba(255,79,110,.12);color:var(--red);border:1px solid rgba(255,79,110,.25);border-radius:8px;padding:5px 12px;font-family:var(--fu);font-size:.75rem;font-weight:700;cursor:pointer}
+#gameFrame{flex:1;border:none;width:100%;background:#000}
+.game-reward-bar{background:var(--bg2);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bdr2);flex-shrink:0}
+.grb-timer{font-family:var(--fh);font-size:.72rem;color:var(--teal);display:flex;align-items:center;gap:6px}
+.grb-reward{font-family:var(--fh);font-size:.76rem;color:var(--gold);font-weight:700}
+.grb-claim{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border-radius:8px;padding:6px 16px;font-family:var(--fu);font-size:.78rem;font-weight:700;cursor:pointer;opacity:.4;pointer-events:none;transition:all .3s;border:none}
+.grb-claim.ready{opacity:1;pointer-events:all}
+
+/* ✅ CPA OFFERS */
+.cpa-section{margin-top:4px}
+.cpa-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cpa-title{font-family:var(--fh);font-size:.78rem;font-weight:700;color:var(--purple);letter-spacing:1px;display:flex;align-items:center;gap:6px}
+.cpa-badge{background:rgba(176,110,245,.15);border:1px solid rgba(176,110,245,.3);border-radius:20px;padding:3px 10px;font-family:var(--fu);font-size:.6rem;color:var(--purple)}
+.cpa-loading{display:flex;align-items:center;justify-content:center;padding:28px;gap:8px;color:var(--t2);font-size:.78rem}
+.cpa-grid{display:flex;flex-direction:column;gap:10px}
+.cpa-card{background:var(--card);border:1px solid var(--bdr);border-radius:18px;overflow:hidden;transition:all .22s;animation:cardIn .4s ease both}
+.cpa-card:hover{border-color:rgba(176,110,245,.3);transform:translateX(3px)}
+.cpa-img{width:100%;height:110px;object-fit:cover;display:block;background:var(--card2)}
+.cpa-img-placeholder{width:100%;height:110px;background:linear-gradient(135deg,rgba(176,110,245,.15),rgba(91,141,240,.1));display:flex;align-items:center;justify-content:center;font-size:2rem}
+.cpa-body{padding:12px 13px}
+.cpa-name{font-family:var(--fu);font-size:.88rem;font-weight:600;margin-bottom:4px;line-height:1.3}
+.cpa-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.cpa-payout{font-family:var(--fh);font-size:.82rem;font-weight:700;color:var(--gold)}
+.cpa-coins{font-family:var(--fh);font-size:.76rem;color:var(--teal)}
+.cpa-diff{font-size:.6rem;padding:2px 8px;border-radius:20px;font-family:var(--fu);font-weight:700}
+.cpa-diff.easy{background:rgba(34,211,94,.12);color:var(--green);border:1px solid rgba(34,211,94,.2)}
+.cpa-diff.medium{background:rgba(245,183,49,.12);color:var(--gold);border:1px solid rgba(245,183,49,.2)}
+.cpa-diff.hard{background:rgba(176,110,245,.12);color:var(--purple);border:1px solid rgba(176,110,245,.2)}
+.cpa-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cpa-timer-wrap{flex:1;height:4px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;display:none}
+.cpa-timer-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--blue));border-radius:2px;width:100%}
+.cpa-status{font-size:.64rem;color:var(--t2);font-family:var(--fu)}
+.cpa-done-badge{display:flex;align-items:center;gap:4px;font-size:.72rem;color:var(--green);font-family:var(--fu);font-weight:600}
+.cpa-warn{background:rgba(245,183,49,.07);border:1px solid rgba(245,183,49,.18);border-radius:10px;padding:9px 13px;font-size:.72rem;color:var(--gold);font-family:var(--fu);margin-bottom:8px;display:flex;gap:7px;align-items:flex-start}
+.cpa-empty{text-align:center;padding:32px 16px;color:var(--t2)}
+.cpa-empty-ico{font-size:2rem;margin-bottom:8px;opacity:.4}
+.cpa-empty-t{font-family:var(--fu);font-size:.85rem;color:var(--t3)}
+
+/* ✅ OFFER MODAL */
+#offerModal{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:flex-end;backdrop-filter:blur(8px)}
+#offerModal.show{display:flex;animation:fadeIn .25s ease}
+.offer-sheet{width:100%;max-width:480px;background:var(--card);border-radius:24px 24px 0 0;padding:20px 18px calc(20px + var(--sb));border:1px solid var(--bdr);border-bottom:none;animation:slideUp .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.offer-sheet-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.offer-sheet-title{font-family:var(--fu);font-size:.95rem;font-weight:700}
+.offer-sheet-close{width:28px;height:28px;background:var(--bg3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--t2);cursor:pointer;border:1px solid var(--bdr2)}
+.offer-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.offer-step{display:flex;align-items:center;gap:10px;background:var(--bg3);border-radius:10px;padding:9px 12px}
+.offer-step-n{width:22px;height:22px;border-radius:50%;background:rgba(176,110,245,.2);border:1px solid rgba(176,110,245,.3);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-family:var(--fh);font-weight:700;color:var(--purple);flex-shrink:0}
+.offer-step-t{font-size:.78rem;color:var(--text)}
+.offer-reward-preview{background:linear-gradient(135deg,rgba(176,110,245,.1),rgba(91,141,240,.08));border:1px solid rgba(176,110,245,.2);border-radius:14px;padding:14px;text-align:center;margin-bottom:14px}
+.offer-reward-val{font-family:var(--fh);font-size:1.6rem;font-weight:900;color:var(--gold)}
+.offer-reward-lbl{font-size:.68rem;color:var(--t2);font-family:var(--fu);margin-top:3px}
+.offer-timer-bar{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.offer-timer-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--teal));border-radius:3px;transition:width linear}
+.offer-countdown{font-family:var(--fh);font-size:.75rem;color:var(--t2);text-align:center;margin-bottom:12px}
+
+/* AD MODAL — Rewarded Ad Overlay */
+#adModal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.93);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+#adModal.show{display:flex;animation:fadeIn .3s ease}
+.adcard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--bdr);border-radius:22px;overflow:hidden;animation:scaleIn .4s cubic-bezier(.34,1.56,.64,1)}
+.adtop{background:var(--bg2);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr2)}
+.adlbl{font-size:.62rem;color:var(--t3);font-family:var(--fu);letter-spacing:.5px}
+.ad-timer-bar{height:3px;background:var(--teal);transition:width linear}
+.adclose{font-size:.78rem;font-family:var(--fu);font-weight:700;background:rgba(255,255,255,.08);padding:4px 11px;border-radius:6px;cursor:pointer;transition:all .2s;color:var(--t2);border:none}
+.adclose.ready{color:var(--teal);cursor:pointer}
+.adclose:disabled{opacity:.5;cursor:not-allowed}
+.adcontent{padding:20px;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.ad-ico{font-size:3.5rem;animation:float 2s ease-in-out infinite}
+.ad-txt{font-family:var(--fu);font-size:.88rem;color:var(--t2);text-align:center;line-height:1.5}
+.ad-note{font-size:.66rem;color:var(--t3);font-family:var(--fu);text-align:center}
+/* Real AdSense inside modal */
+.ad-adsense{display:block;width:100%;min-height:250px}
+
+/* SKILL */
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:7px 16px;border-radius:20px;font-family:var(--fu);font-size:.78rem;font-weight:600;border:1px solid var(--bdr2);background:transparent;color:var(--t2);cursor:pointer;transition:all .22s}
+.tab.on{background:rgba(0,228,195,.12);border-color:var(--teal);color:var(--teal)}
+.ggrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gig{background:var(--card);border:1px solid var(--bdr);border-radius:20px;overflow:hidden;transition:all .22s;animation:scaleIn .35s ease both;cursor:pointer}
+.gig:hover{border-color:rgba(0,228,195,.25);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.45)}
+.gtop{height:88px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--bg3),var(--card2));transition:background .3s}
+.gig:hover .gtop{background:linear-gradient(135deg,var(--card2),var(--bg3))}
+.gbot{padding:11px}
+.gtit{font-family:var(--fu);font-size:.82rem;font-weight:700;margin-bottom:3px;line-height:1.3}
+.gsel{font-size:.64rem;color:var(--t2);margin-bottom:8px}
+.gft{display:flex;align-items:center;justify-content:space-between}
+.gprice{font-family:var(--fh);font-size:.84rem;font-weight:700;color:var(--gold)}
+.pform{background:var(--card);border:1px solid var(--bdr);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:13px}
+.fi{background:var(--bg3);border:1.5px solid rgba(255,255,255,.07);border-radius:var(--rs);color:var(--text);padding:11px 14px;font-size:.84rem;width:100%;transition:all .22s}
+.fi:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,228,195,.1)}
+.fi::placeholder{color:var(--t3)}
+textarea.fi{resize:none;line-height:1.5}
+select.fi option{background:var(--bg3)}
+.firow{display:flex;gap:10px}
+.firow .fi{flex:1}
+
+/* AI PAGE */
+.aihd{padding:13px 16px;background:rgba(11,14,24,.96);border-bottom:1px solid var(--bdr);flex-shrink:0;backdrop-filter:blur(20px)}
+.aihtit{font-family:var(--fh);font-size:.9rem;font-weight:700;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px}
+.aihsub{font-size:.68rem;color:var(--t2);margin-top:2px;font-family:var(--fu)}
+.aichips{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;flex-shrink:0;border-bottom:1px solid var(--bdr);scrollbar-width:none}
+.aichips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;padding:6px 13px;border-radius:20px;background:var(--card2);border:1px solid var(--bdr2);font-size:.72rem;font-family:var(--fu);cursor:pointer;transition:all .22s;color:var(--t2)}
+.chip:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,228,195,.07)}
+.aimsgs{flex:1;overflow-y:auto;padding:14px 16px 10px;display:flex;flex-direction:column;gap:12px;overscroll-behavior-y:contain}
+.msg{max-width:85%;animation:fadeUp .25s ease}
+.msg.u{align-self:flex-end}.msg.a{align-self:flex-start}
+.bbl{padding:11px 15px;border-radius:18px;font-size:.83rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.msg.u .bbl{background:linear-gradient(135deg,var(--teal2),var(--blue));color:#fff;border-bottom-right-radius:5px;box-shadow:0 4px 16px rgba(0,188,164,.25)}
+.msg.a .bbl{background:var(--card2);border:1px solid var(--bdr);color:var(--text);border-bottom-left-radius:5px}
+.msgt{font-size:.58rem;color:var(--t3);margin-top:4px}
+.msg.u .msgt{text-align:right}
+.typdots{display:flex;gap:5px;padding:3px 2px}
+.d{width:7px;height:7px;background:var(--teal2);border-radius:50%;animation:bounce 1.3s ease-in-out infinite}
+.d:nth-child(2){animation-delay:.2s}.d:nth-child(3){animation-delay:.4s}
+.aiina{padding:12px 14px;background:rgba(11,14,24,.96);border-top:1px solid var(--bdr);display:flex;gap:8px;flex-shrink:0;padding-bottom:calc(12px + var(--sb));backdrop-filter:blur(20px)}
+.aiin{flex:1;background:var(--bg3);border:1.5px solid rgba(255,255,255,.08);border-radius:24px;color:var(--text);padding:11px 16px;font-size:.83rem;transition:all .22s;resize:none;max-height:90px;overflow-y:auto}
+.aiin:focus{border-color:var(--teal)}
+.aisend{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--blue));border:none;color:#fff;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .22s;box-shadow:var(--gt)}
+.aisend:hover{transform:scale(1.1)}
+
+/* WALLET */
+.bhero{background:linear-gradient(135deg,rgba(245,183,49,.12),rgba(245,183,49,.03));border:1px solid rgba(245,183,49,.24);border-radius:24px;padding:26px 22px;text-align:center;position:relative;overflow:hidden;animation:cardIn .4s ease}
+.bhg1{position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(245,183,49,.12),transparent 70%);animation:orb 5s ease-in-out infinite}
+.bhg2{position:absolute;bottom:-30px;left:-30px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(91,141,240,.08),transparent 70%);animation:orb 7s ease-in-out reverse infinite}
+.blbl{font-family:var(--fu);font-size:.7rem;color:var(--t2);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px;position:relative;z-index:1}
+.bcoins{font-family:var(--fh);font-size:3.2rem;font-weight:900;color:var(--gold);line-height:1;position:relative;z-index:1}
+.binr{font-family:var(--fu);font-size:.95rem;color:var(--t2);margin-top:5px;position:relative;z-index:1}
+.binr b{color:var(--green)}
+.bnote{font-size:.63rem;color:var(--t3);margin-top:7px;position:relative;z-index:1}
+.wqchips{display:flex;gap:8px;flex-wrap:wrap}
+.wqc{padding:7px 14px;border-radius:20px;background:var(--card2);border:1px solid rgba(245,183,49,.2);font-family:var(--fu);font-size:.76rem;color:var(--gold);cursor:pointer;transition:all .22s;font-weight:600}
+.wqc:hover{background:rgba(245,183,49,.1);border-color:rgba(245,183,49,.4)}
+.wdf{background:var(--card);border:1px solid var(--bdr);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:13px}
+.wdf h3{font-family:var(--fu);font-size:.95rem;font-weight:700}
+.wdn{font-size:.71rem;color:var(--t2);background:rgba(0,228,195,.05);padding:11px 13px;border-radius:10px;border-left:3px solid var(--teal);line-height:1.6}
+.txi{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);animation:rowIn .3s ease both}
+.txi:last-child{border:none}
+.txil{display:flex;align-items:center;gap:11px}
+.txic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.txin{font-family:var(--fu);font-size:.85rem;font-weight:600}
+.txid{font-size:.65rem;color:var(--t3);margin-top:1px}
+.txia{font-family:var(--fh);font-size:.84rem;font-weight:700;white-space:nowrap}
+
+/* PROFILE */
+.phero{display:flex;flex-direction:column;align-items:center;padding:26px 16px;background:var(--card);border:1px solid var(--bdr);border-radius:24px;gap:10px;animation:cardIn .4s ease;position:relative;overflow:hidden}
+.phg{position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,228,195,.07),transparent 70%);pointer-events:none}
+.pav{width:82px;height:82px;border-radius:50%;border:3px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:var(--fu);font-weight:700;color:var(--teal);background:var(--bg3);animation:glowT 3s ease-in-out infinite;position:relative;z-index:1;overflow:hidden}
+.pname{font-family:var(--fh);font-size:1.1rem;font-weight:700;position:relative;z-index:1}
+.puid{background:var(--bg3);border:1px solid var(--bdr);border-radius:20px;padding:4px 14px;font-size:.68rem;color:var(--t2);font-family:var(--fu)}
+.pemail{font-size:.65rem;color:var(--t3);font-family:var(--fu)}
+.plvl{background:linear-gradient(135deg,var(--gold),#d97800);color:#000;border-radius:20px;padding:4px 18px;font-family:var(--fh);font-size:.78rem;font-weight:700;box-shadow:var(--gg)}
+.rcard{background:linear-gradient(135deg,rgba(176,110,245,.1),rgba(91,141,240,.06));border:1px solid rgba(176,110,245,.22);border-radius:20px;padding:18px;animation:cardIn .4s .15s ease both}
+.rlink-box{background:var(--bg3);border:1px solid rgba(176,110,245,.22);border-radius:10px;padding:11px 14px;margin:10px 0;display:flex;align-items:center;gap:8px}
+.rlink-txt{flex:1;font-size:.75rem;color:var(--teal);word-break:break-all}
+.rsgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.rs{background:rgba(255,255,255,.04);border-radius:10px;padding:11px;text-align:center;border:1px solid rgba(176,110,245,.1);transition:all .22s}
+.rsv{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--purple)}
+.rsl{font-size:.6rem;color:var(--t3);margin-top:2px}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(80px + var(--sb));left:50%;transform:translateX(-50%) translateY(20px);background:var(--card2);border:1px solid var(--bdr);border-radius:14px;padding:11px 22px;font-family:var(--fu);font-size:.84rem;font-weight:600;z-index:600;opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,.6);max-width:90vw}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.ok{border-color:var(--green);color:var(--green)}
+#toast.err{border-color:var(--red);color:var(--red)}
+#toast.nfo{border-color:var(--teal);color:var(--teal)}
+#toast.warn{border-color:var(--gold);color:var(--gold)}
+.cb{position:fixed;pointer-events:none;z-index:800;font-size:1.4rem;animation:coinfly .95s ease forwards}
+#lvlup{position:fixed;inset:0;z-index:700;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(10px)}
+#lvlup.open{display:flex;animation:fadeIn .3s ease}
+.lvlcard{background:var(--card);border:2px solid var(--gold);border-radius:28px;padding:38px 32px;text-align:center;max-width:300px;width:100%;animation:scaleIn .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 80px rgba(245,183,49,.4)}
+.lvlico{font-size:5rem;display:block;animation:lvlanim 1.2s .3s ease both}
+.lvltxt{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--gold);margin:14px 0 5px;letter-spacing:2px}
+.lvlsub{color:var(--t2);font-family:var(--fu);margin-bottom:24px;font-size:.9rem}
+
+/* ✅ SPIN WHEEL */
+#spinModal{position:fixed;inset:0;z-index:980;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px}
+#spinModal.show{display:flex;animation:fadeIn .25s ease}
+.spin-hd{font-family:var(--fh);font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;text-align:center}
+.spin-sub{font-size:.72rem;color:var(--t2);font-family:var(--fu);margin-bottom:18px;text-align:center}
+.spin-wrap{position:relative;width:280px;height:280px;flex-shrink:0}
+#spinCanvas{border-radius:50%;box-shadow:0 0 30px rgba(0,228,195,.3),0 0 60px rgba(0,228,195,.1)}
+.spin-pointer{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:1.5rem;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.spin-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--bg2);border:3px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:2;box-shadow:0 0 12px rgba(0,228,195,.4)}
+.spin-result{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:var(--gold);margin:16px 0 4px;text-align:center;min-height:32px}
+.spin-result-sub{font-size:.72rem;color:var(--t2);font-family:var(--fu);text-align:center;margin-bottom:14px}
+.spin-next{font-size:.68rem;color:var(--t3);font-family:var(--fc);text-align:center;margin-top:8px}
+
+/* ✅ SCRATCH CARD */
+.scratch-section{background:linear-gradient(135deg,rgba(245,183,49,.1),rgba(176,110,245,.07));border:1px solid rgba(245,183,49,.25);border-radius:20px;padding:16px;margin-bottom:4px}
+.scratch-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.scratch-title{font-family:var(--fh);font-size:.82rem;font-weight:700;color:var(--gold)}
+.scratch-timer{font-family:var(--fc);font-size:.65rem;color:var(--t2)}
+.scratch-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scard-wrap{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;cursor:pointer}
+.scard-base{position:absolute;inset:0;background:linear-gradient(135deg,var(--card2),var(--bg3));border:1px solid var(--bdr);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.scard-reward{font-family:var(--fh);font-size:1rem;font-weight:800;color:var(--gold)}
+.scard-lbl{font-size:.58rem;color:var(--t2);font-family:var(--fu)}
+.scard-canvas{position:absolute;inset:0;border-radius:14px;touch-action:none}
+.scard-done{position:absolute;inset:0;background:rgba(34,211,94,.1);border:2px solid var(--green);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+
+/* ✅ DAILY MISSIONS */
+.mission-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:13px;display:flex;align-items:center;gap:12px;margin-bottom:8px;transition:all .22s}
+.mission-card:hover{border-color:rgba(0,228,195,.25)}
+.mission-ico{font-size:1.3rem;width:42px;height:42px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mission-body{flex:1;min-width:0}
+.mission-name{font-family:var(--fu);font-size:.84rem;font-weight:600}
+.mission-prog-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-top:6px;overflow:hidden}
+.mission-prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .6s ease}
+.mission-meta{display:flex;justify-content:space-between;align-items:center;margin-top:3px}
+.mission-count{font-size:.62rem;color:var(--t2);font-family:var(--fc)}
+.mission-reward{font-family:var(--fh);font-size:.72rem;font-weight:700;color:var(--gold)}
+.mission-done{background:rgba(34,211,94,.08);border-color:rgba(34,211,94,.2)}
+
+/* ✅ ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ach-item{background:var(--card2);border:1px solid var(--bdr2);border-radius:12px;padding:10px 6px;text-align:center;transition:all .22s}
+.ach-item.unlocked{border-color:rgba(245,183,49,.35);background:rgba(245,183,49,.06)}
+.ach-item.locked{opacity:.4;filter:grayscale(1)}
+.ach-ico{font-size:1.4rem;margin-bottom:4px}
+.ach-name{font-size:.58rem;color:var(--t2);font-family:var(--fu);line-height:1.2}
+.ach-item.unlocked .ach-name{color:var(--gold)}
+
+/* ✅ COIN RAIN */
+@keyframes coinRain{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.coin-rain-particle{position:fixed;pointer-events:none;z-index:9999;animation:coinRain linear forwards;width:22px;height:22px}
+
+/* ✅ UI IMPROVEMENTS */
+.sec{display:flex;align-items:center;gap:7px}
+.sec svg{flex-shrink:0}
+.qa{background:var(--card2);border:1px solid var(--bdr);border-radius:14px;padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:all .22s;animation:cardIn .4s ease both}
+.qa:hover,.qa:active{border-color:var(--teal);background:rgba(0,228,195,.08);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,228,195,.15)}
+.sc:hover{border-color:rgba(0,228,195,.35);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,228,195,.12)}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="spl-rw">
+    <div class="spl-r"></div><div class="spl-r2"></div>
+    <div class="spl-ico">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+  </div>
+  <div class="spl-logo">VAULTX</div>
+  <div class="spl-tag">SKILL · EARN · GROW</div>
+  <div class="spl-bar"><div class="spl-fill" id="splFill"></div></div>
+</div>
+
+<!-- AUTH — Register FIRST, then Login -->
+<div id="auth" class="hidden">
+  <div class="aorb" style="width:260px;height:260px;top:-90px;left:-90px"></div>
+  <div class="aorb" style="width:200px;height:200px;bottom:-70px;right:-70px;animation-direction:reverse"></div>
+  <div class="alogo">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--gold)" style="vertical-align:middle;margin-right:6px;margin-bottom:3px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>VAULTX
+  </div>
+  <div class="atag">SKILL · EARN · GROW</div>
+
+  <!-- ✅ REGISTER CARD — Default first screen -->
+  <div class="acard" id="cReg">
+    <h2>Join VaultX 🚀</h2>
+    <div class="asub">Register karo aur real money earn karo!</div>
+    <div class="fg"><label>Full Name</label>
+      <input class="finput" type="text" id="rN" placeholder="Apna poora naam" autocomplete="name"/>
+    </div>
+    <div class="fg"><label>Email Address</label>
+      <input class="finput" type="email" id="rE" placeholder="you@email.com" autocomplete="email" inputmode="email"/>
+    </div>
+    <div class="fg"><label>Password</label>
+      <div class="pw-wrap">
+        <input class="finput" type="password" id="rP" placeholder="Min 6 characters" autocomplete="new-password"/>
+        <span class="pw-eye" onclick="togglePwd('rP',this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </span>
+      </div>
+    </div>
+    <div class="fg"><label>Referral Code (Optional — +50 coins!)</label>
+      <input class="finput" type="text" id="rR" placeholder="Enter referral code" style="text-transform:uppercase"/>
+    </div>
+    <button class="btn bp" id="btnR" onclick="doReg()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      CREATE FREE ACCOUNT
+    </button>
+    <div class="divider">OR</div>
+    <!-- ✅ PROPER GOOGLE BUTTON -->
+    <button class="g-btn" onclick="doGoogle()">
+      <svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Google se Register / Login
+    </button>
+    <div class="asw">Already a member? <span onclick="sw('cReg','cLogin')">Login Here</span></div>
+  </div>
+
+  <!-- LOGIN CARD -->
+  <div class="acard hidden" id="cLogin">
+    <h2>Welcome Back 👋</h2>
+    <div class="asub">Login karke earning continue karo</div>
+    <div class="fg"><label>Email Address</label>
+      <input class="finput" type="email" id="lE" placeholder="you@email.com" autocomplete="email" inputmode="email"/>
+    </div>
+    <div class="fg"><label>Password</label>
+      <div class="pw-wrap">
+        <input class="finput" type="password" id="lP" placeholder="••••••••" autocomplete="current-password"/>
+        <span class="pw-eye" onclick="togglePwd('lP',this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </span>
+      </div>
+    </div>
+    <div style="text-align:right;margin:-8px 0 12px">
+      <span style="font-size:.75rem;color:var(--teal);cursor:pointer;font-family:var(--fu)" onclick="forgotPwd()">Password bhool gaye?</span>
+    </div>
+    <button class="btn bp" id="btnL" onclick="doLogin()">LOGIN</button>
+    <div class="divider">OR</div>
+    <button class="g-btn" onclick="doGoogle()">
+      <svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Google se Login
+    </button>
+    <div class="asw">New user? <span onclick="sw('cLogin','cReg')">Register Karo</span></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="hidden">
+  <div class="topbar">
+    <div class="tblogo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gold)" style="vertical-align:middle;margin-right:3px;margin-bottom:2px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>VAULTX
+    </div>
+    <div class="tbr">
+      <div class="wchip" id="wchip" onclick="navTo('wallet')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gold)" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><text x="12" y="16.5" text-anchor="middle" font-size="9" font-weight="900" fill="#000" font-family="Arial">₹</text></svg>
+        <span id="tCoins">0</span>
+      </div>
+      <div class="av" id="topAv" onclick="navTo('profile')">?</div>
+    </div>
+  </div>
+
+  <!-- ✅ Adsterra Banner 320x50 -->
+  <div class="banner-ad" id="bannerAdWrap" style="min-height:52px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'f2ae6970083f2261ee3f82ee401a7335',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/f2ae6970083f2261ee3f82ee401a7335/invoke.js"></script>
+  </div>
+
+  <div class="page-area">
+
+    <!-- HOME PAGE -->
+    <div class="page active sy" id="pg-home">
+      <div class="hero">
+        <div class="hbg1"></div><div class="hbg2"></div>
+        <div class="htag">WELCOME BACK,</div>
+        <div class="hname" id="hN">Warrior</div>
+        <div class="hcoins">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gold)" style="vertical-align:middle;margin-right:4px;filter:drop-shadow(0 0 8px rgba(245,183,49,.5))"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="900" fill="#000" font-family="Arial">₹</text></svg><span id="hC">0</span>
+        </div>
+        <div class="hinr" id="hI">≈ ₹0.00</div>
+        <div class="huid">
+          <span id="hU">UID: ──────</span>
+          <span class="uid-copy" onclick="copyUID()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy
+          </span>
+        </div>
+      </div>
+      <div class="sgrid">
+        <div class="sc" onclick="navTo('earn')"><div class="scv" id="sT">0</div><div class="scl">Tasks Done</div></div>
+        <div class="sc"><div class="scv" id="sL">1</div><div class="scl">Level</div></div>
+        <div class="sc" onclick="navTo('profile')"><div class="scv" id="sR">0</div><div class="scl">Referrals</div></div>
+      </div>
+      <div class="xpw">
+        <div class="xpt"><div class="xpl">⚡ Level <span id="xL">1</span> Progress</div><div class="xpc"><span id="xC">0</span>/<span id="xN">500</span> XP</div></div>
+        <div class="xptrack"><div class="xpfill" id="xBar"></div></div>
+      </div>
+      <div class="daily">
+        <div class="daily-l">
+          <h3 style="display:flex;align-items:center;gap:7px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Daily Reward
+          </h3>
+          <p id="dSub">Claim karo!</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div class="strbox"><div class="strn" id="strN">0</div><div class="strl">STREAK 🔥</div></div>
+          <button class="btn bgold bsm" id="dBtn" onclick="claimDaily()">CLAIM</button>
+        </div>
+      </div>
+      <div class="sec">Quick Actions</div>
+      <div class="qagrid">
+        <div class="qa" onclick="navTo('earn')">
+          <div class="qa-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="qa-lbl">Earn Now</div>
+        </div>
+        <div class="qa" onclick="navTo('skill')">
+          <div class="qa-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="qa-lbl">Skills</div>
+        </div>
+        <div class="qa" onclick="navTo('ai')">
+          <div class="qa-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="var(--blue)"/></svg>
+          </div>
+          <div class="qa-lbl">AI Help</div>
+        </div>
+        <div class="qa" onclick="navTo('wallet')">
+          <div class="qa-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="16" cy="15" r="1.2" fill="var(--teal)"/></svg>
+          </div>
+          <div class="qa-lbl">Wallet</div>
+        </div>
+      </div>
+      <!-- ✅ Adsterra Native Banner on Home -->
+      <div style="width:100%;min-height:100px;margin-bottom:4px">
+        <script async="async" data-cfasync="false" src="https://pl29208566.profitablecpmratenetwork.com/4c1cdea7daf70692b39daeb57a01a1ef/invoke.js"></script>
+        <div id="container-home-native"></div>
+      </div>
+
+      <div class="sec">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Trending Tasks
+      </div>
+      <div id="trendingTasksHome" style="display:flex;flex-direction:column;gap:8px">
+        <div class="spin"></div>
+      </div>
+
+      <!-- ✅ Spin Wheel Button -->
+      <div style="background:linear-gradient(135deg,rgba(176,110,245,.12),rgba(91,141,240,.08));border:1px solid rgba(176,110,245,.25);border-radius:18px;padding:14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openSpinWheel()">
+        <div>
+          <div style="font-family:var(--fh);font-size:.85rem;font-weight:700;color:var(--purple);display:flex;align-items:center;gap:7px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="1" fill="var(--purple)"/></svg>
+            Spin &amp; Win
+          </div>
+          <div style="font-size:.68rem;color:var(--t2);font-family:var(--fu);margin-top:2px">Daily free spin — coins jeetne ka chance!</div>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 4s linear infinite;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+
+      <!-- ✅ GameZop Quick Access -->
+      <div style="background:linear-gradient(135deg,rgba(34,211,94,.1),rgba(0,228,195,.07));border:1px solid rgba(34,211,94,.22);border-radius:18px;padding:14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="navTo('earn');setTimeout(()=>filterTasks('games',document.getElementById('chip-games')),300)">
+        <div>
+          <div style="font-family:var(--fh);font-size:.85rem;font-weight:700;color:var(--green);display:flex;align-items:center;gap:7px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M7 9v6"/><path d="M4 12h6"/><circle cx="16.5" cy="10.5" r=".5" fill="var(--green)"/><circle cx="19.5" cy="13.5" r=".5" fill="var(--green)"/></svg>
+            Play Games &amp; Earn
+          </div>
+          <div style="font-size:.68rem;color:var(--t2);font-family:var(--fu);margin-top:2px">GameZop — khelo aur coins pao!</div>
+        </div>
+        <button class="btn bsm" style="background:linear-gradient(135deg,var(--green),var(--teal2));color:#000;font-weight:800;white-space:nowrap">PLAY NOW</button>
+      </div>
+
+      <!-- ✅ ACHIEVEMENTS SHOWCASE -->
+      <div class="card cglow" style="padding:14px">
+        <div class="sec" style="margin-bottom:10px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Achievements
+        </div>
+        <div class="ach-grid" id="achievementsGrid"></div>
+      </div>
+
+      <div class="sec">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="14 9 9 4 4 9"/><path d="M20 20h-7a4 4 0 0 1-4-4V4"/></svg>
+        Top Earners Today
+      </div>
+      <div class="card cglow" id="lbH"><div class="spin"></div></div>
+    </div>
+
+    <!-- EARN PAGE -->
+    <div class="page sy" id="pg-earn">
+      <div class="earn-hd">
+        <div>
+          <div class="earn-tit" style="display:flex;align-items:center;gap:7px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Earn Zone
+          </div>
+          <div class="earn-sub">Tasks complete karo · Real coins pao</div>
+        </div>
+        <div><div class="etv" id="eTot">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)" style="vertical-align:middle;margin-right:2px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke="#000" stroke-width="2" fill="none"/></svg>
+          <span id="eTotVal">0</span>
+        </div><div class="etl">AAJKI KAMAAI</div></div>
+      </div>
+
+      <!-- ✅ SCRATCH CARDS — Daily 3 free -->
+      <div class="scratch-section">
+        <div class="scratch-hd">
+          <div class="scratch-title">🎰 Scratch & Win</div>
+          <div class="scratch-timer" id="scratchInfo">Aaj ke 3 free cards</div>
+        </div>
+        <div class="scratch-cards" id="scratchCards"></div>
+      </div>
+
+      <!-- ✅ DAILY MISSIONS -->
+      <div style="margin-bottom:4px">
+        <div class="sec" style="margin-bottom:8px">🎯 Daily Missions</div>
+        <div id="dailyMissions"></div>
+      </div>
+
+      <!-- ✅ AD DAILY LIMIT TRACKER -->
+      <div class="ad-limit-bar">
+        <div class="ad-lim-row">
+          <div class="ad-lim-lbl" style="display:flex;align-items:center;gap:6px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            Aaj ke Ads dekhe
+          </div>
+          <div class="ad-lim-cnt"><span id="adWatched">0</span>/10 (Max 10/day)</div>
+        </div>
+        <div class="ad-track"><div class="ad-track-fill" id="adTrackFill" style="width:0%"></div></div>
+      </div>
+      <!-- ✅ COOLDOWN INDICATOR -->
+      <div class="cd-wrap hidden" id="cdWrap">
+        ⏳ <span id="cdText">30 sec baad ad dekh sakte ho</span>
+      </div>
+      <div class="fchips">
+        <div class="fchip on" onclick="filterTasks('all',this)" id="chip-all">All</div>
+        <div class="fchip" onclick="filterTasks('easy',this)">🟢 Easy</div>
+        <div class="fchip" onclick="filterTasks('medium',this)">🟡 Medium</div>
+        <div class="fchip" onclick="filterTasks('hard',this)">🔴 Hard</div>
+        <div class="fchip" onclick="filterTasks('cpa',this)" id="chip-cpa">💸 CPA Offers</div>
+        <div class="fchip" onclick="filterTasks('games',this)" id="chip-games">🎮 Play & Earn</div>
+      </div>
+      <div id="tList" style="display:flex;flex-direction:column;gap:10px"><div class="spin"></div></div>
+
+      <!-- ✅ CPA OFFERS SECTION -->
+      <div class="cpa-section hidden" id="cpaSection">
+        <div class="cpa-hd">
+          <div class="cpa-title">💸 CPA Offers <span class="cpa-badge">REAL MONEY</span></div>
+          <div style="font-size:.62rem;color:var(--t2);font-family:var(--fu)" id="cpaCount">Loading...</div>
+        </div>
+        <div class="cpa-warn">
+          ⚠️ <span>Offer <b>pura complete karo</b> tabhi coins milenge. Beech mein band kiya toh coins nahi milenge.</span>
+        </div>
+        <div id="cpaGrid" class="cpa-grid">
+          <div class="cpa-loading"><div class="spin"></div> Offers load ho rahe hain...</div>
+        </div>
+      </div>
+
+      <!-- ✅ GAMEZOP SECTION -->
+      <div class="hidden" id="gamesSection">
+        <div class="cpa-hd">
+          <div class="cpa-title">🎮 Play & Earn <span class="cpa-badge" style="background:rgba(176,110,245,.15);border-color:rgba(176,110,245,.3);color:var(--purple)">GAMEZOP</span></div>
+          <div style="font-size:.62rem;color:var(--t2);font-family:var(--fu)" id="gzCount">Loading games...</div>
+        </div>
+        <div style="background:rgba(176,110,245,.07);border:1px solid rgba(176,110,245,.18);border-radius:10px;padding:9px 13px;font-size:.72rem;color:var(--purple);font-family:var(--fu);margin-bottom:10px;display:flex;gap:7px;align-items:center">
+          🎯 <span>Game khelo → Score banao → <b>Coins pao!</b> Har game mein ek baar reward.</span>
+        </div>
+        <div id="gamesGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="cpa-loading" style="grid-column:span 2"><div class="spin"></div> Games load ho rahe hain...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILL PAGE -->
+    <div class="page sy" id="pg-skill">
+      <div style="font-family:var(--fh);font-size:.88rem;font-weight:700;color:var(--purple);letter-spacing:1px;display:flex;align-items:center;gap:8px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Skill Zone
+      </div>
+      <div class="tabs">
+        <button class="tab on" id="tab-browse" onclick="stab('browse')">Browse Gigs</button>
+        <button class="tab" id="tab-post" onclick="stab('post')">Post a Gig</button>
+        <button class="tab" id="tab-mine" onclick="stab('mine')">My Gigs</button>
+      </div>
+      <div id="sv-browse"><div class="ggrid" id="gigGrid"><div class="spin"></div></div></div>
+      <div id="sv-post" class="hidden">
+        <div class="pform">
+          <div style="font-family:var(--fu);font-size:.95rem;font-weight:700">New Gig Post Karo</div>
+          <input class="fi" id="gT" placeholder="e.g. I will design a logo for you"/>
+          <textarea class="fi" id="gD" rows="3" placeholder="Kya deliver karoge describe karo..."></textarea>
+          <div class="firow">
+            <select class="fi" id="gCat">
+              <option value="design">🎨 Design</option><option value="writing">✍️ Writing</option>
+              <option value="social">📱 Social Media</option><option value="tech">💻 Tech</option>
+              <option value="video">🎬 Video</option>
+            </select>
+            <input class="fi" type="number" id="gPr" placeholder="Price (Coins)" min="10"/>
+          </div>
+          <button class="btn bp" onclick="postGig()">🚀 POST GIG</button>
+        </div>
+      </div>
+      <div id="sv-mine" class="hidden"><div id="myGList" style="display:flex;flex-direction:column;gap:10px"><div class="spin"></div></div></div>
+    </div>
+
+    <!-- AI PAGE -->
+    <div class="page ai-page" id="pg-ai">
+      <div class="aihd">
+        <div class="aihtit" style="display:flex;align-items:center;justify-content:center;gap:8px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="var(--blue)"/><line x1="8" y1="16" x2="8" y2="16.01" stroke="var(--blue)" stroke-width="2"/><line x1="16" y1="16" x2="16" y2="16.01" stroke="var(--blue)" stroke-width="2"/></svg>
+          VaultX AI
+        </div>
+        <div class="aihsub">Caption · YouTube · Code · Business Tips</div>
+      </div>
+      <div class="aichips">
+        <div class="chip" onclick="aiQ('Write viral Instagram caption for food post')">📸 Caption</div>
+        <div class="chip" onclick="aiQ('5 trending YouTube ideas for 2025 India')">📺 YT Ideas</div>
+        <div class="chip" onclick="aiQ('Write Python code to reverse a string')">💻 Code</div>
+        <div class="chip" onclick="aiQ('How to grow Instagram fast in 2025?')">📈 Growth</div>
+        <div class="chip" onclick="aiQ('Write professional freelance bio for me')">👤 Bio</div>
+        <div class="chip" onclick="aiQ('Best business ideas with no money in India 2025')">💡 Business</div>
+        <div class="chip" onclick="aiQ('How to earn money from Fiverr as beginner in India?')">💸 Fiverr</div>
+      </div>
+      <div class="aimsgs" id="aiMsgs">
+        <div class="msg a">
+          <div class="bbl">Namaste! VaultX AI yahan hoon 🤖✨<br>Captions, YouTube ideas, coding, business tips — kuch bhi puchho!</div>
+          <div class="msgt">Ab</div>
+        </div>
+      </div>
+      <div class="aiina">
+        <textarea class="aiin" id="aiIn" placeholder="Kuch bhi puchho..." rows="1"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI()}"
+          oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'"></textarea>
+        <button class="aisend" onclick="sendAI()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- WALLET PAGE -->
+    <div class="page sy" id="pg-wallet">
+      <div class="bhero">
+        <div class="bhg1"></div><div class="bhg2"></div>
+        <div class="blbl">Your Balance</div>
+        <div class="bcoins">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--gold)" style="vertical-align:middle;margin-right:5px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke="#000" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <span id="wC">0</span>
+        </div>
+        <div class="binr">= <b id="wI">₹0.00</b></div>
+        <div class="bnote">Min withdrawal: 1000 coins = ₹10 · Rate: 100 coins = ₹1</div>
+      </div>
+      <div><div class="sec" style="margin-bottom:8px">Quick Amount</div>
+        <div class="wqchips">
+          <div class="wqc" onclick="setWd(1000)">1000🪙=₹10</div>
+          <div class="wqc" onclick="setWd(2500)">2500🪙=₹25</div>
+          <div class="wqc" onclick="setWd(5000)">5000🪙=₹50</div>
+          <div class="wqc" onclick="setWd(10000)">10K🪙=₹100</div>
+        </div>
+      </div>
+      <div class="wdf">
+        <h3 style="display:flex;align-items:center;gap:7px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          UPI Withdraw
+        </h3>
+        <div class="wdn">🔒 Admin approval ke baad 24-48 hrs mein process hoga.<br>Min 1000 coins chahiye. Coins turant deduct honge.</div>
+        <div><div style="font-size:.68rem;color:var(--t2);margin-bottom:5px;font-family:var(--fu);letter-spacing:.5px;text-transform:uppercase">UPI ID</div>
+          <input class="fi" type="text" id="wU" placeholder="name@paytm / @upi / @okaxis" inputmode="email"/></div>
+        <div><div style="font-size:.68rem;color:var(--t2);margin-bottom:5px;font-family:var(--fu);letter-spacing:.5px;text-transform:uppercase">Amount (Coins)</div>
+          <input class="fi" type="number" id="wA" placeholder="Minimum 1000 coins" min="1000" inputmode="numeric"/></div>
+        <button class="btn bgold" onclick="withdraw()">REQUEST WITHDRAWAL</button>
+      </div>
+      <!-- ✅ Withdrawal History -->
+      <div class="card cglow">
+        <div class="sec" style="margin-bottom:10px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Withdrawal History
+        </div>
+        <div id="wHistory"><div class="spin"></div></div>
+      </div>
+      <div class="sec">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Transaction History
+      </div>
+      <div class="card cglow" id="txList"><div class="spin"></div></div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div class="page sy" id="pg-profile">
+      <div class="phero">
+        <div class="phg"></div>
+        <div class="pav" id="pAv">?</div>
+        <div class="pname" id="pN">Warrior</div>
+        <div class="puid" id="pU">UID: ──────</div>
+        <div class="pemail" id="pEmail"></div>
+        <div class="plvl" id="pL">⚡ LEVEL 1</div>
+      </div>
+      <div class="rcard">
+        <div style="font-family:var(--fu);font-size:.9rem;font-weight:700;margin-bottom:3px;display:flex;align-items:center;gap:7px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Referral Link
+        </div>
+        <div style="font-size:.7rem;color:var(--t2)">Har active referral pe 100 coins milenge!</div>
+        <div class="rlink-box">
+          <div class="rlink-txt" id="rLink">Loading...</div>
+          <button class="btn bxs bgh" onclick="copyRef()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+        <button class="btn bgh bsm" style="width:100%" onclick="shareRef()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share Referral Link
+        </button>
+        <div class="rsgrid">
+          <div class="rs"><div class="rsv" id="rTo">0</div><div class="rsl">Total</div></div>
+          <div class="rs"><div class="rsv" id="rAc">0</div><div class="rsl">Active</div></div>
+          <div class="rs"><div class="rsv" id="rEa">0</div><div class="rsl">Earned🪙</div></div>
+        </div>
+      </div>
+      <div class="sec">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Weekly Leaderboard
+      </div>
+      <div class="card cglow" id="lbF"><div class="spin"></div></div>
+      <button class="btn bred" onclick="doLogout()" style="margin-top:4px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+      <div style="text-align:center;font-size:.63rem;color:var(--t3);padding-bottom:8px">VaultX v3.0 · Made with ❤️ in India</div>
+    </div>
+
+  </div><!-- end page-area -->
+
+  <nav class="bnav">
+    <button class="nb on" onclick="navTo('home')" id="nb-home">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </span></div>Home
+    </button>
+    <button class="nb" onclick="navTo('earn')" id="nb-earn">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      </span></div>Earn
+    </button>
+    <button class="nb" onclick="navTo('skill')" id="nb-skill">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </span></div>Skills
+    </button>
+    <button class="nb" onclick="navTo('ai')" id="nb-ai">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+      </span></div>AI
+    </button>
+    <button class="nb" onclick="navTo('wallet')" id="nb-wallet">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg>
+      </span></div>Wallet
+    </button>
+    <button class="nb" onclick="navTo('profile')" id="nb-profile">
+      <div class="ni"><span class="nie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </span></div>Profile
+    </button>
+  </nav>
+</div>
+
+<!-- ✅ REWARDED AD MODAL — Proper ad with timer, no reward without watching -->
+<!-- ✅ Pre-load Adsterra banner OUTSIDE modal (avoids width:0 error) -->
+<div id="adPreloadWrap" style="position:fixed;bottom:-200px;left:0;width:320px;height:100px;overflow:hidden;pointer-events:none;z-index:-1">
+  <script async="async" data-cfasync="false" src="https://pl29208566.profitablecpmratenetwork.com/4c1cdea7daf70692b39daeb57a01a1ef/invoke.js"></script>
+  <div id="container-adsterra-preload"></div>
+</div>
+
+<div id="adModal">
+  <div class="adcard">
+    <div class="adtop">
+      <div>
+        <div class="adlbl">ADVERTISEMENT</div>
+        <div style="font-size:.58rem;color:var(--t3);font-family:var(--fu)">Watch karke <b style="color:var(--gold)" id="adRewardTxt">+50 coins</b> pao</div>
+      </div>
+      <button class="adclose" id="adCloseBtn" disabled onclick="closeAd()">⏳ <span id="adCountdown">5</span>s</button>
+    </div>
+    <div style="height:3px;background:var(--bg3)">
+      <div class="ad-timer-bar" id="adTimerBar" style="width:100%;transition:width linear"></div>
+    </div>
+    <div class="adcontent">
+      <!-- ✅ Adsterra 320x50 Banner — loads here after modal visible -->
+      <div id="adBannerSlot" style="width:320px;min-height:50px;background:var(--bg3);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:8px">
+        <span style="font-size:.7rem;color:var(--t3);font-family:var(--fu)">Ad loading...</span>
+      </div>
+      <!-- ✅ Adsterra Native Ad — main content -->
+      <div id="adNativeSlot" style="width:100%;min-height:150px;display:flex;align-items:center;justify-content:center">
+        <div id="container-adsterra-native" style="width:100%"></div>
+      </div>
+      <!-- Reward info always visible -->
+      <div style="text-align:center;padding:6px 0">
+        <div class="ad-ico">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gold)" style="filter:drop-shadow(0 0 8px rgba(245,183,49,.5))"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="900" fill="#000" font-family="Arial">₹</text></svg>
+        </div>
+        <div class="ad-txt"><b style="color:var(--gold)">+<span id="adRewTxt2">50</span> coins milenge!</b><br><span style="font-size:.66rem;color:var(--t2)">Pura time wait karo</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL UP -->
+<div id="lvlup">
+  <div class="lvlcard">
+    <span class="lvlico">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+    </span>
+    <div class="lvltxt">LEVEL UP!</div>
+    <div class="lvlsub">🎉 Aap <b id="lvlN" style="color:var(--gold)">Level 2</b> pe aa gaye!<br>Naye rewards unlock ho gaye!</div>
+    <button class="btn bgold" style="max-width:200px;margin:0 auto" onclick="document.getElementById('lvlup').classList.remove('open')">AWESOME! 🔥</button>
+  </div>
+</div>
+
+<!-- ✅ CPA OFFER BOTTOM SHEET -->
+<div id="offerModal">
+  <div class="offer-sheet" id="offerSheet">
+    <div class="offer-sheet-hd">
+      <div class="offer-sheet-title" id="offerSheetTitle" style="display:flex;align-items:center;gap:7px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Offer Complete Karo
+    </div>
+      <div class="offer-sheet-close" onclick="closeOfferModal()">✕</div>
+    </div>
+    <div class="offer-reward-preview">
+      <div class="offer-reward-val">🪙 <span id="offerCoinReward">0</span></div>
+      <div class="offer-reward-lbl">Complete karne pe milenge</div>
+    </div>
+    <div class="offer-steps">
+      <div class="offer-step"><div class="offer-step-n">1</div><div class="offer-step-t" id="offerStep1">Offer page pe jao</div></div>
+      <div class="offer-step"><div class="offer-step-n">2</div><div class="offer-step-t">Jo manga ho woh pura karo (sign up / install / survey)</div></div>
+      <div class="offer-step"><div class="offer-step-n">3</div><div class="offer-step-t">Wapas aao — <b style="color:var(--teal)">timer complete hone pe</b> coins milenge</div></div>
+    </div>
+    <!-- Countdown timer -->
+    <div class="offer-timer-bar hidden" id="offerTimerBarWrap">
+      <div class="offer-timer-fill" id="offerTimerFill" style="width:100%"></div>
+    </div>
+    <div class="offer-countdown hidden" id="offerCountdownText">⏳ <span id="offerCountdownSec">60</span>s remaining...</div>
+    <button class="btn bgold" id="offerStartBtn" onclick="confirmOpenOffer()" style="width:100%;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      Offer Kholne ke Baad Ad Dekho → Earn Karo
+    </button>
+    <button class="btn bgh" onclick="closeOfferModal()" style="width:100%;font-size:.78rem">Baad Mein</button>
+    <div style="text-align:center;font-size:.62rem;color:var(--t3);margin-top:10px;font-family:var(--fu)">⚠️ Sirf genuine completion pe coins milenge</div>
+  </div>
+</div>
+
+
+<!-- ✅ SPIN WHEEL MODAL -->
+<div id="spinModal">
+  <div class="spin-hd" style="display:flex;align-items:center;justify-content:center;gap:8px">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Spin &amp; Win!
+  </div>
+  <div class="spin-sub">Daily free spin — Real coins jeetne ka chance!</div>
+  <div class="spin-wrap">
+    <div class="spin-pointer">▼</div>
+    <canvas id="spinCanvas" width="280" height="280"></canvas>
+    <div class="spin-center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+  </div>
+  <div class="spin-result" id="spinResult"></div>
+  <div class="spin-result-sub" id="spinResultSub"></div>
+  <button class="btn bgold" id="spinBtn" onclick="doSpin()" style="max-width:220px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    SPIN!
+  </button>
+  <button class="btn bgh" onclick="closeSpinWheel()" style="max-width:220px;width:100%;margin-top:8px;font-size:.78rem">Baad Mein</button>
+  <div class="spin-next" id="spinNextInfo">Aaj spin available hai!</div>
+</div>
+
+<!-- ✅ GAME PLAY MODAL — Full screen iframe -->
+<div id="gameModal">
+  <div class="game-modal-hd">
+    <div class="game-modal-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M7 9v6"/><path d="M4 12h6"/></svg>
+      <span id="gameModalTitle">Game</span>
+    </div>
+    <div class="game-modal-actions">
+      <div class="grb-timer">⏱ <span id="gameTimerDisplay">0:00</span></div>
+      <button class="game-close-btn" onclick="closeGame()">✕ Exit</button>
+    </div>
+  </div>
+  <iframe id="gameFrame" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+  <div class="game-reward-bar">
+    <div>
+      <div style="font-size:.62rem;color:var(--t2);font-family:var(--fu)" id="gamePlayReq">30 sec khelne ke baad claim hoga</div>
+      <div class="grb-reward">🪙 +<span id="gameRewardAmt">100</span> coins</div>
+    </div>
+    <button class="grb-claim" id="gameClaimBtn" onclick="claimGameReward()" style="display:flex;align-items:center;gap:6px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Claim Reward
+    </button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+'use strict';
+
+// ════════════════════════════════════════════
+//  FIREBASE CONFIG — NEW PROJECT
+// ════════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyD2FBlJ29w3orPwEm-GL_l0W-6dxvQ4QAI",
+  authDomain: "best-app-a2ed3.firebaseapp.com",
+  databaseURL: "https://best-app-a2ed3-default-rtdb.firebaseio.com",
+  projectId: "best-app-a2ed3",
+  storageBucket: "best-app-a2ed3.firebasestorage.app",
+  messagingSenderId: "960505865061",
+  appId: "1:960505865061:web:d98c6bcdc2078595c4b78c",
+  measurementId: "G-BT2RN4PFN7"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db   = firebase.firestore();
+const analytics = firebase.analytics();
+
+// ════════════════════════════════════════════
+//  CONSTANTS
+// ════════════════════════════════════════════
+const RATE         = 100;   // 100 coins = ₹1
+const XPL          = 500;   // XP per level
+const SITE         = location.origin;
+const AD_DAILY_MAX = 10;    // ✅ Max 10 ads per day
+const AD_COOLDOWN  = 30000; // ✅ 30 sec cooldown between ads
+const AD_WATCH_SEC = 5;     // ✅ Must watch 5 sec minimum
+
+// ════════════════════════════════════════════
+//  STATE — All in Firebase, NOT localStorage
+// ════════════════════════════════════════════
+let user = null;
+let userData = {};
+let curPage = 'home';
+let unsub = null;
+let allTasks = [];
+let curFilter = 'all';
+let todayEarned = 0;
+
+// ✅ Ad system state
+let lastAdTime = 0;
+let adCallback = null;
+let adTimer = null;
+let adWatchedFully = false;
+
+// ✅ Adsterra Ad System (AdMob removed)
+
+// UID helpers — localStorage only for caching display
+const saveUID = (fuid, vuid) => { try { localStorage.setItem('vx_'+fuid, vuid); } catch(e){} };
+const getUID  = (fuid)       => { try { return localStorage.getItem('vx_'+fuid); } catch(e){ return null; } };
+
+// ════════════════════════════════════════════
+//  SPLASH
+// ════════════════════════════════════════════
+// ✅ Capture referral code from URL immediately
+(function(){
+  const urlParams = new URLSearchParams(location.search);
+  const refCode = urlParams.get('ref');
+  if(refCode) {
+    sessionStorage.setItem('vx_ref', refCode.toUpperCase());
+    // Pre-fill referral input if visible
+    const rEl = document.getElementById('rR');
+    if(rEl) rEl.value = refCode.toUpperCase();
+  }
+})();
+
+(function(){
+  const fill = document.getElementById('splFill');
+  let p = 0;
+  const iv = setInterval(() => { p = Math.min(95, p + Math.random()*12+4); if(fill) fill.style.width = p+'%'; }, 180);
+  auth.onAuthStateChanged(u => {
+    clearInterval(iv);
+    if(fill) fill.style.width = '100%';
+    setTimeout(() => {
+      document.getElementById('splash').classList.add('out');
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        u ? (user = u, loadUserData(u.uid)) : showAuth();
+      }, 700);
+    }, p >= 90 ? 300 : 1100);
+  });
+})();
+
+// ════════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════════
+function showAuth() {
+  document.getElementById('auth').classList.remove('hidden');
+  document.getElementById('app').classList.add('hidden');
+}
+
+function sw(h, s) {
+  document.getElementById(h).classList.add('hidden');
+  const el = document.getElementById(s);
+  el.classList.remove('hidden');
+  el.style.animation = 'none'; void el.offsetWidth;
+  el.style.animation = 'scaleIn .45s cubic-bezier(.34,1.56,.64,1)';
+}
+
+function togglePwd(id, el) {
+  const i = document.getElementById(id);
+  i.type = i.type === 'password' ? 'text' : 'password';
+  el.textContent = i.type === 'password' ? '👁' : '🙈';
+}
+
+async function forgotPwd() {
+  const e = gv('lE');
+  if(!e) return toast('Pehle email daalo','err');
+  try { await auth.sendPasswordResetEmail(e); toast('Reset link bheja! Inbox check karo 📧','ok'); }
+  catch(e) { toast(ferr(e.code),'err'); }
+}
+
+// ✅ REGISTER
+async function doReg() {
+  const name = gv('rN'), email = gv('rE'), pass = gv('rP');
+  // ✅ Get ref from input OR URL param OR sessionStorage
+  const ref = gv('rR') || sessionStorage.getItem('vx_ref') || '';
+  if(!name)        return shakeF('rN', 'Naam required');
+  if(!email)       return shakeF('rE', 'Email required');
+  if(!pass || pass.length < 6) return shakeF('rP', 'Password min 6 chars');
+  setBL('btnR', true, '🚀 CREATE FREE ACCOUNT');
+  try {
+    const c = await auth.createUserWithEmailAndPassword(email.trim().toLowerCase(), pass);
+    await c.user.updateProfile({ displayName: name.trim() });
+    await createUserDoc(c.user, name.trim(), ref.toUpperCase().trim());
+    sessionStorage.removeItem('vx_ref'); // Clear after use
+    analytics.logEvent('sign_up', { method: 'email' });
+  } catch(e) { toast(ferr(e.code),'err'); setBL('btnR', false, '🚀 CREATE FREE ACCOUNT'); }
+}
+
+// ✅ LOGIN
+async function doLogin() {
+  const email = gv('lE'), pass = gv('lP');
+  if(!email) return shakeF('lE', 'Email required');
+  if(!pass)  return shakeF('lP', 'Password required');
+  setBL('btnL', true, 'LOGIN');
+  try {
+    await auth.signInWithEmailAndPassword(email.trim().toLowerCase(), pass);
+    analytics.logEvent('login', { method: 'email' });
+  } catch(e) { toast(ferr(e.code),'err'); setBL('btnL', false, 'LOGIN'); }
+}
+
+// ✅ GOOGLE — with proper account picker (no auto-login)
+async function doGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('email');
+  provider.addScope('profile');
+  provider.setCustomParameters({ prompt: 'select_account' });
+  try {
+    // Try popup first, fallback to redirect (works on Android WebView)
+    let r;
+    try {
+      r = await auth.signInWithPopup(provider);
+    } catch(popupErr) {
+      if(popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/popup-closed-by-user' || popupErr.code === 'auth/cancelled-popup-request') {
+        // Redirect fallback for Android/WebView
+        await auth.signInWithRedirect(provider);
+        return;
+      }
+      throw popupErr;
+    }
+    if (r.additionalUserInfo.isNewUser) {
+      // ✅ Read referral code from URL on new signup
+      const urlRef = new URLSearchParams(location.search).get('ref') ||
+                     sessionStorage.getItem('vx_ref') || '';
+      await createUserDoc(r.user, r.user.displayName || 'Warrior', urlRef.toUpperCase().trim());
+      analytics.logEvent('sign_up', { method: 'google' });
+    } else {
+      analytics.logEvent('login', { method: 'google' });
+    }
+  } catch(e) { toast(ferr(e.code),'err'); }
+}
+
+function doLogout() {
+  if(!confirm('Logout karna chahte hain?')) return;
+  if(unsub) unsub();
+  auth.signOut();
+  userData = {}; user = null; curPage = 'home';
+  document.getElementById('app').classList.add('hidden');
+  sw('cLogin','cReg');
+  showAuth();
+  toast('Logged out 👋','nfo');
+}
+
+// ════════════════════════════════════════════
+//  USER DATA — All in Firestore, NEVER localStorage for coins
+// ════════════════════════════════════════════
+async function createUserDoc(fbUser, name, refCode) {
+  // ✅ Permanent UID generation
+  let uid = getUID(fbUser.uid);
+  if(!uid) uid = 'VX' + Math.floor(100000 + Math.random()*900000);
+
+  const today = new Date().toDateString();
+  const d = {
+    uid, name,
+    email: fbUser.email || '',
+    photoURL: fbUser.photoURL || '',
+    firebaseUID: fbUser.uid,
+    // ✅ ALL coins in Firestore — NEVER localStorage
+    coins: 50, xp: 0, level: 1,
+    tasksCompleted: 0, referrals: 0,
+    streak: 0, lastDaily: null,
+    doneTasks: [],
+    referralCode: uid,
+    referredBy: refCode || null,
+    referralEarned: 0,
+    // ✅ Ad tracking in Firestore
+    adWatchedToday: 0,
+    adWatchedDate: today,
+    transactions: [{ type:'bonus', title:'Welcome Bonus 🎁', amount:50, date:new Date().toLocaleDateString() }],
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  await db.collection('users').doc(fbUser.uid).set(d);
+  saveUID(fbUser.uid, uid);
+  if(refCode) processReferral(refCode, fbUser.uid);
+  userData = d;
+}
+
+async function loadUserData(firebaseUID) {
+  try {
+    unsub = db.collection('users').doc(firebaseUID).onSnapshot(async snap => {
+      if(snap.exists) {
+        userData = snap.data();
+        if(userData.uid) saveUID(firebaseUID, userData.uid);
+        // ✅ Reset daily ad count if new day
+        const today = new Date().toDateString();
+        if(userData.adWatchedDate !== today) {
+          await upd({ adWatchedToday: 0, adWatchedDate: today });
+        }
+        if(document.getElementById('app').classList.contains('hidden')) showApp();
+        else { refreshUI(); checkLevel(); }
+      } else {
+        const name = user.displayName || 'Warrior';
+        await createUserDoc(user, name, '');
+        showApp();
+      }
+    });
+  } catch(e) { toast('Connection error. Check internet.','err'); }
+}
+
+async function upd(fields) {
+  if(!user) return;
+  try { await db.collection('users').doc(user.uid).update(fields); }
+  catch(e) { console.error('upd error:', e); }
+}
+
+async function processReferral(code, newUID) {
+  if(!code || code.length < 3) return;
+  try {
+    const snap = await db.collection('users').where('referralCode','==',code).limit(1).get();
+    if(!snap.empty) {
+      const refDoc = snap.docs[0];
+      if(refDoc.id === newUID) return; // no self-referral
+
+      const batch = db.batch();
+      // ✅ Referrer ko 100 coins
+      batch.update(refDoc.ref, {
+        referrals: firebase.firestore.FieldValue.increment(1),
+        referralEarned: firebase.firestore.FieldValue.increment(100),
+        coins: firebase.firestore.FieldValue.increment(100),
+        transactions: firebase.firestore.FieldValue.arrayUnion({
+          type:'earn', title:'Referral Bonus 🎁 — Dost ne join kiya!', amount:100,
+          date:new Date().toLocaleDateString()
+        })
+      });
+      // ✅ Naye user ko bhi 50 coins (welcome bonus)
+      const newUserRef = db.collection('users').doc(newUID);
+      batch.update(newUserRef, {
+        coins: firebase.firestore.FieldValue.increment(50),
+        referredBy: refDoc.data().uid || refDoc.id,
+        transactions: firebase.firestore.FieldValue.arrayUnion({
+          type:'earn', title:'Welcome Bonus 🎉 — Referral se join kiya!', amount:50,
+          date:new Date().toLocaleDateString()
+        })
+      });
+      await batch.commit();
+      toast('🎉 Referral bonus mila! +50 coins!','ok');
+    }
+  } catch(e) { console.log('Referral error:',e); }
+}
+
+// ════════════════════════════════════════════
+//  SHOW APP
+// ════════════════════════════════════════════
+function showApp() {
+  document.getElementById('auth').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  updateAvatar();
+  refreshUI();
+  loadTasks(); // ✅ FIXED
+  loadGigs();
+  loadLeaderboard();
+  setTimeout(() => {
+    renderTrendingTasks();
+    initPopunderTimer();
+  }, 600);
+}
+
+function refreshUI() {
+  renderHome();
+  updateAdTracker();
+  renderMissions();
+  renderAchievements();
+  initScratchCards();
+  if(curPage === 'wallet') renderWallet();
+  if(curPage === 'profile') renderProfile();
+}
+
+function updateAvatar() {
+  const ini = (userData.name||'?')[0].toUpperCase();
+  ['topAv','pAv'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(userData.photoURL) {
+      el.innerHTML = `<img src="${userData.photoURL}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.textContent='${ini}'"/>`;
+    } else {
+      el.textContent = ini;
+    }
+  });
+}
+
+// ════════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════════
+function navTo(pg) {
+  if(curPage === pg) return;
+  const old = document.getElementById('pg-'+curPage);
+  if(old) { old.classList.remove('active'); old.style.display='none'; }
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
+  curPage = pg;
+  const el = document.getElementById('pg-'+pg);
+  if(el) { el.style.display='flex'; requestAnimationFrame(() => el.classList.add('active')); }
+  const nb = document.getElementById('nb-'+pg);
+  if(nb) nb.classList.add('on');
+  if(pg === 'wallet') renderWallet();
+  if(pg === 'profile') { renderProfile(); loadLeaderboard(); }
+  if(pg === 'earn') updateAdTracker();
+}
+
+// ════════════════════════════════════════════
+//  HOME
+// ════════════════════════════════════════════
+function renderHome() {
+  const u = userData, c = u.coins || 0;
+  set('hN', (u.name||'Warrior').split(' ')[0]);
+  animN('hC', c);
+  set('hI', '≈ ₹' + (c/RATE).toFixed(2));
+  const uid = u.uid || getUID(user?.uid||'') || '──────';
+  set('hU', 'UID: '+uid);
+  set('tCoins', c);
+  set('sT', u.tasksCompleted||0); set('sL', u.level||1); set('sR', u.referrals||0);
+  set('strN', u.streak||0); set('xL', u.level||1);
+  const xm = (u.xp||0) % XPL, pct = Math.min(100, Math.round(xm/XPL*100));
+  set('xC', xm); set('xN', XPL);
+  setTimeout(() => { const b = document.getElementById('xBar'); if(b) b.style.width = pct+'%'; }, 400);
+  const today = new Date().toDateString(), cls = u.lastDaily === today;
+  const btn = document.getElementById('dBtn');
+  if(btn) { btn.textContent = cls ? '✅ Done' : 'CLAIM'; btn.disabled = cls; }
+  set('dSub', cls ? 'Kal aao!' : `+${50+(u.streak||0)*10} coins milenge!`);
+  const w = document.getElementById('wchip');
+  if(w) { w.classList.remove('bump'); void w.offsetWidth; w.classList.add('bump'); }
+}
+
+async function claimDaily() {
+  const today = new Date().toDateString();
+  if(userData.lastDaily === today) return toast('Aaj already claim kiya!','warn');
+  const r = 50 + (userData.streak||0)*10;
+  try {
+    await upd({
+      coins: firebase.firestore.FieldValue.increment(r),
+      xp: firebase.firestore.FieldValue.increment(20),
+      streak: (userData.streak||0)+1,
+      lastDaily: today,
+      transactions: firebase.firestore.FieldValue.arrayUnion({
+        type:'earn', title:'Daily Reward 🎁', amount:r, date:today
+      })
+    });
+    spawnCoins(document.getElementById('dBtn'), r);
+    toast('🎁 +'+r+' Coins Claim Kiye!','ok');
+  } catch(e) { toast('Error. Dobara try karo.','err'); }
+}
+
+function copyUID() { fbCopy(userData.uid || ''); toast('🔑 UID copy hua!','ok'); }
+
+function checkLevel() {
+  const nl = Math.floor((userData.xp||0)/XPL)+1;
+  if(nl > (userData.level||1)) {
+    set('lvlN','Level '+nl);
+    document.getElementById('lvlup').classList.add('open');
+    upd({ level: nl });
+  }
+}
+
+// ════════════════════════════════════════════
+//  LEADERBOARD
+// ════════════════════════════════════════════
+async function loadLeaderboard() {
+  try {
+    const snap = await db.collection('users').orderBy('coins','desc').limit(10).get();
+    const lb = snap.docs.map(d => d.data());
+    renderLB(lb,'lbH'); renderLB(lb,'lbF');
+  } catch(e) { renderLBFallback(); }
+}
+function renderLB(lb, id) {
+  const em = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+  const rc = ['r1','r2','r3','','','','','','',''];
+  const av = ['🦅','👑','🔥','⚡','💎','🌟','🎯','🚀','💫','🏆'];
+  const html = lb.map((u,i) => {
+    const isMe = u.uid === userData.uid;
+    return `<div class="lbi ${isMe?'me':''}" style="animation-delay:${i*.06}s">
+      <div class="lbr ${rc[i]}">${em[i]||i+1}</div>
+      <div class="lbav">${isMe?userData.name[0].toUpperCase():av[i%10]}</div>
+      <div class="lbin"><div class="lbn">${esc(u.name||'User')}${isMe?' (You)':''}</div><div class="lbs">${(u.coins||0).toLocaleString()} coins</div></div>
+      <div class="lbsc">🪙${(u.coins||0).toLocaleString()}</div>
+    </div>`;
+  }).join('');
+  const el = document.getElementById(id);
+  if(el) el.innerHTML = html || '<div style="text-align:center;padding:16px;color:var(--t3);font-size:.8rem">Abhi koi data nahi — earn karo!</div>';
+}
+function renderLBFallback() {
+  const demo = [{name:'Aryan K.',coins:12400,uid:'x'},{name:(userData.name||'You'),coins:userData.coins||0,uid:userData.uid}].sort((a,b)=>b.coins-a.coins);
+  renderLB(demo,'lbH'); renderLB(demo,'lbF');
+}
+
+// ════════════════════════════════════════════
+//  ✅ AD SYSTEM — Secure, Cooldown, Daily Limit
+// ════════════════════════════════════════════
+
+// Update the ad tracker UI
+function updateAdTracker() {
+  const watched = userData.adWatchedToday || 0;
+  const pct = Math.min(100, (watched/AD_DAILY_MAX)*100);
+  set('adWatched', watched);
+  const fill = document.getElementById('adTrackFill');
+  if(fill) fill.style.width = pct+'%';
+  // Show/hide cooldown
+  updateCooldownUI();
+}
+
+function updateCooldownUI() {
+  const now = Date.now();
+  const remaining = Math.ceil((lastAdTime + AD_COOLDOWN - now)/1000);
+  const cdWrap = document.getElementById('cdWrap');
+  const cdText = document.getElementById('cdText');
+  if(remaining > 0 && lastAdTime > 0) {
+    cdWrap.classList.remove('hidden');
+    cdText.textContent = remaining+'s baad ad dekh sakte ho';
+  } else {
+    cdWrap.classList.add('hidden');
+  }
+}
+
+// ✅ canWatchAd — Full security check
+function canWatchAd() {
+  const now = Date.now();
+  const today = new Date().toDateString();
+  // Reset daily count if new day
+  const watched = userData.adWatchedDate === today ? (userData.adWatchedToday||0) : 0;
+  // Check daily limit
+  if(watched >= AD_DAILY_MAX) {
+    toast(`Aaj ke ${AD_DAILY_MAX} ads dekh liye! Kal aao 🌙`,'warn');
+    return false;
+  }
+  // Check cooldown
+  if(lastAdTime > 0 && now - lastAdTime < AD_COOLDOWN) {
+    const wait = Math.ceil((AD_COOLDOWN-(now-lastAdTime))/1000);
+    toast(`${wait}s baad try karo ⏳`,'warn');
+    updateCooldownUI();
+    return false;
+  }
+  return true;
+}
+
+// ✅ showAd — Adsterra Rewarded Ad with proper loading
+function showAd(rewardCoins, onComplete) {
+  if(!canWatchAd()) return;
+  adCallback = onComplete;
+  adWatchedFully = false;
+  lastAdTime = Date.now();
+
+  const modal    = document.getElementById('adModal');
+  const closeBtn = document.getElementById('adCloseBtn');
+  const timerBar = document.getElementById('adTimerBar');
+  set('adRewardTxt', '+'+rewardCoins+' coins');
+  set('adRewTxt2', rewardCoins);
+  modal.classList.add('show');
+  closeBtn.disabled = true;
+  closeBtn.classList.remove('ready');
+  closeBtn.innerHTML = '⏳ <span id="adCountdown">'+AD_WATCH_SEC+'</span>s';
+
+  // ✅ Inject ads after modal is visible (350ms delay = renders with proper width)
+  setTimeout(() => {
+    try {
+      // 1. Banner 320x50 in banner slot
+      const bannerSlot = document.getElementById('adBannerSlot');
+      if(bannerSlot) {
+        bannerSlot.innerHTML = '';
+        const bScript = document.createElement('script');
+        bScript.type = 'text/javascript';
+        bScript.text = `atOptions={'key':'f2ae6970083f2261ee3f82ee401a7335','format':'iframe','height':50,'width':320,'params':{}};`;
+        const bInvoke = document.createElement('script');
+        bInvoke.type = 'text/javascript';
+        bInvoke.src = 'https://www.highperformanceformat.com/f2ae6970083f2261ee3f82ee401a7335/invoke.js';
+        bannerSlot.appendChild(bScript);
+        bannerSlot.appendChild(bInvoke);
+      }
+      // 2. Native banner in native slot
+      const nativeSlot = document.getElementById('adNativeSlot');
+      if(nativeSlot) {
+        const ct = document.getElementById('container-adsterra-native');
+        if(ct) ct.innerHTML = '';
+        const nScript = document.createElement('script');
+        nScript.async = true;
+        nScript.setAttribute('data-cfasync', 'false');
+        nScript.src = 'https://pl29208566.profitablecpmratenetwork.com/4c1cdea7daf70692b39daeb57a01a1ef/invoke.js';
+        nativeSlot.appendChild(nScript);
+      }
+      // 3. Fire smart link ONCE when user watches ad
+      triggerSmartLink();
+    } catch(e) { console.log('Ad inject err:', e); }
+  }, 350);
+
+  // Countdown timer
+  let secs = AD_WATCH_SEC;
+  if(timerBar) { timerBar.style.transition='none'; timerBar.style.width='100%'; }
+  requestAnimationFrame(() => {
+    if(timerBar) { timerBar.style.transition=`width ${AD_WATCH_SEC}s linear`; timerBar.style.width='0%'; }
+  });
+  adTimer = setInterval(() => {
+    secs--;
+    const el = document.getElementById('adCountdown');
+    if(el) el.textContent = secs;
+    if(secs <= 0) {
+      clearInterval(adTimer);
+      adWatchedFully = true;
+      closeBtn.disabled = false;
+      closeBtn.classList.add('ready');
+      closeBtn.textContent = '✅ Reward Lo!';
+    }
+  }, 1000);
+  const cdInterval = setInterval(updateCooldownUI, 1000);
+  setTimeout(() => clearInterval(cdInterval), AD_COOLDOWN + 1000);
+}
+
+// ✅ closeAd — Only give reward if fully watched
+function closeAd() {
+  const modal = document.getElementById('adModal');
+  modal.classList.remove('show');
+  clearInterval(adTimer);
+  if(adWatchedFully && adCallback) {
+    adCallback(); // ✅ Reward only after full watch
+    adCallback = null;
+    adWatchedFully = false;
+  } else if(!adWatchedFully) {
+    toast('Pura ad dekho tabhi reward milega!','warn');
+  }
+}
+
+// ════════════════════════════════════════════
+//  TASKS
+// ════════════════════════════════════════════
+async function loadTasks() {
+  try {
+    const snap = await db.collection('tasks').where('active','==',true).get();
+    allTasks = snap.docs.length ? snap.docs.map(d=>({id:d.id,...d.data()})) : defaultTasks();
+    renderTasks();
+  } catch(e) { allTasks = defaultTasks(); renderTasks(); }
+}
+
+function defaultTasks() {
+  // APP_INSTALL tasks have noLimit:true — can do multiple times (different apps)
+  return [
+    {id:'t1',  title:'Video Ad Dekho',           description:'30 sec ka ad pura dekho aur coins pao', reward:50,  icon:'📺', difficulty:'easy',   timeEst:'~30 sec',  link:'AD'},
+    {id:'t2',  title:'App Install #1',            description:'Partner app install karo — CPA Offer',  reward:200, icon:'📲', difficulty:'medium', timeEst:'~5 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674', noLimit:true},
+    {id:'t3',  title:'Survey Complete Karo',      description:'5 min survey fill karo — easy coins',   reward:150, icon:'📝', difficulty:'medium', timeEst:'~5 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674'},
+    {id:'t4',  title:'Instagram Follow Karo',     description:'@VaultXApp follow karo',                reward:30,  icon:'📸', difficulty:'easy',   timeEst:'~1 min',   link:'https://instagram.com/vaultxapp'},
+    {id:'t5',  title:'App Share Karo',            description:'WhatsApp pe dost ko share karo',        reward:75,  icon:'🔗', difficulty:'easy',   timeEst:'~2 min',   link:'SHARE'},
+    {id:'t6',  title:'App Review Likho',          description:'Play Store pe 5-star review do',        reward:300, icon:'⭐', difficulty:'hard',   timeEst:'~10 min',  link:'https://play.google.com/store/apps/details?id=com.vaultx.app'},
+    {id:'t7',  title:'Bonus Ad Dekho',            description:'Extra ad — double coins ka chance!',    reward:50,  icon:'💰', difficulty:'easy',   timeEst:'~30 sec',  link:'AD'},
+    {id:'t8',  title:'App Install #2',            description:'Dusra app install karo — aur earn karo',reward:250, icon:'📱', difficulty:'medium', timeEst:'~5 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17675', noLimit:true},
+    {id:'t9',  title:'App Install #3 — Game App', description:'Gaming app install karo',               reward:300, icon:'🎮', difficulty:'medium', timeEst:'~5 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17676', noLimit:true},
+    {id:'t10', title:'YouTube Subscribe Karo',    description:'VaultX YouTube channel subscribe karo', reward:40,  icon:'▶️', difficulty:'easy',   timeEst:'~1 min',   link:'https://youtube.com/@vaultxapp'},
+    {id:'t11', title:'Telegram Join Karo',        description:'VaultX Telegram group join karo',       reward:35,  icon:'✈️', difficulty:'easy',   timeEst:'~1 min',   link:'https://t.me/vaultxapp'},
+    {id:'t12', title:'Sign Up Offer',             description:'Partner site pe free account banao',    reward:180, icon:'🔑', difficulty:'medium', timeEst:'~3 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17677'},
+    {id:'t13', title:'Refer a Friend',            description:'Dost ko refer karo — 100 coins bonus',  reward:100, icon:'👥', difficulty:'easy',   timeEst:'~2 min',   link:'SHARE'},
+    {id:'t14', title:'Free Trial Activate Karo',  description:'OTT platform free trial lo',            reward:400, icon:'🎬', difficulty:'hard',   timeEst:'~10 min',  link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17678'},
+    {id:'t15', title:'Quiz Complete Karo',        description:'5 simple quiz questions answer karo',   reward:60,  icon:'🧠', difficulty:'easy',   timeEst:'~2 min',   link:'CPA_DIRECT:https://www.cpagrip.com/show.php?l=0&u=2518850&id=17679'},
+    {id:'t16', title:'Super Ad Bonus',            description:'Aaj ka special ad — 2x reward!',        reward:100, icon:'🌟', difficulty:'easy',   timeEst:'~30 sec',  link:'AD'},
+  ];
+}
+
+function filterTasks(f, el) {
+  curFilter = f;
+  document.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  const tList        = document.getElementById('tList');
+  const cpaSection   = document.getElementById('cpaSection');
+  const gamesSection = document.getElementById('gamesSection');
+  tList.classList.add('hidden');
+  cpaSection.classList.add('hidden');
+  if(gamesSection) gamesSection.classList.add('hidden');
+  if(f === 'cpa') {
+    cpaSection.classList.remove('hidden');
+    loadCPAOffers();
+  } else if(f === 'games') {
+    if(gamesSection) gamesSection.classList.remove('hidden');
+    loadGameZopGames();
+  } else {
+    tList.classList.remove('hidden');
+    renderTasks();
+  }
+}
+
+
+// ════════════════════════════════════════════
+//  ✅ ADSTERRA AD TRIGGERS — Smart & Timed
+// ════════════════════════════════════════════
+const SMART_LINK = 'https://www.profitablecpmratenetwork.com/d6qprubxw6?key=7ae16cb61101de7afa16a9c8eaa8e818';
+let smartLinkFired = false;
+
+// Smart link — ONLY fires when user watches ad (once per session)
+function triggerSmartLink() {
+  if(smartLinkFired) return;
+  smartLinkFired = true;
+  try {
+    window.open(SMART_LINK, '_blank', 'noopener,noreferrer');
+  } catch(e) {}
+}
+
+// ✅ POPUNDER — fires exactly ONCE after 3 minutes of app use
+// The head script (pl29208561) already handles popunder
+// This is a backup manual trigger after 3 min if head script doesn't fire
+let popunderFired = false;
+function initPopunderTimer() {
+  if(popunderFired) return;
+  setTimeout(() => {
+    if(popunderFired) return;
+    popunderFired = true;
+    try {
+      // Force popunder via smart link as backup
+      window.open(SMART_LINK, '_blank', 'noopener,noreferrer');
+    } catch(e) {}
+  }, 3 * 60 * 1000); // 3 minutes = 180000ms
+}
+
+// ════════════════════════════════════════════
+//  ✅ CPA GRIP OFFER SYSTEM — FULL ANTI-CHEAT
+// ════════════════════════════════════════════
+
+const CPA_API = 'https://www.cpagrip.com/common/offer_feed_json.php?user_id=2518850&pubkey=b744d3bfb14ac5c7bb74e9823f6a9060&tracking_id=';
+const CPA_DAILY_MAX    = 5;      // Max 5 CPA offers per day
+const CPA_MIN_WAIT     = 60;     // 60 seconds minimum on offer page
+const CPA_COINS_BASE   = 80;     // Base coins per offer (payout-based scaling)
+const CPA_STORAGE_KEY  = 'vx_cpa_done'; // localStorage for done-offer IDs (not coins)
+
+let cpaOffers        = [];
+let cpaActive        = null;  // Currently open offer
+let cpaTimer         = null;
+let cpaTimerSec      = 0;
+let cpaOfferOpenTime = 0;
+
+// ──────────────────────────────────────────
+// Load offers from CPA Grip API
+// ──────────────────────────────────────────
+async function loadCPAOffers() {
+  const grid = document.getElementById('cpaGrid');
+  if(!grid) return;
+  grid.innerHTML = '<div class="cpa-loading"><div class="spin"></div> Offers load ho rahe hain...</div>';
+
+  // Check daily limit
+  const today = new Date().toDateString();
+  const doneToday = getCPADoneToday();
+
+  try {
+    // CORS proxy use karna padega (CPA Grip direct CORS allow nahi karta web pe)
+    // Option 1: allorigins proxy
+    // Option 2: Direct agar Android WebView mein (no CORS)
+    let data = [];
+
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(CPA_API + (user?.uid||'guest'))}`;
+    const res = await fetch(proxyUrl, {signal: AbortSignal.timeout(8000)});
+    const json = await res.json();
+    data = JSON.parse(json.contents || '[]');
+
+    if(!Array.isArray(data) || !data.length) throw new Error('No offers');
+    cpaOffers = data.slice(0, 20); // Max 20 offers
+    renderCPAOffers(doneToday);
+    document.getElementById('cpaCount').textContent = cpaOffers.length + ' offers available';
+
+  } catch(e) {
+    // Fallback demo offers agar API fail ho
+    cpaOffers = getCPAFallbackOffers();
+    renderCPAOffers(doneToday);
+    document.getElementById('cpaCount').textContent = cpaOffers.length + ' offers (demo)';
+  }
+}
+
+// ──────────────────────────────────────────
+// Fallback offers (jab API na chale)
+// ──────────────────────────────────────────
+function getCPAFallbackOffers() {
+  return [
+    {id:'cpa_f1',name:'Free Recharge App Install',payout:'0.50',url:'https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674',thumbnail:'',category:'install',country:'IN'},
+    {id:'cpa_f2',name:'Survey: Win Amazon Gift Card',payout:'1.20',url:'https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674',thumbnail:'',category:'survey',country:'IN'},
+    {id:'cpa_f3',name:'Sign up & Get ₹100 Cashback',payout:'0.80',url:'https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674',thumbnail:'',category:'signup',country:'IN'},
+    {id:'cpa_f4',name:'Download Game & Reach Level 5',payout:'2.00',url:'https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674',thumbnail:'',category:'gaming',country:'IN'},
+    {id:'cpa_f5',name:'Free Trial — OTT Platform',payout:'1.50',url:'https://www.cpagrip.com/show.php?l=0&u=2518850&id=17674',thumbnail:'',category:'trial',country:'IN'},
+  ];
+}
+
+// ──────────────────────────────────────────
+// Render CPA Offer Cards
+// ──────────────────────────────────────────
+function renderCPAOffers(doneToday) {
+  const grid = document.getElementById('cpaGrid');
+  if(!grid) return;
+  if(!cpaOffers.length) {
+    grid.innerHTML = '<div class="cpa-empty"><div class="cpa-empty-ico">💸</div><div class="cpa-empty-t">Abhi koi offer nahi hai. Baad mein aao!</div></div>';
+    return;
+  }
+
+  const doneFull = getStoredCPADone(); // All-time done offer IDs
+  const today   = new Date().toDateString();
+  const todayDone = (userData.cpaToday === today ? (userData.cpaDoneToday || 0) : 0);
+  const limitReached = todayDone >= CPA_DAILY_MAX;
+
+  grid.innerHTML = '';
+  cpaOffers.forEach((offer, i) => {
+    const offerId = getCPAId(offer);
+    const isDone  = doneFull.includes(offerId);
+    const payout  = parseFloat(offer.payout || offer.amount || '0.5') || 0.5;
+    const coins   = Math.round(payout * CPA_COINS_BASE * 2); // Scale: $0.50 → 80 coins
+    const cat     = (offer.category || offer.countries || 'task').toLowerCase();
+    const diff    = payout >= 1.5 ? 'hard' : payout >= 0.8 ? 'medium' : 'easy';
+    const diffLabel = diff === 'easy' ? '🟢 Easy' : diff === 'medium' ? '🟡 Medium' : '🔴 Hard';
+    const imgUrl  = offer.thumbnail || offer.picture || '';
+    const title   = offer.name || offer.title || 'CPA Offer';
+
+    const card = document.createElement('div');
+    card.className = 'cpa-card' + (isDone ? ' tdone' : '');
+    card.style.animationDelay = (i * .07) + 's';
+    card.innerHTML = `
+      ${imgUrl
+        ? `<img class="cpa-img" src="${esc(imgUrl)}" alt="${esc(title)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : ''
+      }
+      <div class="cpa-img-placeholder" ${imgUrl ? 'style="display:none"' : ''}>
+        ${cat.includes('survey') ? '📋' : cat.includes('install') || cat.includes('game') ? '📲' : cat.includes('sign') ? '📝' : cat.includes('trial') ? '🎬' : '💸'}
+      </div>
+      <div class="cpa-body">
+        <div class="cpa-name">${esc(title)}</div>
+        <div class="cpa-meta">
+          <div class="cpa-payout">💵 $${payout.toFixed(2)}</div>
+          <div class="cpa-coins">🪙 +${coins}</div>
+          <div class="cpa-diff ${diff}">${diffLabel}</div>
+        </div>
+        <div class="cpa-footer">
+          <div>
+            <div class="cpa-timer-wrap" id="cpa-twrap-${offerId}"><div class="cpa-timer-fill" id="cpa-tfill-${offerId}"></div></div>
+            <div class="cpa-status" id="cpa-status-${offerId}">${isDone ? '' : limitReached ? '⚠️ Aaj ka limit hua' : '~' + (diff==='easy'?'2-5':diff==='medium'?'5-10':'10-15') + ' min'}</div>
+          </div>
+          ${isDone
+            ? `<div class="cpa-done-badge">✅ Done</div>`
+            : limitReached
+              ? `<button class="btn bsm" style="background:rgba(255,255,255,.06);color:var(--t3)" disabled>Limit: ${todayDone}/${CPA_DAILY_MAX}</button>`
+              : `<button class="btn bsm bp" id="cpa-btn-${offerId}" onclick="openCPAOffer('${offerId}',${coins},'${esc(title)}','${esc(offer.url||offer.link||'#')}')">START</button>`
+          }
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// ──────────────────────────────────────────
+// Open offer — show bottom sheet first
+// ──────────────────────────────────────────
+function openCPAOffer(offerId, coins, title, url) {
+  if(!canOpenCPAOffer(offerId)) return;
+
+  // ✅ Show reward ad FIRST, then open offer
+  cpaActive = { offerId, coins, title, url };
+
+  document.getElementById('offerSheetTitle').textContent = '💸 ' + title.slice(0, 40);
+  document.getElementById('offerCoinReward').textContent = coins;
+  document.getElementById('offerStep1').textContent = 'Offer complete karo: ' + title.slice(0, 35) + '...';
+  document.getElementById('offerTimerBarWrap').classList.add('hidden');
+  document.getElementById('offerCountdownText').classList.add('hidden');
+  document.getElementById('offerStartBtn').disabled = false;
+  document.getElementById('offerStartBtn').textContent = '🚀 Offer Kholne ke Baad Ad Dekho → Earn Karo';
+  document.getElementById('offerModal').classList.add('show');
+}
+
+// ──────────────────────────────────────────
+// Confirm: Show rewarded ad THEN open offer
+// ──────────────────────────────────────────
+function confirmOpenOffer() {
+  if(!cpaActive) return;
+  const btn = document.getElementById('offerStartBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Ad load ho raha hai...';
+
+  // ✅ Show rewarded ad first — double earning (Ad + CPA)
+  showAd(20, () => {
+    // Ad complete hua — ab offer kholte hain
+    actuallyOpenOffer();
+  });
+}
+
+function actuallyOpenOffer() {
+  if(!cpaActive) return;
+  const { offerId, coins, title, url } = cpaActive;
+
+  // Open offer in new tab/window
+  const trackUrl = url + '&tracking_id=' + (user?.uid || 'guest');
+  window.open(trackUrl, '_blank');
+
+  cpaOfferOpenTime = Date.now();
+
+  // Start countdown timer
+  startCPACountdown(offerId, coins, title);
+}
+
+// ──────────────────────────────────────────
+// ✅ ANTI-CHEAT Countdown Timer
+// User ko minimum CPA_MIN_WAIT seconds wait karna hai
+// ──────────────────────────────────────────
+function startCPACountdown(offerId, coins, title) {
+  clearInterval(cpaTimer);
+  cpaTimerSec = CPA_MIN_WAIT;
+
+  // Show timer in bottom sheet
+  document.getElementById('offerTimerBarWrap').classList.remove('hidden');
+  document.getElementById('offerCountdownText').classList.remove('hidden');
+  document.getElementById('offerCountdownSec').textContent = cpaTimerSec;
+  document.getElementById('offerStartBtn').disabled = true;
+  document.getElementById('offerStartBtn').textContent = '⏳ ' + cpaTimerSec + 's baad reward milega...';
+
+  // Also show in card
+  const twrap = document.getElementById('cpa-twrap-' + offerId);
+  const tfill  = document.getElementById('cpa-tfill-' + offerId);
+  const statusEl = document.getElementById('cpa-status-' + offerId);
+  if(twrap) twrap.style.display = 'block';
+  if(tfill) { tfill.style.transition = 'none'; tfill.style.width = '100%'; requestAnimationFrame(() => { tfill.style.transition = `width ${CPA_MIN_WAIT}s linear`; tfill.style.width = '0%'; }); }
+
+  cpaTimer = setInterval(() => {
+    cpaTimerSec--;
+    if(document.getElementById('offerCountdownSec')) document.getElementById('offerCountdownSec').textContent = cpaTimerSec;
+    if(document.getElementById('offerStartBtn')) document.getElementById('offerStartBtn').textContent = '⏳ ' + cpaTimerSec + 's baad reward milega...';
+    if(statusEl) statusEl.textContent = '⏳ ' + cpaTimerSec + 's remaining';
+
+    if(cpaTimerSec <= 0) {
+      clearInterval(cpaTimer);
+      // ✅ Timer complete — ab user se confirm karo
+      document.getElementById('offerStartBtn').disabled = false;
+      document.getElementById('offerStartBtn').textContent = '🎉 Reward Claim Karo!';
+      document.getElementById('offerStartBtn').onclick = () => claimCPAReward(offerId, coins, title);
+      if(statusEl) statusEl.textContent = '✅ Claim karo!';
+      toast('⏱ Timer complete! Reward claim karo!', 'ok');
+    }
+  }, 1000);
+}
+
+// ──────────────────────────────────────────
+// ✅ Claim CPA Reward — Firebase mein save
+// ──────────────────────────────────────────
+async function claimCPAReward(offerId, coins, title) {
+  // ✅ Anti-cheat checks
+  if(!cpaActive || cpaActive.offerId !== offerId) { toast('Invalid claim!', 'err'); return; }
+
+  const timeSpent = (Date.now() - cpaOfferOpenTime) / 1000;
+  if(timeSpent < CPA_MIN_WAIT - 2) {
+    toast('⚠️ Pura time spend karo!', 'warn');
+    return;
+  }
+
+  // ✅ Check if already done
+  const doneFull = getStoredCPADone();
+  if(doneFull.includes(offerId)) {
+    toast('Yeh offer already complete ho gaya hai!', 'warn');
+    closeOfferModal();
+    return;
+  }
+
+  // ✅ Check daily limit (Firestore-based, not localStorage)
+  const today = new Date().toDateString();
+  const todayDone = userData.cpaToday === today ? (userData.cpaDoneToday || 0) : 0;
+  if(todayDone >= CPA_DAILY_MAX) {
+    toast(`Aaj ka CPA limit (${CPA_DAILY_MAX}) ho gaya! Kal aao.`, 'warn');
+    closeOfferModal();
+    return;
+  }
+
+  try {
+    // ✅ Save to Firestore
+    await upd({
+      coins:          firebase.firestore.FieldValue.increment(coins),
+      xp:             firebase.firestore.FieldValue.increment(Math.floor(coins / 5)),
+      tasksCompleted: firebase.firestore.FieldValue.increment(1),
+      cpaDoneToday:   firebase.firestore.FieldValue.increment(1),
+      cpaToday:       today,
+      cpaTotalDone:   firebase.firestore.FieldValue.increment(1),
+      transactions:   firebase.firestore.FieldValue.arrayUnion({
+        type: 'earn',
+        title: '💸 CPA: ' + title.slice(0, 40),
+        amount: coins,
+        date: new Date().toLocaleDateString()
+      })
+    });
+
+    // ✅ Mark as done in localStorage (just IDs, not coins)
+    saveCPADone(offerId);
+
+    todayEarned += coins;
+    set('eTotVal', todayEarned);
+    spawnCoins(document.getElementById('cpaGrid'), coins);
+    toast('🎉 +' + coins + ' Coins CPA offer se earn kiye!', 'ok');
+    checkLevel();
+    closeOfferModal();
+
+    // Re-render to mark as done
+    const doneList = getStoredCPADone();
+    renderCPAOffers(doneList);
+
+  } catch(e) {
+    toast('Error saving reward: ' + e.message, 'err');
+  }
+}
+
+// ──────────────────────────────────────────
+// ✅ Anti-cheat: Can open offer?
+// ──────────────────────────────────────────
+function canOpenCPAOffer(offerId) {
+  // Already done?
+  if(getStoredCPADone().includes(offerId)) {
+    toast('Yeh offer already complete ho gaya!', 'warn');
+    return false;
+  }
+  // Daily limit?
+  const today = new Date().toDateString();
+  const todayDone = userData.cpaToday === today ? (userData.cpaDoneToday || 0) : 0;
+  if(todayDone >= CPA_DAILY_MAX) {
+    toast(`Aaj ke ${CPA_DAILY_MAX} CPA offers ho gaye! Kal aao 🌙`, 'warn');
+    return false;
+  }
+  return true;
+}
+
+// ──────────────────────────────────────────
+// Offer Modal close
+// ──────────────────────────────────────────
+function closeOfferModal() {
+  document.getElementById('offerModal').classList.remove('show');
+  clearInterval(cpaTimer);
+  cpaActive = null;
+  cpaTimerSec = 0;
+}
+
+// ──────────────────────────────────────────
+// ✅ localStorage helpers — ONLY store offer IDs, NOT coins
+// ──────────────────────────────────────────
+function getStoredCPADone() {
+  try { return JSON.parse(localStorage.getItem(CPA_STORAGE_KEY) || '[]'); } catch(e) { return []; }
+}
+function saveCPADone(offerId) {
+  try {
+    const done = getStoredCPADone();
+    if(!done.includes(offerId)) { done.push(offerId); localStorage.setItem(CPA_STORAGE_KEY, JSON.stringify(done)); }
+  } catch(e) {}
+}
+function getCPADoneToday() {
+  const today = new Date().toDateString();
+  return userData.cpaToday === today ? (userData.cpaDoneToday || 0) : 0;
+}
+function getCPAId(offer) {
+  return 'cpa_' + (offer.id || offer.offer_id || btoa(offer.url || offer.name || Math.random().toString()).slice(0, 12));
+}
+
+function renderTrendingTasks() {
+  const el = document.getElementById('trendingTasksHome');
+  if(!el) return;
+  // Push AdSense native on home page
+  try {
+    const ins = document.querySelector('[data-ad-slot="1186960327"]');
+    if(ins && !ins.getAttribute('data-adsbygoogle-status')) {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  } catch(e) {}
+  // Show top 4 tasks sorted by reward
+  const trending = (allTasks.length ? allTasks : defaultTasks())
+    .slice().sort((a,b)=>(b.reward||0)-(a.reward||0)).slice(0,4);
+  const done = userData.doneTasks||[];
+  el.innerHTML = trending.map((t,i) => {
+    const isDone = done.includes(t.id);
+    const ibg = t.difficulty==='easy'?'rgba(34,211,94,.12)':t.difficulty==='medium'?'rgba(245,183,49,.12)':'rgba(176,110,245,.12)';
+    return `<div class="tcard" style="animation-delay:${i*.07}s;${isDone?'opacity:.35;pointer-events:none':''}">
+      <div class="tico" style="background:${ibg}">${t.icon||'💼'}</div>
+      <div class="tbody">
+        <div class="ttit">${esc(t.title)}</div>
+        <div class="tmeta">
+          <div class="trew">🪙 +${t.reward}</div>
+          <div class="ttime">⏱ ${t.timeEst||'—'}</div>
+          ${t.noLimit?'<span style="font-size:.58rem;background:rgba(0,228,195,.1);color:var(--teal);border:1px solid rgba(0,228,195,.2);border-radius:10px;padding:1px 7px;font-family:var(--fu)">UNLIMITED</span>':''}
+        </div>
+      </div>
+      <button class="btn bsm ${isDone?'':'bp'}" onclick="${isDone?'void 0':`startTask('${t.id}',${t.reward},'${esc(t.title)}','${esc(t.link||'#')}')`}">
+        ${isDone?'✅':'START'}
+      </button>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// ✅ REAL PLATFORM LOGOS — CDN based
+// ═══════════════════════════════════════════════════
+const PLATFORM_LOGOS = {
+  instagram: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg',
+  telegram:  'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg',
+  youtube:   'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg',
+  whatsapp:  'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/whatsapp.svg',
+  twitter:   'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg',
+  facebook:  'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg',
+  playstore: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googleplay.svg',
+  appstore:  'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/appstore.svg',
+  amazon:    'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazon.svg',
+  google:    'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg',
+  paytm:     'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/paytm.svg',
+  phonepe:   'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/phonepe.svg',
+  fiverr:    'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fiverr.svg',
+  upwork:    'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/upwork.svg',
+};
+const LOGO_BG = {
+  instagram:'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)',
+  telegram:'#229ED9', youtube:'#FF0000', whatsapp:'#25D366',
+  twitter:'#000', facebook:'#1877F2', playstore:'#01875f',
+  appstore:'#0D96F6', amazon:'#FF9900', google:'#4285F4',
+  paytm:'#00B9F1', phonepe:'#5F259F', fiverr:'#1DBF73', upwork:'#14a800',
+};
+function getTaskLogo(task) {
+  if(task.imageUrl) return {type:'img', src:task.imageUrl};
+  const link  = (task.link||'').toLowerCase();
+  const title = (task.title||'').toLowerCase();
+  const d = (keys,p) => keys.some(k=>link.includes(k)||title.includes(k)) ? p : null;
+  const platform =
+    d(['instagram','insta'],'instagram') ||
+    d(['t.me','telegram'],'telegram')    ||
+    d(['youtube','youtu'],'youtube')     ||
+    d(['whatsapp','whats'],'whatsapp')   ||
+    d(['twitter','x.com'],'twitter')     ||
+    d(['facebook','fb.com'],'facebook')  ||
+    d(['play.google','playstore'],'playstore') ||
+    d(['apps.apple','appstore'],'appstore')    ||
+    d(['amazon'],'amazon')   ||
+    d(['paytm'],'paytm')     ||
+    d(['phonepe'],'phonepe') ||
+    d(['fiverr'],'fiverr')   ||
+    d(['upwork'],'upwork')   ||
+    null;
+  if(platform && PLATFORM_LOGOS[platform]) return {type:'logo', platform, src:PLATFORM_LOGOS[platform], bg:LOGO_BG[platform]||'#222'};
+  // AD task
+  if(link==='ad'||title.includes('video')||title.includes('ad dekho')) return {type:'svg', bg:'rgba(0,228,195,.13)', svg:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00e4c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>'};
+  if(link==='share'||title.includes('share')) return {type:'svg', bg:'rgba(91,141,240,.13)', svg:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5b8df0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>'};
+  return {type:'emoji', emoji:task.icon||'💼', bg:'var(--card2)'};
+}
+function logoHTML(lg) {
+  const s='width:50px;height:50px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;';
+  if(lg.type==='img') return `<div style="${s}background:var(--bg3)"><img src="${lg.src}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='💼'" loading="lazy"/></div>`;
+  if(lg.type==='logo') return `<div style="${s}background:${lg.bg};padding:10px"><img src="${lg.src}" style="width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1)" loading="lazy" onerror="this.parentElement.style.background='var(--card2)';this.parentElement.innerHTML='💼'"/></div>`;
+  if(lg.type==='svg') return `<div style="${s}background:${lg.bg}">${lg.svg}</div>`;
+  return `<div style="${s}background:${lg.bg};font-size:1.4rem">${lg.emoji}</div>`;
+}
+
+// ✅ ADSTERRA TASK AD — har 3rd card ke baad
+function injectTaskAd(el, slotIdx) {
+  const wrap = document.createElement('div');
+  wrap.style.cssText='width:100%;min-height:80px;background:var(--card2);border:1px solid var(--bdr2);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative';
+  wrap.innerHTML='<span style="position:absolute;top:5px;right:8px;font-size:.5rem;color:var(--t3);font-family:var(--fu)">AD</span>';
+  // Adsterra native banner
+  const s1=document.createElement('script');
+  s1.type='text/javascript';
+  s1.text="atOptions={'key':'f2ae6970083f2261ee3f82ee401a7335','format':'iframe','height':50,'width':320,'params':{}};";
+  const s2=document.createElement('script');
+  s2.type='text/javascript';
+  s2.src='https://www.highperformanceformat.com/f2ae6970083f2261ee3f82ee401a7335/invoke.js';
+  s2.async=true;
+  wrap.appendChild(s1);
+  wrap.appendChild(s2);
+  el.appendChild(wrap);
+}
+
+function renderTasks() {
+  const done  = userData.doneTasks || [];
+  const tasks = curFilter==='all' ? allTasks : allTasks.filter(t=>t.difficulty===curFilter);
+  const el    = document.getElementById('tList');
+  if(!el) return;
+  el.innerHTML = '';
+  if(!tasks.length) {
+    el.innerHTML='<div style="text-align:center;padding:40px;color:var(--t3)">No tasks available</div>';
+    set('eTotVal',todayEarned); return;
+  }
+  tasks.forEach((t,i) => {
+    const isDone = t.noLimit ? false : done.includes(t.id);
+    const bc  = t.difficulty==='easy'?'be':t.difficulty==='medium'?'bm':'bh';
+    const div = document.createElement('div');
+    div.className = 'tcard'+(isDone?' tdone':'');
+    div.style.animationDelay = (i*.07)+'s';
+    const unlimitedBadge = t.noLimit ? `<span style="font-size:.54rem;background:rgba(0,228,195,.1);color:var(--teal);border:1px solid rgba(0,228,195,.2);border-radius:8px;padding:1px 6px;font-family:var(--fu);vertical-align:middle;margin-left:4px">&#8734;</span>` : '';
+    const lg = getTaskLogo(t);
+    div.innerHTML = `
+      ${logoHTML(lg)}
+      <div class="tbody">
+        <div class="ttit">${esc(t.title)}${unlimitedBadge}</div>
+        <div class="tdesc">${esc(t.description||'')}</div>
+        <div class="tmeta">
+          <div class="trew">&#128;&#169; +${t.reward}</div>
+          <div class="ttime">&#9201; ${t.timeEst||'Varies'}</div>
+          <div class="tbadge ${bc}">${(t.difficulty||'easy').toUpperCase()}</div>
+        </div>
+        <div class="tprog" id="tp-${t.id}"><div class="tprog-fill" id="tf-${t.id}"></div></div>
+      </div>
+      <button class="btn bsm ${isDone?'':'bp'}" id="tb-${t.id}"
+        onclick="${isDone?'void 0':`startTask('${t.id}',${t.reward},'${esc(t.title)}','${esc(t.link||'#')}')`}"
+        style="${isDone?'background:rgba(255,255,255,.06);color:var(--t3);cursor:default':''}">
+        ${isDone?'&#9989; Done':'START'}
+      </button>`;
+    el.appendChild(div);
+    // ✅ Har 3rd task ke baad Adsterra ad
+    if((i+1)%3===0 && i<tasks.length-1) injectTaskAd(el, Math.floor(i/3));
+  });
+  set('eTotVal',todayEarned);
+}
+
+function startTask(id, reward, title, link) {
+  const task = allTasks.find(t=>t.id===id)||{};
+  // ✅ noLimit tasks (app downloads) — can repeat — use timestamp ID
+  const taskDoneId = task.noLimit ? (id + '_' + new Date().toDateString().replace(/ /g,'')) : id;
+  if(!task.noLimit && (userData.doneTasks||[]).includes(id)) return;
+
+  // ✅ AD task
+  if(link === 'AD') {
+    showAd(reward, () => completeTask(taskDoneId, reward, title));
+    return;
+  }
+
+  // ✅ CPA_DIRECT — click hote hi offer open + 60s countdown
+  if(link && link.startsWith('CPA_DIRECT:')) {
+    const url = link.replace('CPA_DIRECT:','');
+    const trackUrl = url + '&tracking_id=' + (user?.uid||'guest');
+    window.open(trackUrl, '_blank');
+    const btn  = document.getElementById('tb-'+id);
+    const prog = document.getElementById('tp-'+id);
+    const fill = document.getElementById('tf-'+id);
+    const WAIT = 60;
+    if(btn) { btn.textContent='⏳ '+WAIT+'s'; btn.disabled=true; }
+    if(prog) prog.style.display='block';
+    if(fill) { fill.style.transition='none'; fill.style.width='0'; requestAnimationFrame(()=>{ fill.style.transition='width '+WAIT+'s linear'; fill.style.width='100%'; }); }
+    toast('✅ App/Offer khula! '+WAIT+'s baad reward milega...','nfo');
+    let s = WAIT;
+    const iv = setInterval(() => {
+      s--;
+      if(btn) btn.textContent = s>0?'⏳ '+s+'s':'🎉 Claim!';
+      if(s <= 0) {
+        clearInterval(iv);
+        if(btn) { btn.disabled=false; btn.textContent='🎉 Claim!'; btn.onclick=()=>{ completeTask(taskDoneId,reward,title); btn.onclick=null; btn.textContent=task.noLimit?'START':'✅'; if(!task.noLimit) btn.disabled=true; }; }
+        toast('🎉 Timer complete! Claim karo!','ok');
+      }
+    }, 1000);
+    return;
+  }
+
+  // ✅ SHARE task
+  if(link === 'SHARE') {
+    const shareUrl = location.origin + '?ref=' + (userData.referralCode||userData.uid||'');
+    if(navigator.share) {
+      navigator.share({title:'VaultX — Real Money Earn Karo!', text:'VaultX join karo aur real paisa kamao!', url:shareUrl})
+        .then(() => completeTask(taskDoneId, reward, title))
+        .catch(()=>{});
+    } else {
+      navigator.clipboard?.writeText(shareUrl);
+      toast('Link copy hua! Share karo.','ok');
+      setTimeout(() => completeTask(taskDoneId, reward, title), 3000);
+    }
+    return;
+  }
+
+  // ✅ External link
+  if(link && link !== '#') window.open(link,'_blank');
+  const btn  = document.getElementById('tb-'+id);
+  const prog = document.getElementById('tp-'+id);
+  const fill = document.getElementById('tf-'+id);
+  if(btn) { btn.textContent='⏳ 5s'; btn.disabled=true; }
+  if(prog) prog.style.display='block';
+  if(fill) { fill.style.transition='none'; fill.style.width='0'; requestAnimationFrame(()=>{ fill.style.transition='width 5s linear'; fill.style.width='100%'; }); }
+  toast('Task complete karo aur wait karo...','nfo');
+  let s=5;
+  const iv=setInterval(()=>{ s--; if(btn) btn.textContent=s>0?'⏳ '+s+'s':'⏳'; if(s<=0){clearInterval(iv);completeTask(taskDoneId,reward,title);} }, 1000);
+}
+
+// ✅ completeTask — saves to Firestore only, no localStorage coins
+async function completeTask(id, reward, title) {
+  // noLimit tasks (id has date suffix like t2_MonApr222026) — don't block
+  const baseId = id.split('_')[0];
+  const isNoLimit = (allTasks.find(t=>t.id===baseId)||{}).noLimit;
+
+  // Normal tasks — check doneTasks
+  if(!isNoLimit && (userData.doneTasks||[]).includes(id)) return;
+
+  const today = new Date().toDateString();
+  try {
+    const updates = {
+      coins:          firebase.firestore.FieldValue.increment(reward),
+      xp:             firebase.firestore.FieldValue.increment(Math.floor(reward/5)),
+      tasksCompleted: firebase.firestore.FieldValue.increment(1),
+      transactions:   firebase.firestore.FieldValue.arrayUnion({
+        type:'earn', title, amount:reward, date:new Date().toLocaleDateString()
+      })
+    };
+    // Only add to doneTasks for non-noLimit tasks
+    if(!isNoLimit) {
+      updates.doneTasks = firebase.firestore.FieldValue.arrayUnion(id);
+    }
+    // Track ad watches
+    if(id.startsWith('t1') || id.startsWith('t7') || id.startsWith('t16') || title.toLowerCase().includes('ad')) {
+      updates.adWatchedToday = firebase.firestore.FieldValue.increment(1);
+      updates.adWatchedDate  = today;
+    }
+    await upd(updates);
+    todayEarned += reward;
+    set('eTotVal',todayEarned);
+    checkLevel();
+    spawnCoins(document.getElementById('tb-'+baseId)||document.getElementById('dBtn'), reward);
+    toast('✅ +'+reward+' Coins Earn Kiye! 🎉','ok');
+    updateAdTracker();
+    renderTrendingTasks(); // refresh home trending
+  } catch(e) { toast('Error saving coins: '+e.message,'err'); }
+}
+
+// ════════════════════════════════════════════
+//  SKILL ZONE
+// ════════════════════════════════════════════
+async function loadGigs() {
+  try {
+    const snap = await db.collection('gigs').where('active','==',true).orderBy('createdAt','desc').limit(20).get();
+    renderGigs(snap.docs.length ? snap.docs.map(d=>({id:d.id,...d.data()})) : defaultGigs());
+  } catch(e) { renderGigs(defaultGigs()); }
+}
+function defaultGigs() {
+  return [
+    {id:'g1',title:'YouTube Thumbnail Design',seller:'DesignPro',icon:'🎨',category:'design',price:150,bids:4},
+    {id:'g2',title:'5 Instagram Captions',seller:'CaptionKing',icon:'✍️',category:'writing',price:80,bids:7},
+    {id:'g3',title:'Short Video Reel Edit',seller:'ReelMaster',icon:'🎬',category:'video',price:300,bids:2},
+    {id:'g4',title:'Brand Logo Design',seller:'LogoWiz',icon:'🖌️',category:'design',price:250,bids:5},
+    {id:'g5',title:'SEO Blog Post',seller:'BlogPro',icon:'📝',category:'writing',price:180,bids:3},
+    {id:'g6',title:'WordPress Site Setup',seller:'TechNinja',icon:'💻',category:'tech',price:400,bids:1},
+  ];
+}
+function renderGigs(gigs) {
+  const g = document.getElementById('gigGrid');
+  if(!g) return;
+  g.innerHTML = gigs.map((gig,i)=>`
+    <div class="gig" style="animation-delay:${i*.06}s" onclick="openGig('${gig.id}','${esc(gig.title)}',${gig.price})">
+      <div class="gtop">${gig.icon||'💼'}</div>
+      <div class="gbot">
+        <div class="gtit">${esc(gig.title)}</div>
+        <div class="gsel">by ${esc(gig.seller||'User')} · ${gig.bids||0} bids</div>
+        <div class="gft">
+          <div class="gprice">🪙${gig.price}</div>
+          <button class="btn bgh bxs" onclick="event.stopPropagation();bidGig('${gig.id}','${esc(gig.title)}',${gig.price})">BID</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function stab(n) {
+  ['browse','post','mine'].forEach(x=>{
+    document.getElementById('tab-'+x).classList.toggle('on',x===n);
+    document.getElementById('sv-'+x).classList.toggle('hidden',x!==n);
+  });
+  if(n==='mine') loadMyGigs();
+}
+async function postGig() {
+  const tit=gv('gT'), desc=gv('gD'), cat=document.getElementById('gCat').value, price=parseInt(gv('gPr'))||0;
+  if(!tit) return toast('Title daalo','err');
+  if(!desc) return toast('Description daalo','err');
+  if(price<10) return toast('Price min 10 coins','err');
+  const icoMap={design:'🎨',writing:'✍️',social:'📱',tech:'💻',video:'🎬'};
+  try {
+    await db.collection('gigs').add({ title:tit, description:desc, category:cat, price, icon:icoMap[cat]||'💼',
+      seller:userData.name||'User', sellerId:user.uid, sellerUID:userData.uid, bids:0, active:true,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp() });
+    document.getElementById('gT').value=''; document.getElementById('gD').value=''; document.getElementById('gPr').value='';
+    await loadGigs(); stab('browse'); toast('✅ Gig post hua!','ok');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+async function loadMyGigs() {
+  const el = document.getElementById('myGList'); if(!el) return; el.innerHTML='<div class="spin"></div>';
+  try {
+    const snap = await db.collection('gigs').where('sellerId','==',user.uid).get();
+    const mine = snap.docs.map(d=>({id:d.id,...d.data()}));
+    el.innerHTML = mine.length
+      ? mine.map(g=>`<div class="tcard"><div class="tico" style="background:rgba(176,110,245,.12)">${g.icon||'💼'}</div><div class="tbody"><div class="ttit">${esc(g.title)}</div><div class="tdesc">${g.bids||0} bids · ${g.category||''}</div></div><div class="trew">🪙${g.price}</div></div>`).join('')
+      : '<div style="text-align:center;padding:24px;color:var(--t3);font-size:.8rem">Abhi koi gig nahi.<br>Pehla gig post karo!</div>';
+  } catch(e) { el.innerHTML='<div style="color:var(--red);font-size:.8rem;text-align:center;padding:16px">Error</div>'; }
+}
+function openGig(id,title,price){toast('💼 '+title+' — 🪙'+price,'nfo');}
+async function bidGig(id,title,price){
+  if((userData.coins||0)<price) return toast('Coins kam hain!','err');
+  try { await db.collection('gigs').doc(id).update({bids:firebase.firestore.FieldValue.increment(1)}); toast('📩 Bid laga "'+title+'"!','ok'); loadGigs(); }
+  catch(e){ toast('Error','err'); }
+}
+
+// ════════════════════════════════════════════
+//  ✅ AI — Using Anthropic Claude API
+// ════════════════════════════════════════════
+async function sendAI() {
+  const inp = document.getElementById('aiIn');
+  const msg = inp.value.trim();
+  if(!msg) return;
+  inp.value = ''; inp.style.height = 'auto';
+  addMsg(msg,'u');
+  const typ = addTyp();
+  try {
+    const rep = await callClaudeAPI(msg);
+    typ.remove(); addMsg(rep,'a');
+  } catch(e) { typ.remove(); addMsg('Oops! Error aaya. Dobara try karo!','a'); }
+}
+function aiQ(p) { document.getElementById('aiIn').value=p; sendAI(); }
+
+// ✅ Real Claude AI — with fallback
+async function callClaudeAPI(msg) {
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'anthropic-version':'2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        system: 'You are VaultX AI, a helpful assistant for an Indian earning app. Reply in Hinglish (mix of Hindi and English). Be concise (max 100 words), practical and encouraging. Help with: captions, YouTube ideas, freelancing, coding, business tips.',
+        messages: [{ role:'user', content: msg }]
+      })
+    });
+    if(!res.ok) throw new Error('API error '+res.status);
+    const data = await res.json();
+    return data.content?.[0]?.text || 'Koi response nahi aaya. Try again!';
+  } catch(e) {
+    // Fallback responses
+    return getFallbackAI(msg);
+  }
+}
+
+function getFallbackAI(msg) {
+  const m = msg.toLowerCase();
+  if(m.includes('caption')||m.includes('instagram')) return '📸 Viral Captions:\n• "Creating magic, one day at a time ✨"\n• "Your vibe attracts your tribe 🔥"\n• "Level up every single day 💪"\n\nTip: 5-8 niche hashtags lagao +40% reach ke liye!';
+  if(m.includes('youtube')||m.includes('yt')) return '🎬 Hot YouTube Ideas 2025:\n1. "Maine ₹10K kamaya 30 din mein"\n2. "Best earning apps — honest review"\n3. "Freelancing secrets jo koi nahi batata"\n4. "0 se 1K subscribers kaise banaye"\n5. "Pehla Fiverr client kaise mila mujhe"';
+  if(m.includes('python')||m.includes('code')) return '💻 Python example:\n\ndef reverse(s):\n    return s[::-1]\n\nprint(reverse("VaultX"))  # XtluaV\n\nSlicing sabse Pythonic tarika hai! 🐍';
+  if(m.includes('grow')||m.includes('follower')) return '📈 Instagram Growth:\n• Reels roz post karo\n• 5-10 niche hashtags\n• 1 ghante mein sab comments ka reply\n• 7-9 AM ya 8-10 PM IST pe post karo\n\nConsistency hi key hai! 🎯';
+  if(m.includes('fiverr')||m.includes('freelanc')) return '💸 Fiverr Tips:\n• Low price se shuru karo (₹200-500)\n• Profile mein real photo lagao\n• 24hr delivery offer karo\n• 5 gigs ek saath banao\n• Client ke keywords use karo title mein';
+  if(m.includes('earn')||m.includes('money')||m.includes('business')) return '💰 Top Earning Ways 2025:\n• Fiverr/Upwork pe freelancing\n• YouTube Shorts banao\n• Digital products becho (Gumroad)\n• Affiliate marketing (Amazon, Meesho)\n• Online teaching (Unacademy)\n\nVaultX tasks se capital build karo! 🚀';
+  return '🤖 Interesting question!\n\nMeri advice:\n• Ek skill pe deeply focus karo\n• Consistency beats perfection\n• Apna journey document karo\n• Community join karo\n\nHar expert kabhi beginner tha! 💪';
+}
+
+function addMsg(text, role) {
+  const el = document.getElementById('aiMsgs');
+  const t = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const div = document.createElement('div');
+  div.className = 'msg '+role;
+  div.innerHTML = '<div class="bbl">'+esc(text)+'</div><div class="msgt">'+t+'</div>';
+  el.appendChild(div); el.scrollTop = el.scrollHeight; return div;
+}
+function addTyp() {
+  const el = document.getElementById('aiMsgs');
+  const div = document.createElement('div');
+  div.className = 'msg a';
+  div.innerHTML = '<div class="bbl"><div class="typdots"><span class="d"></span><span class="d"></span><span class="d"></span></div></div>';
+  el.appendChild(div); el.scrollTop = el.scrollHeight; return div;
+}
+
+// ════════════════════════════════════════════
+//  WALLET — All in Firestore
+// ════════════════════════════════════════════
+function renderWallet() {
+  const u = userData, c = u.coins||0;
+  set('wC', c.toLocaleString());
+  set('wI', '₹'+(c/RATE).toFixed(2));
+  // Total earned from transactions
+  const earned = (u.transactions||[]).filter(t=>t.type==='earn').reduce((s,t)=>s+(t.amount||0),0);
+  const withdrawn = Math.abs((u.transactions||[]).filter(t=>t.type==='withdrawal').reduce((s,t)=>s+(t.amount||0),0));
+  set('wTotalEarned', '₹'+(earned/RATE).toFixed(2));
+  set('wTotalWithdrawn', '₹'+(withdrawn/RATE).toFixed(2));
+  loadWithdrawalHistory();
+}
+
+async function loadWithdrawalHistory() {
+  const el = document.getElementById('wHistory');
+  if(!el) return;
+  try {
+    const snap = await db.collection('withdrawals')
+      .where('userId','==',user.uid)
+      .orderBy('createdAt','desc')
+      .limit(15).get();
+
+    if(snap.empty) {
+      el.innerHTML = `<div style="text-align:center;padding:20px;color:var(--t3)">
+        <div style="font-size:1.5rem;margin-bottom:8px">💸</div>
+        <div style="font-size:.76rem;font-family:var(--fu)">Koi withdrawal request nahi hai abhi</div>
+        <div style="font-size:.66rem;color:var(--t3);margin-top:4px">1000 coins = ₹10 withdraw karo</div>
+      </div>`;
+      return;
+    }
+
+    el.innerHTML = snap.docs.map(d => {
+      const w = d.data();
+      const sc = w.status==='approved'?'var(--green)':w.status==='rejected'?'var(--red)':'var(--gold)';
+      const si = w.status==='approved'?'✅':w.status==='rejected'?'❌':'⏳';
+      const sLabel = w.status==='approved'?'APPROVED':w.status==='rejected'?'REJECTED':'PENDING';
+      const date = w.requestedAt || (w.createdAt?.toDate ? w.createdAt.toDate().toLocaleDateString('en-IN') : '—');
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+        <div>
+          <div style="font-size:.82rem;font-weight:600;font-family:var(--fu)">💸 ₹${w.amtINR||((w.coins||0)/100).toFixed(2)} <span style="font-size:.68rem;color:var(--t2)">(${(w.coins||0).toLocaleString()} coins)</span></div>
+          <div style="font-size:.63rem;color:var(--t2);font-family:var(--fc);margin-top:3px">${w.upiId||'—'} · ${date}</div>
+          ${w.status==='approved'&&w.txId?`<div style="font-size:.6rem;color:var(--green);font-family:var(--fc);margin-top:2px">TxID: ${w.txId}</div>`:''}
+          ${w.status==='rejected'&&w.rejectReason?`<div style="font-size:.6rem;color:var(--red);font-family:var(--fc);margin-top:2px">Reason: ${w.rejectReason}</div>`:''}
+        </div>
+        <div style="font-size:.7rem;color:${sc};font-family:var(--fu);font-weight:700;text-align:right">${si}<br>${sLabel}</div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    // Fallback: read from user transactions
+    const txns = (userData.transactions||[]).filter(t=>t.type==='withdrawal').reverse().slice(0,10);
+    if(!txns.length) {
+      el.innerHTML = '<div style="text-align:center;padding:16px;color:var(--t3);font-size:.76rem">Koi withdrawal nahi</div>';
+      return;
+    }
+    el.innerHTML = txns.map(t=>{
+      const sc = t.status==='approved'?'var(--green)':t.status==='rejected'?'var(--red)':'var(--gold)';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+        <div><div style="font-size:.8rem;font-weight:600">💸 ₹${(Math.abs(t.amount||0)/100).toFixed(2)}</div>
+        <div style="font-size:.63rem;color:var(--t2);margin-top:2px">${t.date||'—'}</div></div>
+        <div style="font-size:.7rem;color:${sc};font-family:var(--fu);font-weight:700">${t.status==='approved'?'✅':'⏳'} ${(t.status||'PENDING').toUpperCase()}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function setWd(amt) { document.getElementById('wA').value=amt; }
+
+async function withdraw() {
+  const upi = gv('wU').trim(), amtStr = gv('wA');
+  const amt = parseInt(amtStr)||0;
+  const btn = document.querySelector('[onclick="withdraw()"]');
+
+  // ── Validation ──
+  if(!upi) return toast('UPI ID daalo (e.g. name@paytm)','err');
+  const upiReg = /^[\w.\-+]+@[\w]+$/;
+  if(!upiReg.test(upi)) return toast('Invalid UPI ID format','err');
+  if(amt < 1000) return toast('Minimum 1000 coins = ₹10','err');
+  if((userData.coins||0) < amt) return toast(`Insufficient balance! Available: 🪙${userData.coins||0}`,'err');
+  if(!user?.uid) return toast('Login karo pehle','err');
+
+  // ── Disable button ──
+  if(btn) { btn.disabled=true; btn.innerHTML='<span class="spin" style="width:16px;height:16px;border-width:2px;margin:0 auto"></span>'; }
+
+  try {
+    // ── Check existing pending ──
+    const existing = await db.collection('withdrawals')
+      .where('userId','==',user.uid).where('status','==','pending').limit(1).get();
+    if(!existing.empty) {
+      if(btn){btn.disabled=false;btn.textContent='REQUEST WITHDRAWAL';}
+      return toast('Ek request already pending hai!','warn');
+    }
+
+    // ── Create withdrawal doc ──
+    const now = new Date();
+    const wData = {
+      userId:      user.uid,
+      userName:    userData.name||'User',
+      userEmail:   user.email||'',
+      userUID:     userData.uid||'',
+      phone:       userData.phone||'',
+      upiId:       upi,
+      coins:       amt,
+      amtINR:      (amt/RATE).toFixed(2),
+      status:      'pending',
+      requestedAt: now.toLocaleDateString('en-IN'),
+      requestTime: now.toISOString(),
+      createdAt:   firebase.firestore.FieldValue.serverTimestamp()
+    };
+    const wRef = await db.collection('withdrawals').add(wData);
+
+    // ── Deduct coins from user ──
+    await upd({
+      coins: firebase.firestore.FieldValue.increment(-amt),
+      totalWithdrawn: firebase.firestore.FieldValue.increment(amt),
+      transactions: firebase.firestore.FieldValue.arrayUnion({
+        type: 'withdrawal',
+        title: `💸 UPI Withdrawal ₹${(amt/RATE).toFixed(2)}`,
+        amount: -amt,
+        coins: amt,
+        upiId: upi,
+        wid: wRef.id,
+        date: now.toLocaleDateString('en-IN'),
+        status: 'pending'
+      })
+    });
+
+    // ── UI reset ──
+    document.getElementById('wU').value = '';
+    document.getElementById('wA').value = '';
+    if(btn){btn.disabled=false;btn.textContent='REQUEST WITHDRAWAL';}
+
+    renderWallet();
+    toast(`✅ Request submit hua! ₹${(amt/RATE).toFixed(2)} · 24-48 hrs mein process hogi`,'ok');
+
+  } catch(e) {
+    if(btn){btn.disabled=false;btn.textContent='REQUEST WITHDRAWAL';}
+    toast('Error: '+e.message,'err');
+  }
+}
+
+// ════════════════════════════════════════════
+//  PROFILE
+// ════════════════════════════════════════════
+function renderProfile() {
+  const u = userData;
+  updateAvatar();
+  set('pN', u.name||'Warrior');
+  set('pU', 'UID: '+(u.uid||getUID(user?.uid||'')||'──────'));
+  set('pEmail', u.email||user?.email||'');
+  set('pL', '⚡ LEVEL '+(u.level||1));
+  const rc = u.referralCode||u.uid||'DEMO';
+  set('rLink', SITE+'/join?ref='+rc);
+  set('rTo', u.referrals||0); set('rAc', u.referrals||0); set('rEa', u.referralEarned||0);
+}
+
+function copyRef() { fbCopy((document.getElementById('rLink')||{}).textContent||''); toast('🔗 Link copy hua!','ok'); }
+
+async function shareRef() {
+  const link = (document.getElementById('rLink')||{}).textContent||'';
+  if(navigator.share) {
+    try { await navigator.share({title:'VaultX — Real Money Earn Karo!', text:'VaultX join karo aur real money kamao! Mera referral link:', url:link}); return; }
+    catch(e) {}
+  }
+  fbCopy(link); toast('🔗 Link copy hua — share karo!','ok');
+}
+
+// ════════════════════════════════════════════
+//  COIN BURST ANIMATION
+// ════════════════════════════════════════════
+function spawnCoins(el, amount) {
+  if(amount >= 100) coinRain(Math.min(15, Math.floor(amount/50)));
+  const r = (el||document.body).getBoundingClientRect();
+  const cx = r.left+r.width/2, cy = r.top+r.height/2;
+  const n = Math.min(10, Math.ceil(amount/25));
+  for(let i=0; i<n; i++) {
+    const c = document.createElement('div');
+    c.className='cb';
+    const angle=(i/n)*2*Math.PI, dist=45+Math.random()*45;
+    c.style.cssText=`left:${cx}px;top:${cy}px;--cx:${Math.cos(angle)*dist}px;--cy:${Math.sin(angle)*dist}px`;
+    c.textContent='🪙'; document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1000);
+  }
+  const w=document.getElementById('wchip');
+  if(w){w.classList.remove('bump');void w.offsetWidth;w.classList.add('bump');setTimeout(()=>w.classList.remove('bump'),400);}
+}
+
+// ════════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════════
+let toastTm;
+function toast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show '+(type||'nfo');
+  clearTimeout(toastTm);
+  toastTm = setTimeout(()=>{ el.className=''; }, 3500);
+}
+
+// ════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════
+const gv = id => { const e=document.getElementById(id); return e?(e.value||'').trim():''; };
+const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+const esc = t => String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function fbCopy(t) {
+  if(navigator.clipboard) { navigator.clipboard.writeText(t).catch(()=>execCopy(t)); }
+  else execCopy(t);
+}
+function execCopy(t) {
+  const ta=document.createElement('textarea'); ta.value=t; ta.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function animN(id, target) {
+  const el=document.getElementById(id); if(!el) return;
+  const start=parseInt(el.textContent)||0;
+  if(start===target){el.textContent=target;return;}
+  const steps=30,dur=600; let i=0;
+  const iv=setInterval(()=>{i++;el.textContent=Math.round(start+(target-start)*(i/steps));if(i>=steps){el.textContent=target;clearInterval(iv);}},dur/steps);
+}
+function setBL(id, loading, txt) {
+  const b=document.getElementById(id); if(!b) return;
+  b.disabled=loading;
+  b.innerHTML=loading?'<span style="display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle"></span>':txt;
+}
+function shakeF(id, msg) {
+  const e=document.getElementById(id); if(!e) return;
+  e.classList.add('shake'); setTimeout(()=>e.classList.remove('shake'),500); e.focus();
+  if(msg) toast(msg,'err');
+}
+function ferr(code) {
+  const m={
+    'auth/user-not-found':'Yeh email registered nahi hai',
+    'auth/wrong-password':'Galat password hai',
+    'auth/email-already-in-use':'Yeh email already registered hai — Login karo',
+    'auth/invalid-email':'Invalid email address',
+    'auth/weak-password':'Password weak hai (min 6 chars)',
+    'auth/popup-closed-by-user':'Google sign-in cancel kiya',
+    'auth/popup-blocked':'Browser ne popup block kiya. Allow karo.',
+    'auth/network-request-failed':'Internet nahi hai',
+    'auth/too-many-requests':'Bahut attempts. Thodi der baad try karo.',
+    'auth/invalid-credential':'Galat email ya password',
+    'auth/cancelled-popup-request':'Sign-in cancel hua'
+  };
+  return m[code]||'Kuch gadbad hui. Dobara try karo.';
+}
+
+
+// ════════════════════════════════════════════
+//  ✅ GAMEZOP — Play Games & Earn Coins
+// ════════════════════════════════════════════
+// GameZop Partner ID — register at gamezop.com
+const GZ_PARTNER_CODE = 'DemO';   // Replace with your real GameZop partner code
+const GZ_BASE         = 'https://pub.gamezop.com/v3/games';
+const GZ_PLAY_BASE    = 'https://zv1y2i8p.play.gamezop.com/g/';
+
+const GZ_DAILY_MAX  = 5;    // Max 5 game rewards per day
+const GZ_MIN_PLAY   = 300;  // ✅ 5 minutes (300 sec) gameplay required
+
+let gzGames       = [];
+let gzActive      = null;   // Currently playing game
+let gzPlayTimer   = null;
+let gzPlaySec     = 0;
+let gzCanClaim    = false;
+
+// ──────────────────────────────────────────
+// Load games from GameZop API
+// ──────────────────────────────────────────
+async function loadGameZopGames() {
+  const grid = document.getElementById('gamesGrid');
+  if(!grid) return;
+  grid.innerHTML = '<div class="cpa-loading" style="grid-column:span 2"><div class="spin"></div> Games load ho rahe hain...</div>';
+
+  try {
+    // GameZop public games API
+    const url = GZ_BASE + '?partnerCode=' + GZ_PARTNER_CODE;
+    const res  = await fetch(url, {signal: AbortSignal.timeout(8000)});
+    const data = await res.json();
+    const games = (data.games || data.data || data || []).slice(0, 20);
+    if(!games.length) throw new Error('No games');
+    gzGames = games;
+    renderGameZopGames();
+    document.getElementById('gzCount').textContent = games.length + ' games available';
+  } catch(e) {
+    // Fallback games list
+    gzGames = getGZFallbackGames();
+    renderGameZopGames();
+    document.getElementById('gzCount').textContent = gzGames.length + ' games';
+  }
+}
+
+// ──────────────────────────────────────────
+// Fallback games (real GameZop game codes)
+// ──────────────────────────────────────────
+function getGZFallbackGames() {
+  return [
+    {code:'FpCvdT5b',name:'Fruit Slice',description:'Fruit kato aur score banao!',iconUrl:'https://static.gamezop.com/FpCvdT5b/icon.jpg',categories:['casual'],reward:80},
+    {code:'m8K4XjY2',name:'Stack Bounce',description:'Ball ko bounce karo!',iconUrl:'https://static.gamezop.com/m8K4XjY2/icon.jpg',categories:['casual'],reward:70},
+    {code:'Wq9LpN3r',name:'Knife Hit',description:'Knife throw karo!',iconUrl:'https://static.gamezop.com/Wq9LpN3r/icon.jpg',categories:['arcade'],reward:90},
+    {code:'Rv2TkH8s',name:'2048',description:'Numbers merge karo!',iconUrl:'https://static.gamezop.com/Rv2TkH8s/icon.jpg',categories:['puzzle'],reward:100},
+    {code:'Jx7MnB4t',name:'Snake Game',description:'Classic snake khelo!',iconUrl:'https://static.gamezop.com/Jx7MnB4t/icon.jpg',categories:['classic'],reward:75},
+    {code:'Pc5WgA6u',name:'Bubble Shooter',description:'Bubbles blast karo!',iconUrl:'https://static.gamezop.com/Pc5WgA6u/icon.jpg',categories:['casual'],reward:85},
+    {code:'Ek3VhC9v',name:'Car Racing',description:'Race jeeto!',iconUrl:'https://static.gamezop.com/Ek3VhC9v/icon.jpg',categories:['racing'],reward:120},
+    {code:'Ld1UfD2w',name:'Ludo',description:'Ludo khelo aur jeeto!',iconUrl:'https://static.gamezop.com/Ld1UfD2w/icon.jpg',categories:['board'],reward:110},
+  ];
+}
+
+// ──────────────────────────────────────────
+// Render game cards
+// ──────────────────────────────────────────
+function renderGameZopGames() {
+  const grid = document.getElementById('gamesGrid');
+  if(!grid) return;
+  const today     = new Date().toDateString();
+  const todayDone = userData.gzToday === today ? (userData.gzDoneToday || 0) : 0;
+  const limitReached = todayDone >= GZ_DAILY_MAX;
+  const doneGames = getGZDoneGames();
+
+  grid.innerHTML = '';
+  gzGames.forEach((g, i) => {
+    const code    = g.code || g.id || 'gz_'+i;
+    const name    = g.name || g.title || 'Game';
+    const icon    = g.iconUrl || g.icon || g.thumbnail || '';
+    const cat     = (g.categories||g.category||['casual'])[0]||'casual';
+    const reward  = g.reward || Math.floor(60 + Math.random()*80);
+    const isDone  = doneGames.includes(code);
+
+    const card = document.createElement('div');
+    card.className = 'gz-card';
+    card.style.animationDelay = (i * .05) + 's';
+    // ✅ REAL GAME THUMBNAIL — GameZop API iconUrl + fallback gradient
+    const thumbHTML = icon
+      ? `<img class="gz-thumb" src="${esc(icon)}" alt="${esc(name)}" loading="lazy"
+            style="width:100%;height:100px;object-fit:cover;display:block"
+            onerror="this.style.display='none';document.getElementById('gz-ph-${code}').style.display='flex'">`
+      : '';
+    const catEmoji = cat==='racing'?'🏎️':cat==='puzzle'?'🧩':cat==='arcade'?'🕹️':cat==='board'?'🎲':cat==='classic'?'🐍':'🎮';
+    const catBg    = cat==='racing'?'135deg,#ff6b35,#f7c59f':cat==='puzzle'?'135deg,#667eea,#764ba2':cat==='arcade'?'135deg,#f093fb,#f5576c':cat==='board'?'135deg,#4facfe,#00f2fe':'135deg,#43e97b,#38f9d7';
+
+    card.innerHTML = `
+      <div style="position:relative;width:100%;height:100px;overflow:hidden">
+        ${thumbHTML}
+        <div id="gz-ph-${code}" style="width:100%;height:100px;background:linear-gradient(${catBg});display:${icon?'none':'flex'};align-items:center;justify-content:center;font-size:2.5rem">${catEmoji}</div>
+        ${isDone ? '<div class="gz-done-overlay">✅<span>Done Today</span></div>' : ''}
+      </div>
+      <div class="gz-body">
+        <div class="gz-name">${esc(name)}</div>
+        <div class="gz-meta">
+          <div class="gz-coins">🪙 +${reward}</div>
+          <div class="gz-cat">${cat}</div>
+        </div>
+      </div>`;
+
+    if(!isDone && !limitReached) {
+      card.onclick = () => openGame(code, name, reward, icon);
+    } else if(limitReached && !isDone) {
+      card.style.opacity = '.5';
+      card.style.pointerEvents = 'none';
+    }
+    grid.appendChild(card);
+  });
+
+  if(limitReached) {
+    const msg = document.createElement('div');
+    msg.style.cssText = 'grid-column:span 2;text-align:center;padding:12px;font-size:.76rem;color:var(--gold);background:rgba(245,183,49,.08);border:1px solid rgba(245,183,49,.2);border-radius:10px';
+    msg.innerHTML = '⚠️ Aaj ke ' + GZ_DAILY_MAX + ' games complete ho gaye! Kal aao 🌙';
+    grid.appendChild(msg);
+  }
+}
+
+// ──────────────────────────────────────────
+// Open game in fullscreen iframe modal
+// ──────────────────────────────────────────
+function openGame(code, name, reward, icon) {
+  // Check daily limit
+  const today    = new Date().toDateString();
+  const todayDone = userData.gzToday === today ? (userData.gzDoneToday || 0) : 0;
+  if(todayDone >= GZ_DAILY_MAX) {
+    toast('Aaj ke ' + GZ_DAILY_MAX + ' games ho gaye! Kal aao 🌙','warn');
+    return;
+  }
+  if(getGZDoneGames().includes(code)) {
+    toast('Yeh game aaj already khela hai!','warn');
+    return;
+  }
+
+  gzActive     = { code, name, reward };
+  gzPlaySec    = 0;
+  gzCanClaim   = false;
+
+  // Build GameZop iframe URL
+  const gameUrl = GZ_PLAY_BASE + code +
+    '?partnerCode=' + GZ_PARTNER_CODE +
+    '&userId=' + (user?.uid || 'guest') +
+    '&lang=hi';
+
+  document.getElementById('gameModalTitle').textContent = name;
+  document.getElementById('gameRewardAmt').textContent  = reward;
+  document.getElementById('gameTimerDisplay').textContent = '0:00';
+  document.getElementById('gamePlayReq').textContent = GZ_MIN_PLAY + 's khelne ke baad claim hoga';
+
+  const claimBtn = document.getElementById('gameClaimBtn');
+  claimBtn.classList.remove('ready');
+  claimBtn.textContent = '🎮 Claim Reward';
+  claimBtn.disabled = true;
+
+  // Load game in iframe
+  const frame = document.getElementById('gameFrame');
+  frame.src = gameUrl;
+
+  document.getElementById('gameModal').classList.add('show');
+
+  // Start play timer
+  clearInterval(gzPlayTimer);
+  gzPlayTimer = setInterval(() => {
+    gzPlaySec++;
+    const m = Math.floor(gzPlaySec/60);
+    const s = gzPlaySec % 60;
+    const timerEl = document.getElementById('gameTimerDisplay');
+    if(timerEl) timerEl.textContent = m + ':' + String(s).padStart(2,'0');
+
+    if(gzPlaySec === GZ_MIN_PLAY) {
+      // ✅ Minimum play time reached
+      gzCanClaim = true;
+      const cb = document.getElementById('gameClaimBtn');
+      if(cb) {
+        cb.classList.add('ready');
+        cb.disabled = false;
+        cb.textContent = '🎉 Reward Claim Karo!';
+      }
+      const req = document.getElementById('gamePlayReq');
+      if(req) req.textContent = '✅ Minimum time complete! Claim karo ya khelte raho.';
+      toast('🎮 ' + GZ_MIN_PLAY + 's complete! Reward claim karo!','ok');
+    }
+  }, 1000);
+}
+
+// ──────────────────────────────────────────
+// Claim game reward
+// ──────────────────────────────────────────
+async function claimGameReward() {
+  if(!gzActive || !gzCanClaim) {
+    toast('Pehle ' + GZ_MIN_PLAY + 's khelo!','warn');
+    return;
+  }
+  const { code, name, reward } = gzActive;
+
+  // Anti-cheat: already done today?
+  if(getGZDoneGames().includes(code)) {
+    toast('Yeh game aaj already complete kiya hai!','warn');
+    closeGame();
+    return;
+  }
+
+  const today    = new Date().toDateString();
+  const todayDone = userData.gzToday === today ? (userData.gzDoneToday || 0) : 0;
+  if(todayDone >= GZ_DAILY_MAX) {
+    toast('Aaj ka game limit ho gaya!','warn');
+    closeGame();
+    return;
+  }
+
+  try {
+    await upd({
+      coins:          firebase.firestore.FieldValue.increment(reward),
+      xp:             firebase.firestore.FieldValue.increment(Math.floor(reward/5)),
+      tasksCompleted: firebase.firestore.FieldValue.increment(1),
+      gzDoneToday:    firebase.firestore.FieldValue.increment(1),
+      gzToday:        today,
+      gzTotalDone:    firebase.firestore.FieldValue.increment(1),
+      transactions:   firebase.firestore.FieldValue.arrayUnion({
+        type:'earn',
+        title:'🎮 Game: ' + name,
+        amount: reward,
+        date: new Date().toLocaleDateString()
+      })
+    });
+
+    saveGZDone(code);
+    todayEarned += reward;
+    set('eTotVal',todayEarned);
+    spawnCoins(document.getElementById('gamesGrid'), reward);
+    toast('🎉 +' + reward + ' Coins! ' + name + ' se kama liye!','ok');
+    checkLevel();
+    closeGame();
+    renderGameZopGames();
+  } catch(e) {
+    toast('Error: ' + e.message,'err');
+  }
+}
+
+// ──────────────────────────────────────────
+// Close game modal
+// ──────────────────────────────────────────
+function closeGame() {
+  document.getElementById('gameModal').classList.remove('show');
+  const frame = document.getElementById('gameFrame');
+  frame.src = 'about:blank';
+  clearInterval(gzPlayTimer);
+  gzActive   = null;
+  gzCanClaim = false;
+  gzPlaySec  = 0;
+}
+
+// ──────────────────────────────────────────
+// localStorage helpers — only game codes
+// ──────────────────────────────────────────
+const GZ_STORAGE_KEY = 'vx_gz_done';
+function getGZDoneGames() {
+  try { return JSON.parse(localStorage.getItem(GZ_STORAGE_KEY)||'[]'); } catch(e) { return []; }
+}
+function saveGZDone(code) {
+  try {
+    const d = getGZDoneGames();
+    if(!d.includes(code)) { d.push(code); localStorage.setItem(GZ_STORAGE_KEY, JSON.stringify(d)); }
+  } catch(e) {}
+}
+
+
+// ════════════════════════════════════════════
+//  ✅ SPIN WHEEL — Real Daily Free Spin
+// ════════════════════════════════════════════
+const SPIN_SEGMENTS = [
+  {label:'10 🪙',  coins:10,  color:'#00e4c3', prob:25},
+  {label:'25 🪙',  coins:25,  color:'#5b8df0', prob:20},
+  {label:'50 🪙',  coins:50,  color:'#b06ef5', prob:18},
+  {label:'100 🪙', coins:100, color:'#f5b731', prob:15},
+  {label:'0 😢',   coins:0,   color:'#38465a', prob:10},
+  {label:'200 🪙', coins:200, color:'#ff4f6e', prob:7},
+  {label:'75 🪙',  coins:75,  color:'#22d35e', prob:3},
+  {label:'500 🪙', coins:500, color:'#f97316', prob:2},
+];
+
+let spinRunning = false;
+let spinAngle   = 0;
+
+function openSpinWheel() {
+  const today = new Date().toDateString();
+  const el = document.getElementById('spinModal');
+  el.classList.add('show');
+  document.getElementById('spinResult').textContent = '';
+  document.getElementById('spinResultSub').textContent = '';
+  drawSpinWheel(spinAngle);
+
+  const btn = document.getElementById('spinBtn');
+  const info = document.getElementById('spinNextInfo');
+  if(userData.lastSpin === today) {
+    btn.disabled = true;
+    btn.textContent = '✅ Aaj Spin Ho Gaya!';
+    info.textContent = 'Kal dobara aao!';
+  } else {
+    btn.disabled = false;
+    btn.textContent = '🎡 SPIN!';
+    info.textContent = 'Aaj ki free spin available hai!';
+  }
+}
+
+function closeSpinWheel() {
+  document.getElementById('spinModal').classList.remove('show');
+}
+
+function drawSpinWheel(rotation) {
+  const canvas = document.getElementById('spinCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 140, cy = 140, r = 135;
+  const total = SPIN_SEGMENTS.reduce((s,sg)=>s+sg.prob,0);
+  ctx.clearRect(0,0,280,280);
+  let startAngle = rotation;
+  SPIN_SEGMENTS.forEach(seg => {
+    const slice = (seg.prob/total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,startAngle,startAngle+slice);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Label
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.rotate(startAngle + slice/2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Orbitron,sans-serif';
+    ctx.shadowColor = 'rgba(0,0,0,.6)';
+    ctx.shadowBlur = 3;
+    ctx.fillText(seg.label, r-10, 5);
+    ctx.restore();
+    startAngle += slice;
+  });
+  // Border
+  ctx.beginPath();
+  ctx.arc(cx,cy,r,0,2*Math.PI);
+  ctx.strokeStyle = 'rgba(0,228,195,.5)';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+}
+
+async function doSpin() {
+  const today = new Date().toDateString();
+  if(userData.lastSpin === today) {
+    toast('Aaj already spin ho gaya! Kal aao 🌙','warn');
+    return;
+  }
+  if(spinRunning) return;
+  spinRunning = true;
+
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true; btn.textContent = '🌀 Spinning...';
+  document.getElementById('spinResult').textContent = '';
+  document.getElementById('spinResultSub').textContent = '';
+
+  // ✅ Pick winner based on probability
+  const total = SPIN_SEGMENTS.reduce((s,sg)=>s+sg.prob,0);
+  const rand = Math.random()*total;
+  let cum=0, winIdx=0;
+  for(let i=0;i<SPIN_SEGMENTS.length;i++){cum+=SPIN_SEGMENTS[i].prob;if(rand<=cum){winIdx=i;break;}}
+  const winner = SPIN_SEGMENTS[winIdx];
+
+  // Calculate target angle (spin 5 full rotations + winner segment center)
+  const segTotal = SPIN_SEGMENTS.reduce((s,sg)=>s+sg.prob,0);
+  let segStart = 0;
+  for(let i=0;i<winIdx;i++) segStart += (SPIN_SEGMENTS[i].prob/segTotal)*2*Math.PI;
+  const segMid = segStart + (winner.prob/segTotal)*Math.PI;
+  // Pointer is at top (3*PI/2 from 0), we need segMid to be at top
+  const targetAngle = (Math.PI*10) - segMid + Math.PI*1.5;
+  const startAngle = spinAngle;
+  const duration = 3500;
+  const start = performance.now();
+
+  function animate(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed/duration, 1);
+    // Ease out cubic
+    const ease = 1 - Math.pow(1-progress,3);
+    spinAngle = startAngle + (targetAngle - startAngle) * ease;
+    drawSpinWheel(spinAngle % (2*Math.PI));
+    if(progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // ✅ Spin done
+      spinRunning = false;
+      showSpinResult(winner);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+async function showSpinResult(winner) {
+  const res = document.getElementById('spinResult');
+  const sub = document.getElementById('spinResultSub');
+  const btn = document.getElementById('spinBtn');
+  const info = document.getElementById('spinNextInfo');
+
+  res.textContent = winner.coins > 0 ? '🎉 ' + winner.label + ' Jeete!' : '😢 Phir Try Karo!';
+  sub.textContent = winner.coins > 0 ? '+'+winner.coins+' coins aapke account mein add ho gaye!' : 'Koi coins nahi — kal dobara spin karo!';
+
+  if(winner.coins > 0) {
+    try {
+      await upd({
+        coins: firebase.firestore.FieldValue.increment(winner.coins),
+        lastSpin: new Date().toDateString(),
+        transactions: firebase.firestore.FieldValue.arrayUnion({
+          type:'earn', title:'🎡 Spin Wheel — '+winner.label,
+          amount:winner.coins, date:new Date().toLocaleDateString()
+        })
+      });
+      spawnCoins(document.getElementById('spinCanvas'), winner.coins);
+      toast('🎉 Spin se +'+winner.coins+' Coins!','ok');
+    } catch(e) { toast('Error: '+e.message,'err'); }
+  } else {
+    await upd({ lastSpin: new Date().toDateString() });
+  }
+
+  btn.disabled = true;
+  btn.textContent = '✅ Done!';
+  info.textContent = 'Kal dobara aao!';
+  checkLevel();
+}
+
+
+// ════════════════════════════════════════════
+//  ✅ SCRATCH CARDS — Daily 3 free
+// ════════════════════════════════════════════
+const SCRATCH_PRIZES = [
+  {label:'10🪙', coins:10, prob:35},
+  {label:'25🪙', coins:25, prob:28},
+  {label:'50🪙', coins:50, prob:18},
+  {label:'100🪙',coins:100,prob:10},
+  {label:'200🪙',coins:200,prob:6},
+  {label:'💎 500',coins:500,prob:3},
+];
+const SCRATCH_DAILY = 3;
+
+function initScratchCards() {
+  const el = document.getElementById('scratchCards');
+  if(!el) return;
+  const today = new Date().toDateString();
+  const used  = userData.scratchToday === today ? (userData.scratchUsed||0) : 0;
+  const info  = document.getElementById('scratchInfo');
+  if(info) info.textContent = `Aaj ${SCRATCH_DAILY - used}/${SCRATCH_DAILY} cards bache`;
+  el.innerHTML = '';
+  for(let i=0;i<SCRATCH_DAILY;i++) {
+    const isDone = i < used;
+    // Pick a prize deterministically per card-index per day
+    const prize = pickScratchPrize();
+    const wrap = document.createElement('div');
+    wrap.className = 'scard-wrap';
+    wrap.innerHTML = `
+      <div class="scard-base">
+        <div class="scard-reward">${prize.label}</div>
+        <div class="scard-lbl">SCRATCH!</div>
+      </div>
+      ${isDone
+        ? `<div class="scard-done">✅</div>`
+        : `<canvas class="scard-canvas" id="sc-${i}" width="100" height="100"></canvas>`
+      }`;
+    el.appendChild(wrap);
+    if(!isDone) {
+      setTimeout(() => setupScratchCanvas(i, prize), 100);
+    }
+  }
+}
+
+function pickScratchPrize() {
+  const total = SCRATCH_PRIZES.reduce((s,p)=>s+p.prob,0);
+  let r = Math.random()*total, cum=0;
+  for(const p of SCRATCH_PRIZES){cum+=p.prob;if(r<=cum)return p;}
+  return SCRATCH_PRIZES[0];
+}
+
+function setupScratchCanvas(idx, prize) {
+  const canvas = document.getElementById('sc-'+idx);
+  if(!canvas) return;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width || 100;
+  canvas.height = rect.height || 100;
+  const ctx = canvas.getContext('2d');
+  // Draw scratch layer
+  ctx.fillStyle = '#1a2038';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  // Add text
+  ctx.fillStyle = 'rgba(255,255,255,.3)';
+  ctx.font = 'bold 13px Rajdhani,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('✦ SCRATCH ✦', canvas.width/2, canvas.height/2);
+
+  let scratching = false, revealed = false, scratchedPct = 0;
+  const totalPx = canvas.width * canvas.height;
+
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const cl = e.changedTouches ? e.changedTouches[0] : e;
+    return {x: (cl.clientX-r.left)*(canvas.width/r.width), y: (cl.clientY-r.top)*(canvas.height/r.height)};
+  }
+  function scratch(e) {
+    if(!scratching || revealed) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, 18, 0, 2*Math.PI);
+    ctx.fill();
+    // Check % revealed
+    const data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let cleared = 0;
+    for(let j=3;j<data.length;j+=4) if(data[j]<128) cleared++;
+    scratchedPct = cleared/totalPx;
+    if(scratchedPct > 0.55 && !revealed) {
+      revealed = true;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      onScratchRevealed(idx, prize);
+    }
+  }
+  canvas.addEventListener('mousedown', e=>{scratching=true;scratch(e);});
+  canvas.addEventListener('mousemove', e=>{if(scratching)scratch(e);});
+  canvas.addEventListener('mouseup',   ()=>{scratching=false;});
+  canvas.addEventListener('touchstart', e=>{scratching=true;scratch(e);},{passive:false});
+  canvas.addEventListener('touchmove',  e=>{scratch(e);},{passive:false});
+  canvas.addEventListener('touchend',   ()=>{scratching=false;});
+}
+
+async function onScratchRevealed(idx, prize) {
+  const today = new Date().toDateString();
+  const used  = userData.scratchToday === today ? (userData.scratchUsed||0) : 0;
+  if(used >= SCRATCH_DAILY) return;
+  try {
+    await upd({
+      coins: firebase.firestore.FieldValue.increment(prize.coins),
+      scratchToday: today,
+      scratchUsed: firebase.firestore.FieldValue.increment(1),
+      transactions: firebase.firestore.FieldValue.arrayUnion({
+        type:'earn', title:'🎰 Scratch Card — '+prize.label,
+        amount:prize.coins, date:new Date().toLocaleDateString()
+      })
+    });
+    todayEarned += prize.coins;
+    set('eTotVal',todayEarned);
+    coinRain(12);
+    toast('🎰 Scratch se +'+prize.coins+' Coins!','ok');
+    checkLevel();
+    setTimeout(initScratchCards, 500);
+    updateMissionProgress('scratch', 1);
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ════════════════════════════════════════════
+//  ✅ DAILY MISSIONS
+// ════════════════════════════════════════════
+const MISSIONS = [
+  {id:'m1', name:'Ad Watcher',    desc:'Aaj 3 ads dekho',    icon:'📺', target:3,  field:'adWatchedToday', reward:30},
+  {id:'m2', name:'Task Master',   desc:'Aaj 2 tasks karo',   icon:'✅', target:2,  field:'tasksToday',     reward:50},
+  {id:'m3', name:'Scratch Pro',   desc:'Sare scratch karo',  icon:'🎰', target:3,  field:'scratchUsed',    reward:40},
+  {id:'m4', name:'Spin Warrior',  desc:'Aaj spin karo',      icon:'🎡', target:1,  field:'spinToday',      reward:25},
+  {id:'m5', name:'Game Player',   desc:'1 game khelo',       icon:'🎮', target:1,  field:'gzDoneToday',    reward:60},
+  {id:'m6', name:'Big Earner',    desc:'Aaj 500 coins pao',  icon:'💰', target:500,field:'todayCoins',     reward:100},
+];
+
+function renderMissions() {
+  const el = document.getElementById('dailyMissions'); if(!el) return;
+  const today = new Date().toDateString();
+  el.innerHTML = MISSIONS.map(m => {
+    let current = 0;
+    if(m.field === 'adWatchedToday') current = userData.adWatchedDate===today?(userData.adWatchedToday||0):0;
+    else if(m.field === 'tasksToday') {
+      const doneTasks = userData.doneTasks||[];
+      current = doneTasks.filter(id=>!id.includes('_')||(id.split('_')[1]===today.replace(/ /g,''))).length;
+    }
+    else if(m.field === 'scratchUsed') current = userData.scratchToday===today?(userData.scratchUsed||0):0;
+    else if(m.field === 'spinToday') current = userData.lastSpin===today?1:0;
+    else if(m.field === 'gzDoneToday') current = userData.gzToday===today?(userData.gzDoneToday||0):0;
+    else if(m.field === 'todayCoins') current = todayEarned;
+    const isDone = current >= m.target;
+    const pct = Math.min(100, Math.round((current/m.target)*100));
+    return `<div class="mission-card${isDone?' mission-done':''}">
+      <div class="mission-ico">${m.icon}</div>
+      <div class="mission-body">
+        <div class="mission-name">${m.name}</div>
+        <div class="mission-prog-wrap"><div class="mission-prog-fill" style="width:${pct}%"></div></div>
+        <div class="mission-meta">
+          <div class="mission-count">${current}/${m.target} ${isDone?'✅':''}</div>
+          <div class="mission-reward">+${m.reward}🪙</div>
+        </div>
+      </div>
+      ${isDone && !(userData.missionsDone||[]).includes(m.id+'_'+today)
+        ? `<button class="btn bsm bgold" onclick="claimMission('${m.id}',${m.reward})">CLAIM</button>`
+        : isDone ? '<span style="font-size:.7rem;color:var(--green)">✅</span>' : ''}
+    </div>`;
+  }).join('');
+}
+
+async function claimMission(id, reward) {
+  const today = new Date().toDateString();
+  const mKey = id+'_'+today;
+  if((userData.missionsDone||[]).includes(mKey)) return;
+  try {
+    await upd({
+      coins: firebase.firestore.FieldValue.increment(reward),
+      missionsDone: firebase.firestore.FieldValue.arrayUnion(mKey),
+      transactions: firebase.firestore.FieldValue.arrayUnion({
+        type:'earn', title:'🎯 Mission Complete!', amount:reward, date:new Date().toLocaleDateString()
+      })
+    });
+    todayEarned += reward;
+    coinRain(8);
+    toast('🎯 Mission Complete! +'+reward+' Coins!','ok');
+    renderMissions();
+    checkLevel();
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+function updateMissionProgress(type, amount) {
+  // Called after each action to refresh missions
+  renderMissions();
+}
+
+// ════════════════════════════════════════════
+//  ✅ ACHIEVEMENTS
+// ════════════════════════════════════════════
+const ACHIEVEMENTS = [
+  {id:'a1',  name:'First Step',   ico:'👶', req: u=>( u.tasksCompleted>=1)},
+  {id:'a2',  name:'Task 10',      ico:'🔟', req: u=>(u.tasksCompleted>=10)},
+  {id:'a3',  name:'Level 5',      ico:'⚡', req: u=>(u.level>=5)},
+  {id:'a4',  name:'Coin 1K',      ico:'💰', req: u=>(u.coins>=1000)},
+  {id:'a5',  name:'Coin 10K',     ico:'🤑', req: u=>(u.coins>=10000)},
+  {id:'a6',  name:'7 Day Streak', ico:'🔥', req: u=>(u.streak>=7)},
+  {id:'a7',  name:'Referral Pro', ico:'🔗', req: u=>(u.referrals>=3)},
+  {id:'a8',  name:'Spin Master',  ico:'🎡', req: u=>(u.gzTotalDone>=5||u.lastSpin)},
+  {id:'a9',  name:'Game Addict',  ico:'🎮', req: u=>(u.gzTotalDone>=10)},
+  {id:'a10', name:'Scratch King', ico:'🎰', req: u=>(u.scratchUsed>=9)},
+  {id:'a11', name:'CPA Hero',     ico:'💸', req: u=>(u.cpaTotalDone>=5)},
+  {id:'a12', name:'Super Earner', ico:'🏆', req: u=>(u.coins>=50000)},
+];
+
+function renderAchievements() {
+  const el = document.getElementById('achievementsGrid'); if(!el) return;
+  const u = userData;
+  el.innerHTML = ACHIEVEMENTS.map(a => {
+    const unlocked = a.req(u);
+    return `<div class="ach-item${unlocked?' unlocked':' locked'}" title="${a.name}">
+      <div class="ach-ico">${a.ico}</div>
+      <div class="ach-name">${a.name}</div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════════
+//  ✅ COIN RAIN ANIMATION
+// ════════════════════════════════════════════
+function coinRain(count=10) {
+  for(let i=0;i<count;i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'coin-rain-particle';
+      el.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22" fill="#f5b731"><circle cx="12" cy="12" r="10"/><text x="12" y="16.5" text-anchor="middle" font-size="9" font-weight="900" fill="#000" font-family="Arial">₹</text></svg>`;
+      el.style.left = (10+Math.random()*80)+'vw';
+      el.style.animationDuration = (1.5+Math.random()*1.5)+'s';
+      el.style.animationDelay = (Math.random()*.5)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 3500);
+    }, i*80);
+  }
+}
+
+// ════════════════════════════════════════════
+//  ✅ LEVEL UP BONUS — extra coins on level up
+// ════════════════════════════════════════════
+function checkLevel() {
+  const nl = Math.floor((userData.xp||0)/XPL)+1;
+  if(nl > (userData.level||1)) {
+    set('lvlN','Level '+nl);
+    document.getElementById('lvlup').classList.add('open');
+    upd({ level: nl });
+    // Bonus coins on level up
+    const bonus = nl * 50;
+    upd({
+      coins: firebase.firestore.FieldValue.increment(bonus),
+      transactions: firebase.firestore.FieldValue.arrayUnion({
+        type:'earn', title:'⚡ Level '+nl+' Bonus!', amount:bonus, date:new Date().toLocaleDateString()
+      })
+    });
+    coinRain(20);
+    toast('⚡ Level '+nl+'! +'+bonus+' Bonus Coins!','ok');
+    renderAchievements();
+  }
+}
+
+// PWA Service Worker
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
